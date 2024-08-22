@@ -1,0 +1,66 @@
+Stack Smashing Tutorial
+=======================
+
+Lets hack like its 1996 and *Smash the Stack for Fun and Profit*!
+
+Setup
+-----
+
+In this repo you'll find a Vagrantfile to create a 32-bit x86 virtual machine
+with most of the modern safety mechanisms turned off.
+
+To bring up the virtual machine run:
+
+````
+$ vagrant up --provision
+````
+
+To rerun the provisioning, in case you modify the Vagrantfile, forget the
+`--provision` flag, or to reset things:
+
+````
+$ vagrant reload --provision
+````
+
+If you *really* much things up and need to start again:
+
+````
+$ vagrant destroy
+````
+
+Once the VM is up you can login with:
+
+````
+$ vagrant ssh
+````
+
+Running
+-------
+
+Inside the virtual machine, you'll find a `hackme` program that expects the
+name of the person to greet as the first argument.
+For example, if you run it:
+
+````
+$ ./hackme Sarah
+Hello Sarah!
+````
+
+Source code is available, a `Makefile`, and a `shellcode.c` program that may be
+helpful.  All the tools you will need are already installed (including system
+manuals).
+
+Your task is to provide an input to the `hackme` program so that it drops you
+into a shell (or any other program) instead of exiting cleanly.
+
+Hints
+-----
+
+````
+$ base64 -d <<< LSBSZWFkIHRoaXMgaHR0cDovL3BocmFjay5vcmcvaXNzdWVzLzQ5LzE0Lmh0bWwKLSBEb24ndCB0cnkgYW5kIGNhbGN1bGF0ZSB0aGluZ3MgZXhhY3RseSwgZ28gb25lIHN0ZXAgYXQgYSB0aW1lLCBhbmQgdXNlIGJpbmFyeSBzZWFyY2ggdG8gZmluZCB0aGUgcmlnaHQgb2Zmc2V0cy4gIFVzZSBnZGIgdG8gY2hlY2sgeW91ciBhc3N1bXB0aW9ucyBhdCBldmVyeSBzdGVwLgotIFRyeSBydW5uaW5nIHRoZSBwcm9ncmFtIHdpdGggYSBuYW1lIGxpa2UgQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUEuICBXaGF0IGhhcHBlbnM/ICBXaGVyZSBkb2VzIHlvdXIgcHJvZ3JhbSBjcmFzaCBhbmQgd2h5PyBEb24ndCB3cml0ZSB0aGUgQXMgb3V0IGJ5IGhhbmQ6IHVzZSBhIHNjcmlwdCBgJChwZXJsIC1lICdwcmludCAiQSJ4ODAnKWAhCi0gU2hvdyBtZSB5b3UgY2FuIG1ha2UgdGhlIHByb2dyYW0gY3Jhc2ggYXQgYW55IGFyYml0cmFyeSBhZGRyZXNzLCBlLmcuIDB4NDI0MzQ0NDUuCi0gSW5qZWN0IGNvZGUgdGhhdCB5b3Ugd291bGQgbGlrZSB0byBydW4gc29tZXdoZXJlIHlvdSBrbm93IHRoZSBhZGRyZXNzIG9mLgotIFJ1biB5b3VyIGNvZGUgaW5zdGVhZCBvZiByZXR1cm5pbmcgYW55d2hlcmUuCg==
+````
+
+Bonus
+-----
+
+Check out the `Vagrantfile` for some sweet use of a _standard_ text editor `;-)`

