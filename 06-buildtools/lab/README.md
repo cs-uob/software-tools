@@ -1,15 +1,16 @@
 # Build Tools
-# Build tools: C
 
-In this exercise you will practice the traditional way of building C projects from source. We are going to use the sqlite database as an example project to build.
+## Part 1: Building C code from source
+
+In this exercise you will practice the traditional way of building C
+projects from source. We are going to use the sqlite database as an
+example project to build.
 
 Download the source file [https://sqlite.org/2021/sqlite-autoconf-3340100.tar.gz](https://sqlite.org/2021/sqlite-autoconf-3340100.tar.gz) into your VM with `wget` or similar and extract it with `tar zxvf FILENAME`. This creates a subfolder, do a `cd` into it.
 
 ![XKCD comic pointing out that tar has a weird UI.](https://imgs.xkcd.com/comics/tar.png)
 
-|||advanced
-What's that weird `zxvf` bit in the `tar` command?  Read the man pages; but it is an older convention for passing command flags that lives on in a few commands.  The `z` means decompress it with `gunzip` first, `x` is for extract, `v` is for verbose (list the files it is expanding) and `f` is for read the archive from a file as opposed to standard input. 
-|||
+What's that weird `zxvf` bit in the `tar` command?  _Read the man pages_; but it is an older convention for passing command flags that lives on in a few commands.  The `z` means decompress it with `gunzip` first, `x` is for extract, `v` is for verbose (list the files it is expanding) and `f` is for read the archive from a file as opposed to standard input. 
 
 You can see a file called `INSTALL` which you can open in a text editor to find the standard instructions:
 
@@ -31,11 +32,9 @@ Your configure script should run through and print `creating Makefile` on one of
 
 The configure script is basically a collection of tests for every single bug and oddity found on any system known to the autoconf developers that could break the build. For example, someone once reported a bug in a build on Sun OS 4 (released in 1988), so in lines 2422 and following of the configure script we read
 
-> `# Use test -z because SunOS4 sh mishandles braces in ${var-val}.`
-> 
-> `# It thinks the first close brace ends the variable substitution.`
-> 
-> `test -z "$INSTALL_PROGRAM" && INSTALL_PROGRAM='${INSTALL}'`
+    # Use test -z because SunOS4 sh mishandles braces in ${var-val}.
+    # It thinks the first close brace ends the variable substitution.
+    test -z "$INSTALL_PROGRAM" && INSTALL_PROGRAM="${INSTALL}"
 
 ## Make
 
@@ -56,20 +55,47 @@ The last command run by the makefile is
 
 This should build an executable `sqlite3` that you can run (use `.q` to quit again).
 
-_If you want to, you can now type `sudo make install` to copy the executable to `/usr/local/bin`._
+## Installing
 
-|||advanced
-What do you do if it says it can't find a `.h` file, or can't link it to a library file (a `.so`)? C predates modern languages with package managers, so it probably means you haven't installed a library the code depends on.  Luckily `apt-file` can be really helpful here:  run `apt-file search <name of file>` to find out which package provides the file you're missing and install it.
+If you want to, you can now type `make install` to copy the executable
+to `/usr/local/bin`; but you'll probably find it fails with
+permissions issues.  Turns out *most* user's aren't allowed to install
+software for everyone.
 
-I was trying to build a package that was complaining it couldn't find a library `libffi.so`: what package might have provided it?
+So what do you do?
 
-Try not to panic if the software you're building won't build cleanly!  Read the error message and fix the bug.  Normally installing a library, or altering a path in the source code is enough to fix it.  Being able to fix simple bugs yourself is what makes Linux (and other OSs) really powerful!
-|||
-# Build tools: Python
+- You could install using the `root` user who is allowed to install to
+  the system directories: `sudo make install`
+  - But on the lab machines you aren't allowed to use `sudo`…
+- You could install it somewhere else.  Clean out your build and try
+  rerunning `./configure` with `--prefix=${HOME}/.local/` first!
 
-The Python programming language comes with a package manager called `pip`.  Find the package that provides it and install it (**hint**: how did we find a missing library in the C build tools?).
+## What to do if it doesn't build?
+What do you do if it says it can't find a `.h` file, or can't link it
+to a library file (a `.so`)? C predates modern languages with package
+managers, so it probably means you haven't installed a library the
+code depends on.  Luckily `apt-file` on Debian-based systems can be
+really helpful here: run `apt-file search <name of file>` to find out
+which package provides the file you're missing and install it.
 
-We are going to practice installing the [mistletoe](https://github.com/miyuchina/mistletoe) module, which renders markdown into HTML.
+I was trying to build a package that was complaining it couldn't find
+a library `libffi.so`: what package might have provided it?
+
+Try not to panic if the software you're building won't build cleanly!
+Read the error message and fix the bug.  Normally installing a
+library, or altering a path in the source code is enough to fix it.
+Being able to fix simple bugs yourself is what makes Linux (and other
+OSs) really powerful!
+
+# Python
+
+The Python programming language comes with a package manager called
+`pip`.  Find the package that provides it and install it (**hint**:
+how did we find a missing library in the C build tools?).
+
+We are going to practice installing the
+[mistletoe](https://github.com/miyuchina/mistletoe) module, which
+renders markdown into HTML.
 
   - In python, try the line `import mistletoe` and notice that you get `ModuleNotFoundError: No module named 'mistletoe'`. 
   - Quit python again (Control-d) and try `pip3 install --user mistletoe`. You should get a success message (and possibly a warning, explained below).
@@ -92,7 +118,7 @@ This should print the markdown rendered to HTML, e.g.
     <h1>Markdown Example</h1>\n<p>Markdown is a <em>markup</em> language.</p>
 
 
-|||advanced
+## Python versioning hell
 Python version 3 came out in 2008 and has some syntax changes compared
 to Python 2 (`print "hello world"` became `print("hello
 world")`). Version 2 is now considered deprecated; but the transition
@@ -133,33 +159,51 @@ general try and avoid it.
 Python used to manage your OS should be run by the system designers;
 Python used for your dev work should be managed by you.  And never the
 twain shall meet.
-|||
 
 ## Scipy
 
-In Maths B, you will be using `scipy` for statistics, so you may as well install that too. Unfortunately, `pip` will complain because scipy depends on a C library for fast linear algebra. You could go and install all the dependencies (and you might have to do this if you need a specific version of it), but it turns out Debian has it all packaged up as a system package too: if it is at the version you need you could install that instead.  Try searching for it with `apt search scipy`.
+In Maths B, you will be using `scipy` for statistics, so you may as
+well install that too. Unfortunately, `pip` will complain because
+scipy depends on a C library for fast linear algebra. You could go and
+install all the dependencies (and you might have to do this if you
+need a specific version of it), but it turns out Debian has it all
+packaged up as a system package too: if it is at the version you need
+you could install that instead.  Try searching for it with `apt search
+scipy`.
 
-The following commands show if it is correctly installed, by sampling 5 times from a Normal distribution with mean 200 and standard deviation 10:
+The following commands show if it is correctly installed, by sampling
+5 times from a Normal distribution with mean 200 and standard
+deviation 10:
 
     from scipy.stats import norm
     norm(loc=200, scale=10).rvs(5)
 
-This should print an array of five values that are not too far off 200 (to be precise, with about 95% confidence they will be between 180 and 220 - more on this in Maths B later on).
+This should print an array of five values that are not too far off 200
+(to be precise, with about 95% confidence they will be between 180 and
+220 - more on this in Maths B later on).
 
 ## Avoiding sudo
 
-If you need to install libraries you might be tempted to install them for all users by using `sudo pip` but this can lead to pain!  If you alter the system libraries and something in the system depends on a specific version of a library then it can lead to horrible breakage and things not working (in particular on OSs like Mac OS which tend to update libraries less often).
+If you need to install libraries you might be tempted to install them
+for all users by using `sudo pip` but this can lead to pain!  If you
+alter the system libraries and something in the system depends on a
+specific version of a library then it can lead to horrible breakage
+and things not working (in particular on OSs like Mac OS which tend to
+update libraries less often).
 
-Python comes with a mechanism called [venv](https://docs.python.org/3/library/venv.html) which lets you create a virtual python install that is owned by a user: you can alter the libraries in that without `sudo` and without fear of mucking up your host system.  Read the docs and get used to using it---it'll save you a world of pain later!
+Python comes with a mechanism called
+[venv](https://docs.python.org/3/library/venv.html) which lets you
+create a virtual python install that is owned by a user: you can alter
+the libraries in that without `sudo` and without fear of mucking up
+your host system.  Read the docs and get used to using it---it'll save
+you a world of pain later!
 
-|||advanced
-`pip freeze | tee requirements.txt` will list all the packages your using and what version they are and save them in a file called `requirements.txt`.
-
-`pip install -r requirements.txt` will install them again!
+- `pip freeze | tee requirements.txt` will list all the packages your using and what version they are and save them in a file called `requirements.txt`.
+- `pip install -r requirements.txt` will install them again!
 
 This makes it *super easy* to ensure that someone looking at your code has all the right dependencies without having to reel off a list of _go install these libraries_ (and will make anyone whoever has to mark your code happy and more inclined to give you marks).
-|||
-# Build tools: Java
+
+# Java
 
 In the Java world,
 
@@ -219,15 +263,6 @@ _If you get a "not found" error, then most likely the maven `bin`
  PATH="$PATH:..."` where you replace the three dots with the path to
  the folder, and preferably put that line in your `~/.profile` too._
  
- 
- |||advanced
- On Windows, if you must user it, search online for instructions how
- to set up the path variable, or you can drag-and-drop the `mvn.cmd`
- file from an Explorer window into a Windows CMD terminal and it
- should paste the full path, then press SPACE and enter the arguments
- you want to pass.
- |||
-
 The first time you run it, maven will download a lot of libraries.
 
 Maven will first show a list of all archetypes known to humankind (3046 at the time of counting) but you can just press ENTER to use the default, 2098 ("quickstart"). Maven now asks you for the version to use, press ENTER again.
@@ -416,7 +451,8 @@ public class Unit {
 
 _You will still need one single `setVariable` call, and in the template the syntax `[(${unit.name})]` should translate into a call to the getter._
 
-|||advanced
+
+## Modern Java
 More recent releases of Java have wonderful things called `records`
 that make your life *a lot* easier.  All that above code translates to just:
 
@@ -432,4 +468,3 @@ your pom.xml and replace it with a new:
 ```
 <maven.compiler.release>17</maven.compiler.release>
 ```
-|||
