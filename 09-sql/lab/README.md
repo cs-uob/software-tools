@@ -8,7 +8,7 @@ many joins and subqueries as you deem necessary).  Don't hard code
 indices, instead try and join with other tables and use names.
 
 You can load each database directly in SQLite (`sqlite3 Elections.db`
-or `sqlite3 Census.db`) or use the `.open` command to load them all at runtime.
+or `sqlite3 Census.db`) or use the `ATTACH DATABASE` command to load them all at runtime.
 
 ## Elections database
 ![Elections entity relationship diagram](./elections.png)

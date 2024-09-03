@@ -1,0 +1,193 @@
+#+NAME: Solutions to the exercises
+#+PROPERTY: header-args:sqlite :session "*sqlite*"
+#+PROPERTY: header-args:sqlite :noweb "yes"
+
+#+name: preamble
+#+begin_src sqlite
+  ATTACH DATABASE "/home/joseph/Desktop/SQL/Census.db" AS Census;
+  ATTACH DATABASE "/home/joseph/Desktop/SQL/Elections.db" AS Elections;
+  .headers on
+#+end_src
+
+You *really* don't want this.
+
+Part of learning a new language involves fighting with it until it becomes natural.  It's a slow old process, but it's the only one that works.  /Just reading/ about a language won't work: you have to use it.
+
+- If you're stuck and want a hint, /ask the TAs/.
+- If you don't like their explanation or want something reexplained, come and ask Jo or Matt—we won't mind.  We don't even mind if it isn't this week's lab or you grab us as we're passing in the street!
+
+The danger you risk by looking at the solutions is that you won't have had enough practice by the time you get to the exam and so concepts that would have had time to get settled by solving it yourself won't be quite settled yet, and you won't be able to solve it.  Thats the risk you take.
+
+The rest of the file is encoded in ROT13.  You can use `g?` in Vim to decode it (or Google).
+
+* Rnfvre Dhrfgvbaf
+** Oevfgby ryrpgvbaf
+
+*** 1. Yvfg gur anzrf bs nyy cnegvrf gung fgbbq va gur ryrpgvba, beqrerq nycunorgvpnyyl ol anzr.
+#+ortva_fep fdyvgr
+  <<cernzoyr>>
+  FRYRPG QVFGVAPG Ryrpgvbaf.Cnegl.anzr
+  SEBZ Ryrpgvbaf.Pnaqvqngr
+  WBVA Ryrpgvbaf.Cnegl BA Ryrpgvbaf.Pnaqvqngr.cnegl = Ryrpgvbaf.Cnegl.vq
+  BEQRE OL Ryrpgvbaf.Cnegl.anzr NFP
+  ;
+#+raq_fep
+
+#+ERFHYGF:
+| anzr                                        |
+| Pbafreingvir                                |
+| Terra                                       |
+| Vaqrcraqrag                                 |
+| Vaqrcraqragf sbe Oevfgby                    |
+| Ynobhe                                      |
+| Yvoreny Qrzbpeng                            |
+| Erfcrpg                                     |
+| Genqr Havbavfgf naq Fbpvnyvfgf Ntnvafg Phgf |
+| HXVC                                        |
+
+*** 2. Yvfg gur anzrf bs nyy cnegvrf gung fgbbq va gur Orqzvafgre jneq.
+
+#+ortva_fep fdyvgr
+  <<cernzoyr>>
+  FRYRPG QVFGVAPG Ryrpgvbaf.Cnegl.anzr
+  SEBZ Ryrpgvbaf.Pnaqvqngr
+  WBVA Ryrpgvbaf.Cnegl BA Ryrpgvbaf.Pnaqvqngr.cnegl = Ryrpgvbaf.Cnegl.vq
+  WBVA Ryrpgvbaf.Jneq BA Ryrpgvbaf.Pnaqvqngr.jneq = Ryrpgvbaf.Jneq.vq
+  JURER Ryrpgvbaf.Jneq.anzr = "Orqzvafgre"
+  BEQRE OL Ryrpgvbaf.Cnegl.anzr NFP
+  ;
+#+raq_fep
+
+#+ERFHYGF:
+| anzr                                        |
+| Pbafreingvir                                |
+| Terra                                       |
+| Ynobhe                                      |
+| Yvoreny Qrzbpeng                            |
+| Genqr Havbavfgf naq Fbpvnyvfgf Ntnvafg Phgf |
+
+*** 3. Ubj znal ibgrf qvq Ynobhe trg va gur Fgbpxjbbq jneq?
+
+#+ortva_fep fdyvgr
+  <<cernzoyr>>
+  FRYRPG Ryrpgvbaf.Pnaqvqngr.ibgrf
+  SEBZ Ryrpgvbaf.Pnaqvqngr
+  WBVA Ryrpgvbaf.Cnegl BA Ryrpgvbaf.Pnaqvqngr.cnegl = Ryrpgvbaf.Cnegl.vq
+  WBVA Ryrpgvbaf.Jneq BA Ryrpgvbaf.Pnaqvqngr.jneq = Ryrpgvbaf.Jneq.vq
+  JURER Ryrpgvbaf.Jneq.anzr = "Fgbpxjbbq"
+  NAQ Ryrpgvbaf.Cnegl.anzr = "Ynobhe"
+  BEQRE OL Ryrpgvbaf.Cnegl.anzr NFP
+  ;
+#+raq_fep
+
+#+ERFHYGF:
+| ibgrf |
+|   855 |
+
+*** 4. Yvfg gur anzrf, cnegvrf naq ahzore bs ibgrf bognvarq sbe nyy pnaqvqngrf va gur Fbhguivyyr jneq. Beqre gur pnaqvqngrf ol ahzore bs ibgrf bognvarq qrfpraqvat (jvaare pbzrf svefg).
+#+ortva_fep fdyvgr
+  <<cernzoyr>>
+  FRYRPG Ryrpgvbaf.Pnaqvqngr.anzr
+  , Ryrpgvbaf.Cnegl.anzr
+  , Ryrpgvbaf.Pnaqvqngr.ibgrf
+  SEBZ Ryrpgvbaf.Pnaqvqngr
+  WBVA Ryrpgvbaf.Cnegl BA Ryrpgvbaf.Pnaqvqngr.cnegl = Ryrpgvbaf.Cnegl.vq
+  WBVA Ryrpgvbaf.Jneq BA Ryrpgvbaf.Pnaqvqngr.jneq = Ryrpgvbaf.Jneq.vq
+  JURER Ryrpgvbaf.Jneq.anzr = "Fbhguivyyr"
+  BEQRE OL Ryrpgvbaf.Pnaqvqngr.ibgrf QRFP
+  ;
+#+raq_fep
+
+#+ERFHYGF:
+| anzr                        | anzr                                        | ibgrf |
+| Puneyvr Obygba              | Terra                                       |  1700 |
+| Pryvn Puevfgvar Cuvccf      | Ynobhe                                      |  1322 |
+| Cnhy Nagubal Gheare         | HXVC                                        |   402 |
+| Wnzrf Naqerj Unyr Fgrirafba | Pbafreingvir                                |   289 |
+| Yran Pyner Jevtug           | Yvoreny Qrzbpeng                            |   208 |
+| Znggurj Rqjneq Pnerl        | Genqr Havbavfgf naq Fbpvnyvfgf Ntnvafg Phgf |    76 |
+
+*** 5. Yvfg gur anzr, cnegl naq ahzore bs ibgrf bognvarq sbe gur jvaare bayl va gur Xabjyr jneq.
+
+(Uvag: ncneg sebz punatvat gur jneq anzr, lbh bayl arrq bar fznyy zbqvsvpngvba gb gur fgngrzrag sebz gur ynfg dhrfgvba. Lbh znl nffhzr ab gvrf.)
+#+ortva_fep fdyvgr
+  <<cernzoyr>>
+  FRYRPG Ryrpgvbaf.Pnaqvqngr.anzr
+  , Ryrpgvbaf.Cnegl.anzr
+  , Ryrpgvbaf.Pnaqvqngr.ibgrf
+  SEBZ Ryrpgvbaf.Pnaqvqngr
+  WBVA Ryrpgvbaf.Cnegl BA Ryrpgvbaf.Pnaqvqngr.cnegl = Ryrpgvbaf.Cnegl.vq
+  WBVA Ryrpgvbaf.Jneq BA Ryrpgvbaf.Pnaqvqngr.jneq = Ryrpgvbaf.Jneq.vq
+  JURER Ryrpgvbaf.Jneq.anzr = "Xabjyr"
+  BEQRE OL Ryrpgvbaf.Pnaqvqngr.ibgrf QRFP
+  YVZVG 1
+  ;
+#+raq_fep
+
+#+ERFHYGF:
+| anzr         | anzr             | ibgrf |
+| Tnel Ubcxvaf | Yvoreny Qrzbpeng |  1659 |
+
+** Gur HX prafhf
+
+*** 1. Gur havirefvgl bs Oevfgby vf fvghngrq va gur Pnobg jneq (jneq anzrf ner abg nyjnlf qvfgvapg, ohg guvf bar vf). Svaq gur anzrf naq pbqrf bs gur PYH, ertvba naq pbhagel pbagnvavat gur Pnobg jneq (PYH = pbhagl yriry havg = "ebj va Pbhagl gnoyr").
+
+#+ortva_fep fdyvgr
+  <<cernzoyr>>
+  FRYRPG *
+  SEBZ Prafhf.Pbhagl
+  WBVA Prafhf.Jneq BA Prafhf.Jneq.cnerag = Prafhf.Pbhagl.pbqr
+  JURER Prafhf.Jneq.anzr YVXR "Pnobg"
+  ;
+#+raq_fep
+
+#+ERFHYGF:
+| pbqr      | anzr             | cnerag    | pbhagel   | pbqr      | anzr  | cnerag    |
+| R06000023 | Oevfgby, Pvgl bs | R12000009 | R92000001 | R05001979 | Pnobg | R06000023 |
+
+*** 2. Svaq gur ahzore bs jbzra va bpphcngvba pynff 1 (znantref rgp.) va gur Pnobg jneq. 
+
+#+ortva_fep fdyvgr
+  <<cernzoyr>>
+  FRYRPG Prafhf.Fgngvfgvp.qngn
+  SEBZ Prafhf.Fgngvfgvp
+  WBVA Prafhf.Bpphcngvba BA Prafhf.Bpphcngvba.vq = Prafhf.Fgngvfgvp.bppVq
+  WBVA Prafhf.Jneq BA Prafhf.Jneq.pbqr = Prafhf.Fgngvfgvp.jneqVq
+  JURER Prafhf.Jneq.anzr = "Pnobg"
+  NAQ Prafhf.Bpphcngvba.anzr YVXR "%Znantre%"
+  NAQ Prafhf.Fgngvfgvp.traqre = 1
+  YVZVG 5
+  ;
+#+raq_fep
+
+#+ERFHYGF:
+| qngn |
+|  229 |
+
+*** 3. Sbe gur Fgbxr Ovfubc jneq (R05002003), yvfg gur 9 bpphcngvba pynff anzrf naq gur ahzore bs zra va rnpu bpphcngvba. Lbhe gnoyr fubhyq unir gjb pbyhzaf pnyyrq anzr naq ahzore. Lbh pna hfr gur cebivqrq jneq pbqr, lbh qb abg arrq gb wbva ba gur jneq anzr.
+
+#+ortva_fep fdyvgr
+  <<cernzoyr>>
+  FRYRPG Prafhf.Bpphcngvba.anzr NF anzr
+  , Prafhf.Fgngvfgvp.qngn NF ahzore
+  SEBZ Prafhf.Fgngvfgvp
+  WBVA Prafhf.Bpphcngvba BA Prafhf.Bpphcngvba.vq = Prafhf.Fgngvfgvp.bppVq
+  WBVA Prafhf.Jneq BA Prafhf.Jneq.pbqr = Prafhf.Fgngvfgvp.jneqVq
+  JURER Prafhf.Jneq.anzr = "Fgbxr Ovfubc"
+  NAQ Prafhf.Fgngvfgvp.traqre = 0
+  ;
+#+raq_fep
+
+#+ERFHYGF:
+| anzr                                             | ahzore |
+| Znantref, qverpgbef naq fravbe bssvpvnyf         |    427 |
+| Cebsrffvbany bpphcngvbaf                         |    737 |
+| Nffbpvngr cebsrffvbany naq grpuavpny bpphcngvbaf |    308 |
+| Nqzvavfgengvir naq frpergnevny bpphcngvbaf       |     84 |
+| Fxvyyrq genqrf bpphcngvbaf                       |    134 |
+| Pnevat, yrvfher naq bgure freivpr bpphcngvbaf    |     39 |
+| Fnyrf naq phfgbzre freivpr bpphcngvbaf           |     81 |
+| Cebprff, cynag naq znpuvar bcrengvirf            |     41 |
+| Ryrzragnel bpphcngvbaf                           |    117 |
+
+* Uneqre Dhrfgvbaf
