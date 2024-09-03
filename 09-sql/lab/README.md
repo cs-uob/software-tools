@@ -10,7 +10,10 @@ indices, instead try and join with other tables and use names.
 You can load each database directly in SQLite (`sqlite3 Elections.db`
 or `sqlite3 Census.db`) or use the `.open` command to load them all at runtime.
 
+## Elections database
 ![Elections entity relationship diagram](./elections.png)
+
+## Census database
 ![Census entity relationship diagram](./census.png)
 
 ## Easier Questions
