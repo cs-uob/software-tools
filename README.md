@@ -14,8 +14,8 @@ in alternative locations as per your timetable.
 
 | Week | Topic | Lecturer |
 |------|-------|----------|
-| 1 | [System Administration](./01-sysadmin/) | Matthew |
-| 2 | [POSIX Fundamentals](./02-fundamentals/)| Matthew |
+| 1 | [System administration](./01-sysadmin/) | Matthew |
+| 2 | [POSIX fundamentals](./02-fundamentals/)| Matthew |
 | 3 | [Regular expressions](./03-regex/)| Matthew |
 | 4 | [Git basics](./04-git/) | Joseph |
 | 5 | [Collaborating using Git](./05-git/) | Joseph |
@@ -40,9 +40,9 @@ in alternative locations as per your timetable.
 |------|-------|----------|
 | 1 | HTTP | Matthew |
 | 2 | HTML | Matthew |
-| 3 | CSS Basics | Matthew |
+| 3 | CSS basics | Matthew |
 | 4 | Design with CSS | Matthew |
-| 5 | Javascript Basics | Matthew |
+| 5 | Javascript basics | Matthew |
 | 6 | Asynchronous Javascript | Matthew |
 | 7 | Reading Week | NA |
 | 8 | Web scraping | Matthew | 
