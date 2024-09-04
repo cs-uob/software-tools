@@ -8,9 +8,9 @@ Unit materials for the _Software Tools_ unit (COMS10012 and COMSM0085).
 - All labs are held on Fridays in MVB 2.11:
     - 09:00 - 11:00 for COMSM0085 students
     - 11:00 - 13:00 for COMS10012 students
-- The assessment for TB1 takes place in Week 10 at 14:00 on Friday, shortly
-  after the final lab session. For most students the test will be held in MVB
-2.11, but some of you will be in alternative locations as per your timetable. 
+- The assessment for TB1 takes place in Week 12 at 14:00 on Friday (2024-12-06).
+  For most students the test will be held in MVB 2.11, but some of you will be
+in alternative locations as per your timetable. 
 
 | Week | Topic | Lecturer |
 |------|-------|----------|
@@ -23,8 +23,9 @@ Unit materials for the _Software Tools_ unit (COMS10012 and COMSM0085).
 | 7 | [Build tools](./06-buildtools/) | Joseph |
 | 8 | [Debugging](./07-debugging/) | Joseph | 
 | 9 | [SQL](./08-sql/) | Joseph |
-| 10| [Programming with SQL](./09-sql/) | Joseph |
-| 10| _50% assessment: in-class test_ | NA |
+| 10| [More SQL](./09-sql/) | Joseph |
+| 11| [Programming with SQL](./10-sql/) | Joseph |
+| 12| _50% assessment: in-class test_ | NA |
 
 ## TB2 Schedule
 
