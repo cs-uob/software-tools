@@ -2,6 +2,14 @@
 
 Unit materials for the _Software Tools_ unit (COMS10012 and COMSM0085).
 
+Learning in this unit is structured around hands-on exercises in the weekly lab
+session.  To support you in this, we give lectures and provide pre-reading that
+introduces you to the tools or technologies you’ll be working with in each
+week’s lab session.  You are also able to see the workshop exercises ahead of
+the session – this is intentional, as it's usually a good idea to look at and
+attempt exercises ahead of the lab. The schedule below links to each week's
+content.
+
 ## TB1 Schedule
 
 - All lectures are delivered on Tuesdays at 16:00 in PHYS 1.11, Tyndall Lecture Theatre.
@@ -49,5 +57,29 @@ in alternative locations as per your timetable.
 | 9 | Library management | Joseph |
 | 10| Internet protocols | Joseph |
 | 11| Certificates | Joseph |
+
+## Assessment 
+
+Assessment for this unit consists of two components, both of which are 1-hour
+paper-based multiple-choice tests, covering everything taught in the
+corresponding TB, and worth 50% of the mark for this unit.  The tests are
+open-book, meaning you can bring unlimited paper-based notes with you (but no
+electronic assistance).
+
+ - The TB1 test will be held in Week 12 (2024-12-06) at 14:00. An entry should
+   already be in your timetable. The test will cover everything taught in TB1.
+ - The TB2 test will be held in the summer exam period, and will be scheduled
+   closer to the time by the university's exam timetabling department. The test
+will cover everything taught in TB2.
+
+### Example papers
+
+The following papers and solutions show you examples of the sorts of questions
+you may be asked in the exam, and what the correct selections are. Be warned
+that studying only these questions is a great way to end up surprised and
+underprepared for the real exam.
+ 
+ - TB1 [paper](exams/tb1_example.pdf) [solutions](exams/tb1_example_solutions.pdf)
+ - TB2 [paper](exams/tb2_example.pdf) [solutions](exams/tb2_example_solutions.pdf)
 
 
