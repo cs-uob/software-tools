@@ -12,7 +12,7 @@ content.
 
 ## TB1 Schedule
 
-- All lectures are delivered on Tuesdays at 16:00 in PHYS 1.11, Tyndall Lecture Theatre.
+- All lectures are delivered on Tuesdays at 16:00 in Priory Road Lecture Theatre.
 - All labs are held on Fridays in MVB 2.11:
     - 09:00 - 11:00 for COMSM0085 students
     - 11:00 - 13:00 for COMS10012 students
@@ -37,7 +37,7 @@ in alternative locations as per your timetable.
 
 ## TB2 Schedule
 
-- All lectures are delivered on Tuesdays at **11:00** in PHYS 1.11, Tyndall Lecture Theatre.
+- All lectures are delivered on Tuesdays at **11:00** in Priory Road Lecture Theatre.
 - All labs are held on Fridays in MVB 2.11:
     - 11:00 - 13:00 for COMS10012 students
     - 15:00 - 17:00 for COMSM0085 students

@@ -28,7 +28,7 @@ command language but the most common usage is `s/SOURCE/DEST/` which changes
 substrings matching the source regular expression into the destination one.
 
  * Use `grep` to find all dictionary words ending in 'ay', and then pipe this to
-   a `sed 's/SOURCE/DEST/` command to change 'day' into 'week'. Look at the
+   a `sed 's/SOURCE/DEST/'` command to change 'day' into 'week'. Look at the
 output and how lines are affected.
  * The `SOURCE` part of the command works very similarly to the patterns you
    used in grep.  In the same selection as above, replace all words that begin
