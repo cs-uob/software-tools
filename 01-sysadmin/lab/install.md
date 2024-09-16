@@ -34,7 +34,7 @@ This configuration file is actually a script in the Ruby programming language, b
 
   * `config.vm.box` selects the virtual machine image, or box in vagrant-speak, to use. You can see a list of available ones at <https://app.vagrantup.com/boxes/search>.
   * `config.vm.synced_folder` sets up a shared folder between the guest (virtual machine) and host (your machine). Files you put in the same folder as 'Vagrantfile' will appear at the path `/shared/` inside the VM, and vice-versa. This is very useful for transferring future exercise materials to and from the VM.
-  * The `config.vm.provision` runs a provisioning command when the box is first downloaded and installed. These commands run as root on the virtual machine, and in this case we are using the `apt` package manager (we will talk about this later on) to install the packages `git`.
+  * The `config.vm.provision` runs a provisioning command when the box is first downloaded and installed. These commands run as root on the virtual machine, and could be used to install software with a package manager (we will talke about this later).
   * The `<<-SHELL` construction is called a "here document", and is a way in some programming languages of writing multi-line strings. It tells ruby to treat everything until the closing keyword SHELL (which is arbitrary) as a string, which can contain several lines.
 
 ## Running vagrant
