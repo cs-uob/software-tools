@@ -79,7 +79,7 @@ you may be asked in the exam, and what the correct selections are. Be warned
 that studying only these questions is a great way to end up surprised and
 underprepared for the real exam.
  
- - TB1 [paper](exams/tb1_example.pdf) [solutions](exams/tb1_example_solutions.pdf)
- - TB2 [paper](exams/tb2_example.pdf) [solutions](exams/tb2_example_solutions.pdf)
+ - TB1 [paper](exams/tb1-example.pdf) [solutions](exams/tb1-example-answers.pdf)
+ - TB2 [paper](exams/tb2-example.pdf) [solutions](exams/tb2-example-answers.pdf)
 
 
