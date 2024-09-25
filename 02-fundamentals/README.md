@@ -27,7 +27,7 @@ good idea to break your preparation up into two or three sesssions.
 | [The shell](https://web.microsoftstream.com/video/a55ff501-9e8d-4bb3-a00e-b680596b2de3) | 30 minutes | [slides](./shell.pdf) |
 | [Permissions](https://web.microsoftstream.com/video/71b186df-c373-4b98-ba34-035679cb1ec6) | 20 minutes | [slides](./permissions.pdf) |
 | [Shell scripting 1](https://web.microsoftstream.com/video/bbe017bf-c1b6-44a0-96cf-ef79a9b17f0e) | 17 minutes |  [slides](./scripting_1.pdf) |
-| [Shell scripting 2](https://web.microsoftstream.com/video/0a2a65bc-1655-4089-984f-53c9400dc2d3) | 21 minutes |  [slides](./scripting2.pdf) |
+| [Shell scripting 2](https://web.microsoftstream.com/video/0a2a65bc-1655-4089-984f-53c9400dc2d3) | 21 minutes |  [slides](./scripting_2.pdf) |
 | [Pipes 1](https://web.microsoftstream.com/video/7b2657a6-a2d4-4c34-a642-da993d468851) | 20 minutes |  [slides](./pipes_1.pdf) |
 | [Pipes 2](https://web.microsoftstream.com/video/d04fb18c-533b-4ffe-b8a1-f4d46e9b73d1) | 30 minutes |  [slides](./pipes_2.pdf) |
 
