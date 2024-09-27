@@ -71,7 +71,7 @@ which expands to `gcc -Wall arguments.c -o arguments`. If you want to use a vari
 
 It is good practice to double-quote variables used like this, because if you tried for example to compile a program called `silly name.c` with a space in its name, then
 
-    program="silly name"
+    program='silly name'
     gcc -Wall $program.c -o $program
 
 would expand to
