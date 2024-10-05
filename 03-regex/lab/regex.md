@@ -82,5 +82,5 @@ a regular expression that would match such sequences?
 `^(([A-Z]{1,2}[0-9][A-Z0-9]?|ASCN|STHL|TDCU|BBND|[BFS]IQQ|PCRN|TKCA)
 ?[0-9][A-Z]{2}|BFPO ?[0-9]{1,4}|(KY[0-9]|MSR|VG|AI)[ -]?[0-9]{4}|[A-Z]{2}
 ?[0-9]{2}|GE ?CX|GIR ?0A{2}|SAN ?TA1)$`. Try breaking apart this monster to
-understand what is being tested, and find an example that would match the schema
-described for the fourth question but fail to match this expression. 
+understand what is being tested, and find an example that would match this expression
+but fail to match the schema described for the fourth question. 
