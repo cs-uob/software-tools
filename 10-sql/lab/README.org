@@ -1,0 +1,119 @@
+#+title: Week 10: Datalog
+
+For this weeks lab we're going to be playing with Datalog.  To run through the lab you're going to need an interpretter.  The lab has been tested with [[https://github.com/HarvardPL/AbcDatalog][AbcDatalog]], but should be completable with any---including a Prolog interpretter (=swipl= is installed on the lab machines).  Just bare in mind that different compilers may have different syntax and features (especially if you use Prolog!).
+
+To get started download and run the AbcDatalog JAR file:
+
+#+begin_src sh :exports code :results nil
+  curl -o AbcDatalog-0.7.0.jar https://github.com/HarvardPL/AbcDatalog/releases/download/v0.7.0/AbcDatalog-0.7.0.jar
+  java -jar AbcDatalog-0.7.0.jar &
+#+end_src
+
+**SSH Users:** the app has a GUI!  If you are SSHing into the lab machines you will need to enable X-Forwarding to see the app's windows (i.e. =ssh -X bristol-lab=).
+
+
+* Task 1: The Addams Family
+
+#+begin_src dot :file addams.png
+  digraph addams {
+      node [shape=plaintext]
+      gomez_morticia [shape=point label="Marries"];
+      {Gomez Morticia} -> gomez_morticia -> { Pugsley Wednesday Pubert };
+      fester_debbie [shape=point label="Marries"];
+      {Fester "Debbie Jellinski"} -> fester_debbie;
+      sharron_dave [shape=point label="Marries"];
+      {Sharron Dave} -> sharron_dave -> "Debbie Jellinski";
+      father_eudora [shape=point label="Marries"];
+      {Father "Eudora Esmerelda Frump"} -> father_eudora -> {Gomez Fester};
+      father_hester [shape=point label="Marries"];
+      {"Father Frump" "Hester Frump"} -> father_hester -> {Morticia Ophella};
+      mooma_slurp [shape=point label="Marries"];
+      {Mooma "Slurp Frump"} -> mooma_slurp -> {"Eudora Esmerelda Frump" "Jester Frump" "Sloom Addams" "Father Frump"};
+  }
+#+end_src
+
+#+RESULTS:
+[[file:addams.png]]
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+[[https://en.wikipedia.org/wiki/The_Addams_Family][The Addams Family]] tree (or a cut down version of it) is shown above.  Your task is to encode the family tree in Datalog.  To do this you'll need to describe the relationships in Horn clauses.
+
+Firstly you'll need to create the knowledge base in Horn-clauses.  Start by defining a relationship between parent and children.  For example,
+=parent(pugsley,gomez)= states that Pugsley's parent is Gomez. 
+
+*Task 1.* Capture the Addams Family tree using Horn clauses. To test run the query =parent(X,sharron)= to see if /Sharron/ is anyone's parent.  The only match should be /Debbie/.
+
+The next step is start trying to define some rules.  A /grandparent/ is your parent's parent we can write this in Datalog as:
+
+#+begin_src prolog
+  grandparent(X,Z) :- parent(X,Y), parent(Y,Z).
+#+end_src
+
+*Task 2.* A sibling is someone who shares a parent with you.  Define a rule =sibling(X,Y)= that captures this.  Check that Gomez's sibling is Fester.
+
+*Task 3.* AbcDatalog allows negation in rules.  We can specify that two variables are not equal in a rule by saying =X!=Y=. Check whether =sibling(wednesday,wednesday)= is true, and if so fix it.
+
+*Task 4.* A cousin is someone you share a grandparent with, but who isn't your sibling.  Write the rule =cousin(X,Y)= and check that Gomez and Morticia are cousins.
+
+*Task 5.* An aunt or uncle is your parent's sibling.  Define the rule and query whose Uncle Fester is.
+
+*Task 6.* Who are Pugsley's aunts and uncles?  What about Debbie?
+
+* Access control
+
+One of the classic use cases for Datalog is to build access control systems, as it guarantees that all access control decisions can be made and can be made in a reasonable amount of time.
+Your task for the remainder of the lab is to build one.  We'll give you a set of rules and predicates but your task is to implement it and create enough data so that you can test it.
+
+** Absolute basics
+
+In your system you should have the following predicates:
+- =file(X)= to state that =X= is a file.
+- =principal(X)= to state that =X= is a principal (which is a fancy way of saying a /user/).
+- =canRead(P, F)= to state that the principal =P= can read file =F=.
+
+** Discretionary access control
+
+- All files have an =owner=.  =owner(F,P)= states that principal =P= is the owner of file =F=.
+- You can read a file if you are it's owner.
+- You can read a file if =othersCanRead(F)= is true.
+
+** Delegated access control
+
+- The owner of a file can state who else can read it. =saysCanRead(P1,P2,F)= states that =P1= says that =P2= can read file =F=. Remember to check that =P1= can only delegate access if they own =F=.
+- A principal can delegate to other principals to decide who can read their files. =delegatesTo(P1,P2)= states that =P1= will allow =P2= to make access control decisions for them.
+- Make sure that a principal whose been delegated to can also redelegate the decision to someone else!
+
+** Role-based access control
+
+- Add roles to your access control system.  For example, a principal may be happy to say that an auditor can read their files, but may not know who the auditor's currently are.
+- =holds(P,R)= states that a principal =P= holds a role =R=.  Update your =saysCanRead= rule to account for roles.
+
+** Mandatory access control
+
+- Files have a security level.
+  - =unclassified(F)= states the file is publicly available.
+  - =secret(F)= states that the file is secret.
+  - =topsecret(F)= states that the file is top secret.
+- Security levels have an ordering
+  - =unclassified= < =secret= < =topsecret=
+- Principals have a clearance. =clearance(P,secret)= states that Principal =P= has a =secret= security clearance.
+
+Implement the following security models:
+*** Read down, write up /(Bell LaPadula)/
+
+The /read down, write up/ access control model is used to protect access to data.
+- You can read a file if you have an appropriate or higher clearance than the file.
+- You can write to a file if you have an appropriate or lesser clearance than the file (so that you can tell people with more clearance than you things without informing your peers).
+
+*** Write down, read up (/Biba/)
+
+This one is a bit more surprising but is used when you want to protect the integrity of data.
+- You can write to a file if you have a strictly higher clearance than the file.  The idea is that you should be able to send orders to people with less clearance than you.
+- You can read a file only with more clearance than you have. The idea is that you shouldn't be influenced by ideas from outside sources. 
