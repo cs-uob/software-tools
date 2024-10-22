@@ -12,27 +12,8 @@ To get started download and run the AbcDatalog JAR file:
 **SSH Users:** the app has a GUI!  If you are SSHing into the lab machines you will need to enable X-Forwarding to see the app's windows (i.e. =ssh -X bristol-lab=).
 
 
-* Task 1: The Addams Family
+* The Addams Family (warm up!)
 
-#+begin_src dot :file addams.png
-  digraph addams {
-      node [shape=plaintext]
-      gomez_morticia [shape=point label="Marries"];
-      {Gomez Morticia} -> gomez_morticia -> { Pugsley Wednesday Pubert };
-      fester_debbie [shape=point label="Marries"];
-      {Fester "Debbie Jellinski"} -> fester_debbie;
-      sharron_dave [shape=point label="Marries"];
-      {Sharron Dave} -> sharron_dave -> "Debbie Jellinski";
-      father_eudora [shape=point label="Marries"];
-      {Father "Eudora Esmerelda Frump"} -> father_eudora -> {Gomez Fester};
-      father_hester [shape=point label="Marries"];
-      {"Father Frump" "Hester Frump"} -> father_hester -> {Morticia Ophella};
-      mooma_slurp [shape=point label="Marries"];
-      {Mooma "Slurp Frump"} -> mooma_slurp -> {"Eudora Esmerelda Frump" "Jester Frump" "Sloom Addams" "Father Frump"};
-  }
-#+end_src
-
-#+RESULTS:
 [[file:addams.png]]
  
  
@@ -66,7 +47,7 @@ The next step is start trying to define some rules.  A /grandparent/ is your par
 
 *Task 6.* Who are Pugsley's aunts and uncles?  What about Debbie?
 
-* Access control
+* Access control (harder!)
 
 One of the classic use cases for Datalog is to build access control systems, as it guarantees that all access control decisions can be made and can be made in a reasonable amount of time.
 Your task for the remainder of the lab is to build one.  We'll give you a set of rules and predicates but your task is to implement it and create enough data so that you can test it.

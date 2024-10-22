@@ -1,0 +1,15 @@
+digraph addams {
+  node [shape=plaintext]
+    gomez_morticia [shape=point label="Marries"];
+  {Gomez Morticia} -> gomez_morticia -> { Pugsley Wednesday Pubert };
+  fester_debbie [shape=point label="Marries"];
+  {Fester "Debbie Jellinski"} -> fester_debbie;
+  sharron_dave [shape=point label="Marries"];
+  {Sharron Dave} -> sharron_dave -> "Debbie Jellinski";
+  father_eudora [shape=point label="Marries"];
+  {Father "Eudora Esmerelda Frump"} -> father_eudora -> {Gomez Fester};
+  father_hester [shape=point label="Marries"];
+  {"Father Frump" "Hester Frump"} -> father_hester -> {Morticia Ophella};
+  mooma_slurp [shape=point label="Marries"];
+  {Mooma "Slurp Frump"} -> mooma_slurp -> {"Eudora Esmerelda Frump" "Jester Frump" "Sloom Addams" "Father Frump"};
+}
