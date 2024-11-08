@@ -228,10 +228,23 @@ versions_ of Java installed you may need to set the `JAVA_HOME` and
 
 For example:
 
+### x86 (Intel-Based Systems)
 ```sh
 export JAVA_HOME='/usr/lib/jvm/java-17-openjdk'
 export PATH="${PATH}:${JAVA_HOME}/bin"
 ```
+
+### AMD64 (AMD-Based Systems)
+```sh
+export JAVA_HOME='/usr/lib/jvm/java-17-openjdk-amd64'
+export PATH = "${PATH}:${JAVA_HOME}/bin"
+```
+
+|||advanced
+Debian also has a special command called `update-alternatives` that
+can help manage alternative development environments for you.  Read
+
+
 |||advanced
 Debian also has a special command called `update-alternatives` that
 can help manage alternative development environments for you.  Read
