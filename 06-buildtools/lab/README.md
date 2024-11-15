@@ -243,11 +243,6 @@ export PATH = "${PATH}:${JAVA_HOME}/bin"
 |||advanced
 Debian also has a special command called `update-alternatives` that
 can help manage alternative development environments for you.  Read
-
-
-|||advanced
-Debian also has a special command called `update-alternatives` that
-can help manage alternative development environments for you.  Read
 the manual page!
 |||
 
