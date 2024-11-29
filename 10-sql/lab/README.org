@@ -1,11 +1,11 @@
 #+title: Week 10: Datalog
 
-For this weeks lab we're going to be playing with Datalog.  To run through the lab you're going to need an interpretter.  The lab has been tested with [[https://github.com/HarvardPL/AbcDatalog][AbcDatalog]], but should be completable with any---including a Prolog interpretter (=swipl= is installed on the lab machines).  Just bare in mind that different compilers may have different syntax and features (especially if you use Prolog!).
+For this week's lab we're going to be playing with Datalog.  To run through the lab you're going to need an interpreter.  The lab has been tested with [[https://github.com/HarvardPL/AbcDatalog][AbcDatalog]], but should be completable with any---including a Prolog interpreter (=swipl= is installed on the lab machines).  Just bear in mind that different compilers may have different syntax and features (especially if you use Prolog!).
 
 To get started download and run the AbcDatalog JAR file:
 
 #+begin_src sh :exports code :results nil
-  curl -o AbcDatalog-0.7.0.jar https://github.com/HarvardPL/AbcDatalog/releases/download/v0.7.0/AbcDatalog-0.7.0.jar
+  wget -O AbcDatalog-0.7.0.jar https://github.com/HarvardPL/AbcDatalog/releases/download/v0.7.0/AbcDatalog-0.7.0.jar
   java -jar AbcDatalog-0.7.0.jar &
 #+end_src
 
