@@ -46,14 +46,14 @@ in alternative locations as per your timetable.
 
 | Week | Topic | Lecturer |
 |------|-------|----------|
-| 1 | HTTP | Matthew |
+| 1 | [HTTP](./11-http/) | Matthew |
 | 2 | HTML | Matthew |
 | 3 | CSS basics | Matthew |
 | 4 | Design with CSS | Matthew |
 | 5 | Javascript basics | Matthew |
 | 6 | Asynchronous Javascript | Matthew |
 | 7 | Reading Week | NA |
-| 8 | Web scraping | Matthew | 
+| 8 | [Web scraping](./17-scraping/) | Matthew | 
 | 9 | Library management | Joseph |
 | 10| Internet protocols | Joseph |
 | 11| Certificates | Joseph |
