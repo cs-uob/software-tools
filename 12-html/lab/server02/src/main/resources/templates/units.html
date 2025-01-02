@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>List of Units</title>
+    </head>
+    <body>
+        <h1>List of units</h1>
+        <ul th:each="unit : ${units}">
+            <li>
+                <a th:href="'/unit/' + ${unit.code}" th:text="${unit.code}"></a>
+                <span th:text="${unit.title}"></span>
+            </li>
+        </ul>
+    </body>
+</html>

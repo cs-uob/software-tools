@@ -23,3 +23,13 @@ comprehensive outline of the protocol for HTTP, but you can focus on sections
 2. [Online research](./lab/research.md)
 3. [A server in Java](./lab/server.md)
 
+
+## Optional Extra Reading
+
+The following links are provided for those of you with more interest in the
+protocols underlying HTTP. They are not examinable material. 
+
+- You can read the RFC for the internet protocol IP at [RFC 791](https://www.rfc-editor.org/rfc/rfc791.html).
+- You can read the RFC for the transmission control protocol at [RFC 793](https://www.rfc-editor.org/rfc/rfc793).
+- You can read the RFC for URIs at [RFC 3986](https://www.rfc-editor.org/rfc/rfc3986).
+- You can read further about HTTP history on the [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/HTTP/Evolution_of_HTTP).

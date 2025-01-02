@@ -47,7 +47,7 @@ in alternative locations as per your timetable.
 | Week | Topic | Lecturer |
 |------|-------|----------|
 | 1 | [HTTP](./11-http/) | Matthew |
-| 2 | HTML | Matthew |
+| 2 | [HTML](./12-html/) | Matthew |
 | 3 | CSS basics | Matthew |
 | 4 | Design with CSS | Matthew |
 | 5 | Javascript basics | Matthew |
