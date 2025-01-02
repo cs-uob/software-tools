@@ -1,5 +1,7 @@
 # HTTP
 
+[lecture slides](./slides.md)
+
 We are now starting Part 2 of Software Tools. This term we'll be covering a
 number of web technologies, and as basis for that we'll be starting by
 considering the web itself, beginning with the web protocol known as HTTP. 

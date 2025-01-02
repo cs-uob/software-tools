@@ -1,5 +1,7 @@
 # HTML
 
+[lecture slides](./slides.md) 
+
 HTML5, officially introduced in 2014, is the markup language used for writing
 modern web documents. It gets rid of a lot of historical annoyances and
 inconsistencies from previous versions of HTML and XML and contains a lot of new
