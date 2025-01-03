@@ -48,8 +48,8 @@ in alternative locations as per your timetable.
 |------|-------|----------|
 | 1 | [HTTP](./11-http/) | Matthew |
 | 2 | [HTML](./12-html/) | Matthew |
-| 3 | CSS basics | Matthew |
-| 4 | Design with CSS | Matthew |
+| 3 | [CSS basics](./13-css/) | Matthew |
+| 4 | [Design with CSS](./14-css/) | Matthew |
 | 5 | Javascript basics | Matthew |
 | 6 | Asynchronous Javascript | Matthew |
 | 7 | Reading Week | NA |
