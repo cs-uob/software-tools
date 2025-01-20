@@ -46,3 +46,8 @@ want you to read the following:
 
 1. [Basic HTML5](./lab/basic.md) 
 2. [Templates](./lab/templates.md)
+
+
+## Optional Reading
+
+- [Building a robust frontend using progressive enhancement](https://www.gov.uk/service-manual/technology/using-progressive-enhancement)
