@@ -8,8 +8,7 @@ The name `index.html` is a convention: most web servers, if you give an URL that
 
 Create content in your page to make it look like the following, then open it in your browser. All body text, but not the bullet list, is contained in paragraph tags.
 
-<iframe style="border: 1px solid #000; width: 100%; height: 450px" src="./examplepage.html" title="example page">
-</iframe>
+![examplepage](example_page.png)
 
 ## Validate your page
 
