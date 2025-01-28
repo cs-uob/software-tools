@@ -111,7 +111,8 @@ Open python again and type the following. You need to indent the last line (four
 
     import mistletoe
     with open('hello.md', 'r') as file:
-        mistletoe.markdown(file)
+        rendered_file = mistletoe.markdown(file)
+        print(rendered_file)
 
 This should print the markdown rendered to HTML, e.g.
 
