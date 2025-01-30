@@ -7,7 +7,7 @@ manipulate the DOM.
 
 Step-by-step goals will be described, but you will have to think a little about
 how to accomplish each step, and may need to consult the MDN documentation. 
-In particular, 
+In particular, getting familiar with arrays may be useful.
 
 ## Serving the Page
 

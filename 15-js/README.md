@@ -18,6 +18,9 @@ provided. Some of the MDN material is pitched at people just learning to program
  - [DOM scripting introduction](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/DOM_scripting)
  - [Troubleshooting](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/What_went_wrong)
 
+## Exercises
+ 1. [Commandline JavaScript](./lab/commandline.md)
+ 2. [Minesweeper](./lab/minesweeper.md)
 
 ## Optional Reading
 
