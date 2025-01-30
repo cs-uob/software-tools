@@ -59,7 +59,7 @@ board is removed before your tiles are added.
 We want to identify a scattering of our tiles as 'bombs' that will (later) cause
 the player to lose the game if they are clicked on. Define an array `mines`
 outside your newGame function, and then _inside_ the function use `Math.random`
-to pseudorandomly decide with probability 0.05 whether any particular tile
+to pseudorandomly decide with probability 0.10 whether any particular tile
 should secretly be a mine, and add its identifier to the array if so.
 
 Remember, you need to consider what happens when 'New Game' is pressed multiple
@@ -80,9 +80,9 @@ its own identifier.
 
 Within `touchTile`, use `document.getElementById` to implement the following
 logic:
-    - If the tile touched is one of your mines, set its `className` to `bomb`
+   - If the tile touched is one of your mines, set its `className` to `bomb`
       and set the text content to be a bomb-like symbol (e.g., `*`).  
-    - If the tile is not a mine, set its class to `clear`.
+   - If the tile is not a mine, set its class to `clear`.
 
 You should now be able to click around the board and see the tiles change. If you're
 not sure whether you're just not encountering bombs by chance or you haven'
@@ -116,7 +116,7 @@ are the same._
 
 You may find it is hard to win the game at the moment, so just try to reason
 through your code and then come back to test the win condition once you've
-implemented the next stage.
+implemented the next stages.
 
 ## Detecting Mines
 
@@ -153,7 +153,7 @@ Alter `touchTile` so that if a touched tile has 0 mines as neighbours, it calls
 separate out some functionality from your `mineNeighbours` code into a
 `getNeighbours` function that you can reuse. Notice that you'll have to think
 carefully about how to avoid your code entering an infinite loop going back and
-forth between neighbouring tiles -- look at what you've done so far to see hwo
+forth between neighbouring tiles -- look at what you've done so far to see how
 you are already tracking which tiles have been touched.
 
 If you implement this correctly, then when the player clicks on a tile that

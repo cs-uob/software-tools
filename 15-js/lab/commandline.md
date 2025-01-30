@@ -69,12 +69,13 @@ see all the available procedures in node, type the identifier with a dot
 value from an array is to find the index of the item with `.indexOf` and then
 call (`.splice(index, 1)`). 
 
+Now let's look at objects.
 
 ```js 
 obj = {}
 obj['name']  = 'John Smith'
 obj['age']   = 32
-obj['likes'] = ['javascript', 'heavy metal', spiders']
+obj['likes'] = ['javascript', 'heavy metal', 'spiders']
 
 obn = {
 "systemName" : "PersonTracker",
@@ -150,10 +151,10 @@ constructs that will be useful to you for the below exercises.
 ## Exercises
 
 1. Body Mass Index (BMI) is a crude measure of how healthy a person's weight is. It can be calculated by dividing a person's weight in kg by the square of their height in metres. 
- - Write a JavaScript function `bmi` that accepts two values (`weight` in kg and
+  - Write a JavaScript function `bmi` that accepts two values (`weight` in kg and
    `height` in metres) and returns the result rounded to 1 decimal place. Test this 
     for a range of values.
- - BMI categories are often used to contextualise raw results. Alter your `bmi`
+  - BMI categories are often used to contextualise raw results. Alter your `bmi`
    function so that it returns the correct category as well as the result value
 (e.g., by returning a string with both pieces of information). You can use the
 ranges below to set the categories.
@@ -183,7 +184,7 @@ JavaScript function `signify` that accepts a single string argument `text` and
 randomly decides whether to capitalise each word in the text, then returns the
 result.
     - You can use `Math.random()` to generate a pseudorandom number and
-      `text.split(" ") to change the string into an array of words, and can
+      `text.split(" ")` to change the string into an array of words, and can
 reverse the split by calling `.join(" ")` on the array. There is a built-in
 `.toUpperCase` that you might also find useful.
     - You'll need to decide how often a word should be capitalised, setting a
