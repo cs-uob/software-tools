@@ -1,0 +1,40 @@
+h1 {
+    text-align: center;
+}
+
+p {
+    text-align: center;
+}
+
+button {
+    margin-left: 47%;
+}
+
+div.board {
+    background-color: #BFC9CA;
+    border: 2px solid #AEB6BF;
+    margin: 1% 25% 1% 25%;
+    width: 50%;
+    height: 50%;
+    display: grid;
+    grid-template: repeat(20, 1fr) / repeat(20, 1fr);
+    column-gap: .5%;
+    row-gap: .5%;
+    min-height: 0;
+    min-width: 0;
+}
+
+div.board > div {
+    background-color: #F2F3F4;
+    text-align: center;
+    font-weight: bold;
+}
+
+div.board > div.clear {
+    background-color: #BFC9CA;
+}
+
+div.board > div.bomb {
+    background-color: #BFC9CA;
+    color: red;
+}

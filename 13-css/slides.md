@@ -146,14 +146,13 @@ Same as class -- `#uniquebox` by itself would apply to?
 
 Can generalise to select elements by any attribute.
 
-```css{
+```css
  p[name=tim] {
-    color:red'
+    color:red;
  }
  div[border=none] {
     color: blue;
  }
-}
 ```
 
 `p[class='important']` would be the same as `p.important`.
@@ -225,14 +224,14 @@ p.important {
 
 Lots of different properties that can be set, which require different values -- you will need to explore the [MDN documentation]( https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Values_and_Units) to get to grips with all of the options.
 
-However, some common elements relate to _colour_ and _element layout_.
+However, some common properties relate to _colour_ and _element layout_.
 
 ### Color values
 
-As well as `color`, you can set `background-color` and elements like `border-color`.
+As well as `color`, you can set `background-color` and properties like `border-color`.
 
 - Already seen `red`, and `blue`. Some other keywords for common basic colours.
-- Also the hexadecimal format `##rrggbb` which accepts values from 00 to FF for each of R G and B.
+- Also the hexadecimal format `#rrggbb` which accepts values from 00 to FF for each of R G and B.
 - _Also_ a function can be called `rgba(r,g,b,a)`, with values 1-255 for RGB and 0-1 for A.
 
 `red` and `#FF0000` are identical. But `#FF0001` or `#FF1111` will still look 'red'.
