@@ -1,0 +1,416 @@
+#+title: PGP
+
+This week's lab is going to focus on PGP.  We're going to start by generating keys, using them to sign and encrypt things and send email and then conclude by signing each other's keys.
+
+For the examples in this lab I'm going to be emailing François Dupressoir (a lecturer in the Cryptography group) a lot.  Replace him and me with a friend and yourself as appropriate.
+
+We're going to be working on *the lab machines* directly this time!  No VM required!
+
+* Generating a key
+
+*NOTE:* If you already are using PGP, and have a valid PGP key you can skip this!
+
+Firstly, check you don't already have a PGP key set up.  If nothing is listed then you're good!
+#+begin_src sh
+  gpg --list-secret-keys
+#+end_src
+
+
+Next we need to generate the key.  GnuPG provides several /wizards/ for this so lets run through the /--full-generate-key/ one as it has the most options.  For almost all the options you can chose the default, but feel free to do your own research and do something different if you prefer.
+
+For a /sane/ set of defaults:
+
+- Kind of key :: RSA and RSA (default)
+- Key size :: 4096 bits
+- Expiry :: 1 year
+
+For the identity set your real name and default email address.  If you have a commonly used username you use everywhere set it as the /comment/ field, otherwise leave it blank.  It will ask for a password... use a good one *and store it sensibly*.
+
+Lets rerun =--list-secret-keys=:
+
+#+begin_src sh
+  gpg --list-secret-keys
+#+end_src
+
+: [keyboxd]
+: ---------
+: sec   rsa3072 2023-04-25 [SC]
+:       364B 7926 504D 5645 1377  7801 4131 09AF 27CB FBF9
+: uid           [ultimate] Joseph Hallett <bogwonch@bogwonch.net>
+: ssb   rsa3072 2023-04-25 [E] [expires: 2025-04-24]
+
+I've got a 3K RSA key from 2023, that expires in a few months!  The big hex string is the key's /id/.  Keep a note of yours... you'll need it later!
+
+** Key sizes and expiry times
+All cryptography can be broken if you have a magic way of guessing what the key is.  Assuming your key is /truly random/ the chance of guessing a 2048 bit RSA key is $1/2^{2048}$.  Given there are roughly $2^259$ atoms in the observable universe; the odds of you guessing a key are *significantly* worse than being able to guess which atom is my favourite[fn:1].
+
+So why double that again for our PGP key size?  The answer is that no key is truly random, and there are better attacks than just guessing the key and hoping you get lucky.  Cryptographers alter the guidance every couple of years as their attacks get better, and *current* (~2025) guidance is that 2K bits is good, 4K is a safe default, and 8K is overkill for all but the most paranoid people.  Just bare in mind that the bigger the key the slower it will be!
+
+Why a 1 year expiry?  Well if the key is compromised (i.e. you lose it) then you know after a fixed point it'll just go away, and you can always reissue it if you need to with a longer expiry.  
+
+** Revocation certificates
+
+Now that you have a key you should have a way of getting rid of it... to do this generate a revocation certificate and store it *somewhere safe*.  Do read what GPG is telling you...
+
+#+begin_src sh
+  gpg --output revoke.asc --armor --gen-revoke '<your key id>'
+#+end_src
+
+** Updating expiry dates
+
+Hmm! My key looks like it is going to expire soon.  Since I don't think it's compromised I should probably extend it.  To do this I need to =--edit-key=.  You can follow along with my session or tweak your own key.
+
+#+begin_src sh
+  gpg --edit-key '364B 7926 504D 5645 1377  7801 4131 09AF 27CB FBF9'
+#+end_src
+
+#+begin_src sh
+  gpg (GnuPG) 2.4.7; Copyright (C) 2024 g10 Code GmbH
+  This is free software: you are free to change and redistribute it.
+  There is NO WARRANTY, to the extent permitted by law.
+
+  Secret key is available.
+
+  sec  rsa3072/413109AF27CBFBF9
+       created: 2023-04-25  expires: never       usage: SC
+       trust: ultimate      validity: ultimate
+  ssb  rsa3072/F1DD3FD0F590B1B7
+       created: 2023-04-25  expires: 2025-04-24  usage: E
+  [ultimate] (1). Joseph Hallett <bogwonch@bogwonch.net>
+
+  gpg> expire
+  Changing expiration time for the primary key.
+  Please specify how long the key should be valid.
+           0 = key does not expire
+        <n>  = key expires in n days
+        <n>w = key expires in n weeks
+        <n>m = key expires in n months
+        <n>y = key expires in n years
+  Key is valid for? (0) 2y
+  Key expires at Fri 22 Jan 2027 15:20:16 GMT
+  Is this correct? (y/N) y
+
+  sec  rsa3072/413109AF27CBFBF9
+       created: 2023-04-25  expires: 2027-01-22  usage: SC
+       trust: ultimate      validity: ultimate
+  ssb  rsa3072/F1DD3FD0F590B1B7
+       created: 2023-04-25  expires: 2025-04-24  usage: E
+  [ultimate] (1). Joseph Hallett <bogwonch@bogwonch.net>
+
+  gpg>
+
+  sec  rsa3072/413109AF27CBFBF9
+       created: 2023-04-25  expires: 2027-01-22  usage: SC
+       trust: ultimate      validity: ultimate
+  ssb  rsa3072/F1DD3FD0F590B1B7
+       created: 2023-04-25  expires: 2025-04-24  usage: E
+  [ultimate] (1). Joseph Hallett <bogwonch@bogwonch.net>
+
+  gpg> quit
+  Save changes? (y/N) y
+#+end_src
+
+There are other "fun" options[fn:2] in the =--edit-key= interface!  Type =help= to see commands
+
+* Distributing your key
+ 
+Now that you have a key you ought to tell others about it!  You can send it to other keyservers
+
+#+begin_src sh
+  gpg --send-keys '364B 7926 504D 5645 1377  7801 4131 09AF 27CB FBF9'
+#+end_src
+
+#+begin_src :exports code :results nil
+gpg: sending key 413109AF27CBFBF9 to hkps://keyserver.ubuntu.com
+#+end_src
+
+To find other people's keys you can either retrieve them with the key-id directly
+
+#+begin_src sh
+  gpg --recv-keys '364B 7926 504D 5645 1377  7801 4131 09AF 27CB FBF9'
+#+end_src
+
+Or you can search for them on a keyserver.  My key is number 5.  You can import it if you like.
+
+#+begin_src sh :results code
+  gpg --search-key 'Joseph Hallett'
+#+end_src
+#+RESULTS:
+#+begin_src sh
+(1)	  4096 bit RSA key 36CE492163638F40, created: 2013-07-27
+(2)	  4096 bit RSA key 7893CE33E61599F0, created: 2012-10-18
+(3)	  4096 bit RSA key 379BC1BBFA55B2B2, created: 2018-03-29
+(4)	  4096 bit RSA key 127F5E2AA56E9783, created: 2018-04-16
+(5)	Joseph Hallett <bogwonch@bogwonch.net>
+	Joseph Hallett <joseph.hallett@bristol.ac.uk>
+	  3072 bit RSA key 413109AF27CBFBF9, created: 2023-04-25
+(6)	  4096 bit RSA key 79AD19FB758FA77C, created: 2012-10-18
+(7)	  4096 bit RSA key 0797DFD3EEA569BD, created: 2012-10-06
+(8)	Joseph Hallett (jah) <josephhallett@gmail.com>
+	  1024 bit DSA key 2253EC6EED00814E, created: 2009-05-17
+(9)	  4096 bit RSA key 5724E1FB8537ECCE, created: 2018-04-04
+#+end_src
+
+Talk to your friends/people you're sitting next to.  Find and import their keys!  You'll need them for the next bits!
+
+* Sending a secret message
+
+I'd like to tell my friend François a secret!  I've got a text file with my secret in it =message.txt=.  I've already imported their key from the server.
+
+Lets write them a message in our favourite text editor!
+
+#+begin_src sh :prologue rm ~/message.txt
+  ed ~/message.txt <<EOF
+  i
+  Hello François,
+
+  I'm writing my labs for the students taking software tools and we're
+  adding PGP to the course this year... couldn't find Matt's PGP keys
+  on the usual keyservers so I thought "hmm who else do I know who'll
+  have a PGP key?" and I thought of you! Hope all is well!
+
+  Jo Hallett
+  .
+  w
+  q
+  EOF
+#+end_src
+
+#+RESULTS:
+: 292
+
+Next we need to encrypt the message.
+
+#+begin_src sh :export code :results nil
+  gpg --encrypt --recipient 'f.dupressoir@bristol.ac.uk' ~/message.txt
+#+end_src
+
+#+begin_src sh :export code :results nil
+  gpg: DF9AD44CCEE23FAF: There is no assurance this key belongs to the named user
+
+sub  rsa4096/DF9AD44CCEE23FAF 2021-05-27 François Dupressoir <fdupress@gmail.com>
+ Primary key fingerprint: 7860 0FD9 AF8A 5307 BE9D  C633 26BB 2BE0 FD06 DFA9
+      Subkey fingerprint: 523E FD74 81DE 0ABB B172  DC34 DF9A D44C CEE2 3FAF
+
+It is NOT certain that the key belongs to the person named
+in the user ID.  If you *really* know what you are doing,
+you may answer the next question with yes.
+
+Use this key anyway? (y/N) y
+#+end_src
+
+Hmm! These warnings are rather concerning... say yes for now but we'll show you how to validate the key later.  You'll end up with a =message.txt.gpg= file, as well as the original.  If we =cat= the encrypted file it'll look like binary junk.  If you'd like something readable you can add the =--armor= option to have the message base64 encoded and get a =.asc= file instead.
+
+#+begin_src sh :export code :results nil
+  gpg --armor --encrypt --recipient 'f.dupressoir@bristol.ac.uk' ~/message.txt
+#+end_src
+
+It's a bit bigger, but its easier than dealing with binary blobs.
+
+#+begin_src sh
+du -b ~/message.*
+#+end_src
+
+#+RESULTS:
+|  292 | ~/message.txt     |
+| 1146 | ~/message.txt.asc |
+|  804 | ~/message.txt.gpg |
+
+Let's try and decrypt our message!
+
+#+begin_src sh :results nil :exports code
+  gpg --decrypt ~/message.txt.asc
+#+end_src
+
+#+begin_src sh :results nil :exports code
+gpg: encrypted with rsa4096 key, ID DF9AD44CCEE23FAF, created 2021-05-27
+      "François Dupressoir <cn19829@bristol.ac.uk>"
+gpg: public key decryption failed: No secret key
+gpg: decryption failed: No secret key
+#+end_src
+
+Hmm! We can't decrypt it, but that's what you'd expect. It's been encrypted with François's /public/ key... only he has his /secret/ key.  We can copy the message into an email to send it to him.
+
+[[file:hello-françois.png]]
+
+Now we just need to wait for his reply!
+
+*Exercise:* Send someone next to you an encrypted message or file.  Check that they can receive it and decrypt it using their key.
+
+*  Party time
+
+Aha François has responded! François, being a +good+ suspicious cryptographer, has read my message but doesn't trust that it was me who sent it. 
+
+[[file:suspicious-bastard.png]]
+
+To verify I'll show him the public key I've got with:
+
+#+begin_src sh :results code
+  gpg --list-key f.dupressoir@bristol.ac.uk
+#+end_src
+
+#+RESULTS:
+#+begin_src sh
+pub   rsa4096 2021-05-27 [SC]
+      7860 0FD9 AF8A 5307 BE9D  C633 26BB 2BE0 FD06 DFA9
+uid           [  full  ] François Dupressoir <cn19829@bristol.ac.uk>
+uid           [  full  ] François Dupressoir <f.dupressoir@bristol.ac.uk>
+uid           [  full  ] François Dupressoir <fdupress@gmail.com>
+sub   rsa4096 2021-05-27 [E]
+
+#+end_src
+
+And he can check it against his own key.  If they're the same and you're convinced the key really belong to him you can sign it.
+
+#+begin_src sh
+gpg --sign-key '7860 0FD9 AF8A 5307 BE9D  C633 26BB 2BE0 FD06 DFA9'
+#+end_src
+
+#+begin_src sh
+pub  rsa4096/26BB2BE0FD06DFA9
+     created: 2021-05-27  expires: never       usage: SC
+     trust: unknown       validity: unknown
+sub  rsa4096/DF9AD44CCEE23FAF
+     created: 2021-05-27  expires: never       usage: E
+[ unknown] (1). François Dupressoir <cn19829@bristol.ac.uk>
+[ unknown] (2)  François Dupressoir <f.dupressoir@bristol.ac.uk>
+[ unknown] (3)  François Dupressoir <fdupress@gmail.com>
+
+Really sign all user IDs? (y/N) y
+
+pub  rsa4096/26BB2BE0FD06DFA9
+     created: 2021-05-27  expires: never       usage: SC
+     trust: unknown       validity: unknown
+ Primary key fingerprint: 7860 0FD9 AF8A 5307 BE9D  C633 26BB 2BE0 FD06 DFA9
+
+     François Dupressoir <cn19829@bristol.ac.uk>
+     François Dupressoir <f.dupressoir@bristol.ac.uk>
+     François Dupressoir <fdupress@gmail.com>
+
+Are you sure that you want to sign this key with your
+key "Joseph Hallett <bogwonch@bogwonch.net>" (413109AF27CBFBF9)
+
+Really sign? (y/N) y
+#+end_src
+
+You can send your signature on his key back to the keyserver with:
+
+#+begin_src sh
+gpg --send-key '7860 0FD9 AF8A 5307 BE9D  C633 26BB 2BE0 FD06 DFA9'
+#+end_src
+
+#+begin_src sh
+gpg: sending key 26BB2BE0FD06DFA9 to hkps://keyserver.ubuntu.com
+#+end_src
+
+Now if anyone pulls François's key, if they trust you they'll also trust that you've checked that it belongs to him.
+
+*Exercise:* Go and check your friend's keys and sign the lot of them!  Lets have a key-signing party!
+
+* Sending email again
+
+Right lets send François another email.
+
+#+begin_src sh :prologue rm message.txt
+  ed message.txt <<EOF
+  i
+  Hello François,
+
+  Here is a poem I wrote for you:
+
+  > There was a young man with a key,
+  > Who didn't check others keys carefully!
+  > They were MITM'd,
+  > Which caused them no end,
+  > Of pain, at least cryptographically!
+
+  Jo Hallett
+  .
+  w
+  q
+  EOF
+#+end_src
+
+#+RESULTS:
+: 228
+
+And then lets encrypt it!  Note that the warning that we don't know the key really belongs to François is gone now...
+
+#+begin_src sh
+  gpg --armor --encrypt --recipient f.dupressoir@bristol.ac.uk message.txt
+#+end_src
+
+François was concerned that he didn't really know that I'd sent him the email.
+Only François will be able to decrypt my poem but short of him sending me another encrypted email to check that I really wrote it can I convince him without needless emailing?
+
+The answer is to /sign/ the message with my /private/ key /before/ encrypting it.
+The signature will prove that I (or at least someone with access to my secret key) really wrote it.
+
+#+begin_src sh
+  gpg --output message.sig --clearsign message.txt 
+  gpg --output message.gpg --armor --encrypt --recipient f.dupressoir@bristol.ac.uk
+#+end_src
+
+Check that you =message.sig= really does prove that you sent the =message.txt= by runnning:
+
+#+begin_src sh
+  gpg --verify message.sig 
+#+end_src
+
+#+begin_src 
+gpg: Signature made Thu 23 Jan 2025 14:59:59 GMT
+gpg:                using RSA key 364B7926504D564513777801413109AF27CBFBF9
+gpg: Good signature from "Joseph Hallett <bogwonch@bogwonch.net>" [ultimate]
+gpg:                 aka "Joseph Hallett <joseph.hallett@bristol.ac.uk>" [ultimate]
+Primary key fingerprint: 364B 7926 504D 5645 1377  7801 4131 09AF 27CB FBF9
+#+end_src
+
+Says /Good signature/? Then the message must be unchanged.
+
+*Exercise:* Try changing the message without updating the signature.  What does it say now?
+
+Now we can email François a poem and he can check that we wrote it. Yay!
+
+*Exercise:* Send each other encrypted email!  Marvel at its bountiful security
+
+* Signatures...
+In the last example we used the =--clearsign= flag to sign our message.  That created a version of our message with the data on top and the signature underneath.  Great for email and forum posts[fn:3], less good if you just want to sign a PDF so people know it's really from you.  If you just want a signature separate from the original you can use the regular =--sign= flag.
+
+All year we've been using a Debian VM to run Linux with admin privileges on the lab machines.  Maybe at this stage you want to run Debian on /your own/ machine...
+
+You can find links to Debian's images (which you can =cp= onto a drive to create a bootable USB) here:
+
+[[https://www.debian.org/CD/http-ftp/]]
+
+...but how do you know that the OS is *really* the one Debian released?  What if some nefarious bad actor modified the disk image and so they could have backdoor access into your computer?[fn:4]  Luckily for you Debian publishes signed checksums of their releases!
+
+*Exercise:* Download an ISO and go through the process of verifying it following the instructions:
+
+https://www.debian.org/CD/verify
+
+Even if you don't install it, it's good practice to know /how/ to verify it.
+
+* Other stuff
+
+We've touched the surface of what you can do with PGP, and there's a load more you can explore.  Figure out what's useful for you and go explore!
+
+** Want a nice GUI for dealing with encrypted email automatically?
+Have a look at /Enigmail/ for Thunderbird, or using /Mutt/ (and /offlineimap/) if you're a command line person.  Bristol Uni doesn't make it easy to get your mail outside of Outlook (which is awful) but there are still a /few/ other ways (mostly so people who need to can use PGP).  
+
+** Want to store passwords securely?
+Check out =pass= ([[https://www.passwordstore.org]]) and start storing your passwords encrypted and on Git!
+
+** Want to avoid typing your password so often?
+You need a GPG agent.  Read through the docs and have a go with it... its a bit magical but once you've got it set up right (or use an OS that does it for you) you can even use it to manage SSH keys too
+
+https://www.gnupg.org/documentation/manuals/gnupg/index.html#toc-Invoking-GPG_002dAGENT-1
+
+* Footnotes
+
+[fn:1] Hint: its an atom of arsenic!  That should increase your chances of finding it *significantly*!  Happy hunting! 
+
+[fn:2] Your millage may vary.  =addphoto= can be fun if you want your key to have your face on it...
+
+[fn:3] Do people still use forums?  You probably all just use Discord chats.  Urgh.  I feel old... In my day we used IRC, USENET and MySpace was still cool.  That said even then, people who put signatures in their forum posts were a /little/ bit weird.
+
+[fn:4] Funny story, me and Matt were doing some research a while ago on the security practices of people who buy and sell drugs on the dark web.  They'd write tutorials for each other about how to use PGP, and they'd have some /really insane/ security practices (ever fancied driving round the country to collect hair samples from random salons to throw the police of your tail in case it matches with someones DNA in their database).  One of the things they often *didn't* bother doing though was verify their Linux distros authenticity... which is odd because putting out backdoored OSs is one of the easier ways to track people. Strange bunch.  Don't buy drugs from the darkweb.  You'll end up in our datasets =;-)= 
