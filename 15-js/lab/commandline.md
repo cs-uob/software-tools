@@ -84,8 +84,9 @@ obn = {
 }
 ```
 
-Take a look at the structure of `obn` in your console. This is an object with
-another object (`obj`) as one of its properties.
+Note that you'll have to paste the full definition of `obn` at once, rather than
+entering it line-by-line. Take a look at the structure of `obn` in your console. 
+This is an object with another object (`obj`) as one of its properties.
 
 Alter `obj` by changing John's age to 33, and then look at `obn` again. You
 should see your representation has changed -- when you created `obn` you passed
