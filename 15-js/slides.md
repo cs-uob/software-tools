@@ -11,7 +11,7 @@
 
 ## But First...
 
-Review issues from the HTNL+CSS labs.
+Review issues from the HTML+CSS labs.
 
 
 ---
