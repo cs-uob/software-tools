@@ -65,9 +65,11 @@ Note that `.sort` did not just return the list in sorted form, but altered the
 list order.  Procedures in JS often have side-effects. If you wanted to just
 create a sorted copy without sorting the original, you could use `.toSorted`. To
 see all the available procedures in node, type the identifier with a dot
-(`list.`) and then tab twice. A useful trick if you want to remove a specific
+(`list.`) and then tab twice. One you commonly might use is `.includes`, which tells
+you if an array contains a value. A useful trick if you want to remove a specific
 value from an array is to find the index of the item with `.indexOf` and then
-call (`.splice(index, 1)`). 
+call (`.splice(index, 1)`). Note the difference between what this method returns 
+and the effect it has on the original array.
 
 Now let's look at objects.
 
