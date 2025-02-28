@@ -7,7 +7,7 @@ definitions of words as they are reading.
 
 ### Setup
 
-Begin by running the command `python -m http.server --cgi` in the directory for
+Begin by running the command `python3 -m http.server --cgi` in the directory for
 this week's lab.  If you are copying materials from the site rather than working
 within a copy of the repository, note that you will need all of
 `storypage.html`,`storypage.css`,`anabasis.json` and the contents of the
