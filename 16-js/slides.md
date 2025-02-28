@@ -1,7 +1,7 @@
 # Software Tools
 (COMS10012 / COMSM0085)
 
-## Week 6: Asynchronous JavaScript
+## Week 7: Asynchronous JavaScript
 (or, "Promises Made, Promises Kept")
 
  - Synchronous vs asynchronous execution

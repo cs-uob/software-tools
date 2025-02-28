@@ -50,12 +50,12 @@ in alternative locations as per your timetable.
 | 2 | [HTML](./12-html/) | Matthew |
 | 3 | [CSS basics](./13-css/) | Matthew |
 | 4 | [Design with CSS](./14-css/) | Matthew |
-| 5 | Javascript basics | Matthew |
-| 6 | Asynchronous Javascript | Matthew |
-| 7 | Reading Week | NA |
+| 5 | [Javascript basics](./15-js) | Matthew |
+| 6 | Reading Week | NA |
+| 7 | [Asynchronous Javascript](16-js) | Matthew |
 | 8 | [Web scraping](./17-scraping/) | Matthew | 
-| 9 | Library management | Joseph |
-| 10| Internet protocols | Joseph |
+| 9 | [PGP](./18-pgp) | Joseph |
+| 10| [Internet protocols](./19-inetd) | Joseph |
 | 11| Certificates | Joseph |
 
 ## Assessment 

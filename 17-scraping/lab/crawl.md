@@ -28,9 +28,10 @@ Then extract the contents of the tarball by using `tar -xzf cattax.tar.gz` in th
 folder you downloaded it to. This will create a folder `cattax` which contains some
 webpages and resources.
 
-Next, use the `darkhttpd` server from a previous week's exercises to
-serve the content of the `cattax` folder on `localhost:8080`. _(Refer to the
-HTTP week's exercise instructions if you have forgotten how to do this)_. 
+Next, use either `darkhttpd` or the `python -m http.server` server from a
+previous week's exercises to serve the content of the `cattax` folder on
+`localhost:8080`. _(Refer to the previous weeks' exercise instructions if you
+have forgotten how to do this)_. 
 
 You can check that this is working in a browser (unless you are connecting via
 SSH) by navigating to `localhost:8080/index.html` -- you should see a webpage
@@ -63,17 +64,16 @@ with:
 wget localhost:8080/index.html
 ```
 
-This downloads the same `index.html` as is being served from `cattax` by
-`darkhttpd`. However, if you open this downloaded file in your browser, you'll
-see that there's a sense in which something missing -- `wget` has only
-downloaded the specific HTML file you requested, and not any of the resources
-that the page itself references, like the CSS file -- so the version you open in
-your browser from your `client` directory won't look the same as the version
-being served via localhost. This can be desirable default behaviour (we only
-asked it to get that page, after all), but if we wanted to download a copy of a
-webpage and later read that webpage's copy with the styles and images it was
-originally created to contain, we'd need to get `wget` to also download these
-resources.
+This downloads the same `index.html` as is being served from `cattax` by your
+server.  However, if you open this downloaded file in your browser, you'll see
+that there's a sense in which something missing -- `wget` has only downloaded
+the specific HTML file you requested, and not any of the resources that the
+page itself references, like the CSS file -- so the version you open in your
+browser from your `client` directory won't look the same as the version being
+served via localhost. This can be desirable default behaviour (we only asked it
+to get that page, after all), but if we wanted to download a copy of a webpage
+and later read that webpage's copy with the styles and images it was originally
+created to contain, we'd need to get `wget` to also download these resources.
 
 One way to do this would be to manually identify each of the required resources
 and download them one-by-one. But this is tedious, repetitive work -- highly
