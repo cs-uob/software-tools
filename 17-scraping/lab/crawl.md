@@ -21,7 +21,7 @@ in another terminal, to act as a client for the next parts of the exercise.
 However, we'll periodically invite you to check things in your browser, which is
 a lot simpler if you're not trying to use a remote machine.
 
-First, download the [webpages to be served by the webserver](/cattax.tar.gz). 
+First, download the [webpages to be served by the webserver](./cattax.tar.gz). 
 (If you like you can even do this using `wget`).
 
 Then extract the contents of the tarball by using `tar -xzf cattax.tar.gz` in the
