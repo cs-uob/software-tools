@@ -1,0 +1,40 @@
+body {
+    background-color: #ffd9b3;
+    margin-left: 10%;
+    margin-right: 10%;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+}
+
+h1 {
+    text-align: center;
+    grid-column: span 3;
+}
+
+.infopane {
+    grid-column: span 3;
+    text-align: center;
+}
+
+.page {
+    background-color: #fffefe;
+    width: 60%;
+    border: 2px solid brown;
+    margin: 0 auto;
+    padding: 10px 20px 10px 20px;
+}
+
+.nav {
+    align-content: center;
+    text-align: center;
+    font-size:36px;
+    font-weight:bold;
+    display: block;
+    width: 100%;
+    background-color: brown;
+}
+
+.dictpane {
+    margin-top: 20px;
+    grid-column: 2 / 3;
+}

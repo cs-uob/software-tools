@@ -1,0 +1,28 @@
+#!/bin/python3
+import os
+import json
+import urllib
+import requests
+
+args = urllib.parse.parse_qs(os.environ["QUERY_STRING"])
+params = {'action':'query', 'prop':'extracts','exsectionformat' : 'plain',
+          'exsentences' : 10, 'formatversion' : 2, 'format':
+          'json'}
+
+if 'term' in args:
+  params['titles'] = args['term']
+  r = requests.get('https://en.wiktionary.org/w/api.php', params=params)
+  robj = r.json()
+  if 'query' in robj and 'extract' in robj['query']['pages'][0]:
+    print("Content-Type: text/html")
+    print()
+    print(robj['query']['pages'][0]['extract'])
+  else:
+    print("Content-Type: application/json")
+    print()
+    print(r.text)
+else:
+  print("Content-Type: application/json")
+  print()
+  print('{"error": "no query term"}')
+
