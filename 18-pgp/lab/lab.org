@@ -296,7 +296,7 @@ Really sign? (y/N) y
 You can send your signature on his key back to the keyserver with:
 
 #+begin_src sh
-gpg --send-key '7860 0FD9 AF8A 5307 BE9D  C633 26BB 2BE0 FD06 DFA9'
+gpg --keyserver keyserver.ubuntu.com --send-key '7860 0FD9 AF8A 5307 BE9D  C633 26BB 2BE0 FD06 DFA9'
 #+end_src
 
 #+begin_src sh
