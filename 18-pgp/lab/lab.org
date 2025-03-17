@@ -117,7 +117,7 @@ There are other "fun" options[fn:2] in the =--edit-key= interface!  Type =help= 
 Now that you have a key you ought to tell others about it!  You can send it to other keyservers
 
 #+begin_src sh
-  gpg --send-keys '364B 7926 504D 5645 1377  7801 4131 09AF 27CB FBF9'
+  gpg --keyserver keyserver.ubuntu.com --send-keys '364B 7926 504D 5645 1377  7801 4131 09AF 27CB FBF9'
 #+end_src
 
 #+begin_src :exports code :results nil
@@ -127,13 +127,13 @@ gpg: sending key 413109AF27CBFBF9 to hkps://keyserver.ubuntu.com
 To find other people's keys you can either retrieve them with the key-id directly
 
 #+begin_src sh
-  gpg --recv-keys '364B 7926 504D 5645 1377  7801 4131 09AF 27CB FBF9'
+  gpg --keyserver keyserver.ubuntu.com --recv-keys '364B 7926 504D 5645 1377  7801 4131 09AF 27CB FBF9'
 #+end_src
 
 Or you can search for them on a keyserver.  My key is number 5.  You can import it if you like.
 
 #+begin_src sh :results code
-  gpg --search-key 'Joseph Hallett'
+  gpg --keyserver keyserver.ubuntu.com --search-key 'Joseph Hallett'
 #+end_src
 #+RESULTS:
 #+begin_src sh
