@@ -13,10 +13,10 @@ It's only 12 pages, but pay special attention to Section 2 (where the protocol i
 *Exercise:* Implement a Finger client.
 
 You'll need to look up how you make network requests in your favorite language.
-- If you want to do it in C or assembly[fn:2] have a read over [[https://beej.us/guide/bgnet/][Beej's Guide]] (and maybe if not too)
+- If you want to do it in C or assembly[fn:1] have a read over [[https://beej.us/guide/bgnet/][Beej's Guide]] (and maybe if not too)
 - If you like Python: [[https://docs.python.org/3/howto/sockets.html]]
 - If you like Java: [[https://docs.oracle.com/javase/tutorial/networking/sockets/index.html]]
-- Array-oriented tacit stack programming more your thing?[fn:1]  Uiua has a socket API: [[https://www.uiua.org/docs]]
+- Array-oriented tacit stack programming more your thing?[fn:2]  Uiua has a socket API: [[https://www.uiua.org/docs]]
 
 You'll need a server to test against though.  Start with =netcat= listening on a port and check the messages are getting through as you'd expect then try fingering someone else's server.
 
@@ -40,6 +40,6 @@ If you want to do it on the lab machine you'll have to use a non-standard port. 
 How do you read user's =.plan= files?
 
 * Footnotes
-[fn:2] Because you enjoyed the debugging lab a lot and want to make the TAs hate you. 
+[fn:1] Because you enjoyed the debugging lab a lot and want to make the TAs hate you. 
 
-[fn:1] We love, fear, and respect you people...
+[fn:2] We love, fear, and respect you people...
