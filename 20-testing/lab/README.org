@@ -1,0 +1,45 @@
+#+title: Testing
+
+For this final lab it is time to get testing.  You all have enough code by now that you could be writing tests for---so go pick a project from this or any other unit[fn:¹]---and start writing tests.
+
+Start with basic unit tests and find a testing framework you like.  Which ones do we recommend?
+- Java :: JUnit is the normal one
+- C :: [[https://www.throwtheswitch.org/unity][Unity]] looks good but I normally just write a separate =main= linked against the core libraries and do it manually.  You do you.
+- Python :: [[https://docs.pytest.org/en/stable/][PyTest]] was the standard one, but there's [[https://docs.python.org/3/library/unittest.html][unittest]] built into the core libraries now (which PyTest can integrate with)
+- Haskell :: We used to use [[https://hunit.sourceforge.net/][HUnit]] but there's [[https://hackage.haskell.org/package/HUnit-Plus][HUnit-Plus]] now too
+- Commonlisp :: [[https://fiveam.common-lisp.dev/][FiveAM]] is the standard one.
+
+But also try and write property tests too with a Quickcheck-like framework and see how you like that.  What kind of properties might you like to check?  What about checking the parsing code you wrote for the finger server last week: check that for any arbitrary finger query, if you print it as a string and then parse it back in you get the same query as you printed.
+
+Want a QuickCheck library?
+- Haskell :: Just use the original and best [[https://www.cse.chalmers.se/~rjmh/QuickCheck/][QuickCheck]].
+- Python :: [[https://hypothesis.readthedocs.io/en/latest/quickstart.html][Hypothesis]] looks nice and has a tutorial.
+- C :: [[https://github.com/silentbicycle/theft][Theft]] looks okay, but you need to write your own generators.
+- Java :: [[QuickTheories]] looks okay.
+- Commonlisp :: [[https://fiveam.common-lisp.dev/docs/Checks.html#Random_0020_0028QuickCheck-ish_0029_0020testing][FiveAM]] can do it but [[https://github.com/DalekBaldwin/check-it][Check-It]] can be a bit more convenient.
+
+
+* But I need structured learning!
+
+You really don't and the *best* way to learn about testing is to do it.  But hey: it's the end of the unit and we're all tired... give these things a go in any order! 
+
+- Learn Cucumber!  There's a nice tutorial on their website that'll take you through the basics of /behavioural driven development/ and the testing framework in Java or JavaScript[fn:³]
+
+  [[https://cucumber.io/docs/guides/10-minute-tutorial]]
+
+- At the end of the lecture we touched on /formal methods/ and the /Lean/ proof assistant.  Have a play with learning how to use it by playing the /natural number game/: will you eventually be able to prove that exponentiation by squaring is equivalent to the standard algorithm?
+
+  [[https://adam.math.hhu.de/#/g/leanprover-community/nng4]]
+
+- Why not learn a new programming language by writing and completing tests?  Google's Common Lisp Koans can help you learn Jo's favourite[fn:²][fn:⁴] programming language by writing tests.  
+
+  [[https://github.com/google/lisp-koans]]
+
+* Footnotes:
+[fn:¹]  Though the /finger/ server and client you were working on last week would make a good one...
+
+[fn:²]  Honest!  I learned it from Paul Graham's ANSI Common Lisp right in my first year of university and I have yet to find a language I like more (well, scheme possibly but that's just /pretty/ lisp...)
+
+[fn:³] Or Ruby... I like Ruby... really nice scripting language that falls somewhere between Perl and Python.   Good one to learn if Perl puts you off with its dark magic.
+
+[fn:⁴] Or Ruby... Ruby Koans exist too! [[https://github.com/edgecase/ruby_koans]].
