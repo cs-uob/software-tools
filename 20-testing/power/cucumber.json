@@ -1,0 +1,7 @@
+{
+  "default": {
+    "formatOptions": {
+      "snippetInterface": "synchronous"
+    }
+  }
+}

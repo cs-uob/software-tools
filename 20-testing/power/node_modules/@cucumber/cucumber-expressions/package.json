@@ -1,0 +1,79 @@
+{
+  "name": "@cucumber/cucumber-expressions",
+  "version": "18.0.1",
+  "description": "Cucumber Expressions - a simpler alternative to Regular Expressions",
+  "type": "module",
+  "main": "dist/cjs/src/index.js",
+  "types": "dist/cjs/src/index.d.ts",
+  "files": [
+    "dist/cjs",
+    "dist/esm",
+    "src"
+  ],
+  "module": "dist/esm/src/index.js",
+  "jsnext:main": "dist/esm/src/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/src/index.js",
+      "require": "./dist/cjs/src/index.js"
+    }
+  },
+  "scripts": {
+    "build:cjs": "tsc --build tsconfig.build-cjs.json && cp package.cjs.json dist/cjs/package.json",
+    "build:esm": "tsc --build tsconfig.build-esm.json",
+    "build": "npm run build:cjs && npm run build:esm && cp ../README.md dist",
+    "test": "mocha && npm run test:cjs",
+    "test:cjs": "npm run build:cjs && mocha --no-config dist/cjs/test",
+    "stryker": "cross-env CUCUMBER_EXPRESSIONS_TEST_DATA_DIR=$(pwd)/../testdata stryker run",
+    "prepublishOnly": "npm run build",
+    "eslint-fix": "eslint --ext ts,tsx --max-warnings 0 --fix src test",
+    "eslint": "eslint --ext ts,tsx --max-warnings 0 src test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cucumber/cucumber-expressions.git"
+  },
+  "keywords": [
+    "cucumber",
+    "steps",
+    "regexp",
+    "regex"
+  ],
+  "author": "Cucumber Limited <cukes@googlegroups.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cucumber/cucumber-expressions/issues"
+  },
+  "homepage": "https://github.com/cucumber/cucumber-expressions#readme",
+  "devDependencies": {
+    "@stryker-mutator/core": "8.6.0",
+    "@stryker-mutator/mocha-runner": "8.6.0",
+    "@types/glob": "8.1.0",
+    "@types/js-yaml": "4.0.9",
+    "@types/mocha": "10.0.9",
+    "@types/node": "20.17.1",
+    "@typescript-eslint/eslint-plugin": "8.11.0",
+    "@typescript-eslint/parser": "8.11.0",
+    "cross-env": "7.0.3",
+    "esbuild": "0.24.0",
+    "eslint": "8.57.1",
+    "eslint-config-prettier": "9.1.0",
+    "eslint-plugin-import": "2.31.0",
+    "eslint-plugin-n": "17.11.1",
+    "eslint-plugin-prettier": "5.2.1",
+    "eslint-plugin-simple-import-sort": "12.1.1",
+    "glob": "11.0.0",
+    "js-yaml": "4.1.0",
+    "mocha": "10.7.3",
+    "prettier": "3.3.3",
+    "pretty-quick": "4.0.0",
+    "ts-node": "10.9.2",
+    "typescript": "5.4.5"
+  },
+  "dependencies": {
+    "regexp-match-indices": "1.0.2"
+  },
+  "directories": {
+    "test": "test"
+  }
+}
