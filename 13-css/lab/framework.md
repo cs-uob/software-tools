@@ -103,3 +103,18 @@ Finally, add and style a [bulma component](https://bulma.io/documentation/compon
 The most popular CSS framework is [Bootstrap](https://getbootstrap.com), developed by Twitter. If you are interested and have some spare time, you can have a look at it - it has lots of different components and options to customise the styling further with themes.
 
 Bootstrap includes a JavaScript file as well as a stylesheet: for some components like tabbed pages, you need the scripts to make clicking on a tab switch to the correct content.
+
+
+## Tailwind CSS
+
+An alternative popular approach to styling with CSS is using [TailwindCSS](https://tailwindcss.com/). Instead of seperating the CSS into another file, Tailwind makes you use inline styles i.e. adding your styles within the html element. This lets you not have to create an abnormal number of classes and IDs and makes it easier to debug your CSS. 
+
+An example from the website:
+
+```html
+<h1 class="text-3xl font-bold underline">
+    Hello world!
+</h1>
+```
+
+Tailwind provides you with predefined styles and purges unused css. You have more control styling your website compared to Bootstrap. 
