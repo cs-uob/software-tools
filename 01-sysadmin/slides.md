@@ -14,7 +14,7 @@ Unit Director:
 
 - 1 **workbook** every week, with guidance & video introductions
     + All on unit website <https://github.com/cs-uob/software-tools/>
-- 1 intro lecture   (Tuesday @ 16:00 in Priory Road LT)
+- 1 intro lecture   (Tuesday @ 11:00 in Priory Road LT)
 - 1 2-hour lab session (Friday in MVB 2.11)
 
 ---
@@ -43,9 +43,9 @@ Unit Director:
  6. Asynchronous Javscript
  7. _Reading Week_
  8. Web scraping (`wget`, BeautifulSoup)
- 9. Library management
+ 9. PGP
 10. Other internet protocols
-11. Practical encryption (`gpg`, OpenSSL, LetsEncrypt)
+11. Certificates
 
 
 ---
@@ -104,11 +104,7 @@ SSH connections.
 
 `ssh user@host`
 
-Problem: The lab machines aren't directly accessible over the internet.
-
-`ssh user@seis.bris.ac.uk`
-
-SEIS: Not a lab machine, but accessible from the internet.
+Problem: I can't remember a specific lab machine's address.
 
 `ssh user@rd-mvb-linuxlab.bristol.ac.uk`
 
