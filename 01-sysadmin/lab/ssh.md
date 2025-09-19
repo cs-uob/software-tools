@@ -20,31 +20,22 @@ First of all, let's check that the ssh client is working.
 
 ## Connect to the lab
 
-The lab machines have names `it######.wks.bris.ac.uk` where the hashes represent a number from 075637 up to 075912. However, not all of them will be working at any one time, if everyone connects to the same machine then it will quickly get overloaded, and for security reasons the lab machines are not directly accessible from the internet. Instead, we will use two other machines to connect:
+The lab machines have names `it######.wks.bris.ac.uk` where the hashes represent a number from 075637 up to 075912. However, not all of them will be working at any one time, and if everyone connects to the same machine then it will quickly get overloaded, Instead, we will use the load balancer `rd-mvb-linuxlab.bristol.ac.uk`. This connects you to a lab machine that is currently running and ensures that if everyone uses this method to connect, then they will be more or less equally distributed among the running machines.
 
-  * The bastion host `seis.bris.ac.uk`. This is reachable over SSH from the internet, and is on a university network that lets you connect further to the lab machines. You should not attempt to do any work on seis itself, as most of the software you would like to use (like compilers) is not installed there. However, you do have a home directory on seis for storing things like SSH keys.
-  * The load balancer `rd-mvb-linuxlab.bristol.ac.uk`. This connects you to a lab machine that is currently running and ensures that if everyone uses this method to connect, then they will be more or less equally distributed among the running machines.
+To access the load balancer you will need to be connected to a university network, either by directly accessing eduroam or by following the [university's guide to using the VPN](https://uob.sharepoint.com/sites/itservices/SitePages/vpn.aspx) for remote access.
 
 Try the following:
 
-  * On your terminal, type `ssh USERNAME@seis.bris.ac.uk` where you replace USERNAME with your university username, e.g. `aa20123`. Obviously, you will need a working internet connection for this.
+  * On your terminal, type `ssh USERNAME@rd-mvb-linuxlab.bristol.ac.uk` where you replace USERNAME with your university username, e.g. `aa20123`. Obviously, you will need a working internet connection for this.
   * If it asks you whether you are sure, type `yes` and press ENTER. SSH will only do this the first time you connect to a machine that you have never used before.
   * When prompted, enter your university password and press ENTER.
-  * You should now see the prompt on seis, which looks something like `[USERNAME@seis-shell ~]$`. Try the command `uname -a` to print information about the system (uname on its own prints the operating system name, `-a` shows "all" information). The reply line should start `Linux seis-shell`, which is the operating system and host name.
-  * On the seis prompt, type `ssh rd-mvb-linuxlab.bristol.ac.uk`. This might take a few seconds; say yes if it asks you if you're sure, then enter your password again when prompted. We didn't have to give a username again because you are already logged in to seis with your university username (`whoami` shows this) and when you ssh without giving a username, it uses the one you are currently logged in as.
   * You should now be connected to a lab machine, with a prompt of the form `USERNAME@it######:~$`. 
   * Try `whoami` and `uname -a` to check who you are logged in as, and where; also try `hostname` which just prints the machine name.
-  * Type `exit` twice to get back to your own machine. (Once gets you back to seis, twice closes the ssh connection completely.)
+  * Type `exit` to get back to your own machine. 
 
-Connecting to one machine through another machine (in this case seis) as a proxy is such a common use case that ssh in fact has an option for it. Note however that this will not normally work from a windows CMD terminal, although it does work on Windows Subsystem for Linux (and on Mac and Linux).
 
-```
-ssh -J USERNAME@seis.bris.ac.uk USERNAME@rd-mvb-linuxlab.bristol.ac.uk
-```
+Note that while you _can_ access the load balancer when you are sitting at a lab machine, there is no purpose to doing so, as it simply logs you into another (randomly-selected) lab machine.
 
-The `-J` for "jump through this host" even accepts a comma-separated list of hosts if you need to connect through more than one. However, you need to repeat your username for every machine.
-
-You now know how to log in to a lab machine, but in both methods you had to type your password twice - let's make that easier. The answer is not to store your password in a file, but to use keys instead.
 
 ## Setting up ssh keys
 
@@ -53,17 +44,17 @@ When you connect to a machine, the client on your computer and the daemon on the
 You might have heard from a security source that there are three main authentication factors: something you know (password or PIN), something you have (physical key, digital key, ID card, passport) and something you are (biometrics). An authentication method that requires two of these is called two-factor authentication and this is considered good security practice. For ssh, this means:
 
   * You can log in with a username and password, that is "something you know". This is the default, but not the most secure.
-  * You can log in with a (digital) key, that is "something you have". This is more secure, as long as your key (which is just a file) doesn't get into the wrong hands, and also the most convenient as you can log into a lab machine or copy files without having to type your password.
+  * You can log in with a (digital) key, that is "something you have". This is more secure, as long as your key (which is just a file) doesn't get into the wrong hands, and also the most convenient, as you can log into a lab machine or copy files without having to type your password.
   * You can log in with a key file that is itself protected with a password. This gets you two-factor authentication.
 
 The keys that SSH uses implement digital signatures. Each key comes as a pair of files:
 
   * A private key (also known as secret key) in a file normally named `id_CIPHER` where CIPHER is the cipher in use. You need to keep this secure and only store it in places that only you have access to.
-  * A public key in a file normally named `id_CIPHER.pub`. You can share this with the world, and you will need to store a copy of it on any machine or with any service that you want to log in to (for the lab, because the lab machines all share a file system, you only need to store it once - but seis has a separate file system so you need a separate copy there).
+  * A public key in a file normally named `id_CIPHER.pub`. You can share this with the world, and you will need to store a copy of it on any machine or with any service that you want to log in to (for the lab, because the lab machines all share a file system, you only need to store it once).
 
 Let's create a key pair:
 
-  * On your own machine, make sure you are not connected to a lab machine or seis, then type the command `ssh-keygen -t ed25519`. (If you get an "unknown key type" error, then you are using an outdated version of OpenSSH and for security reasons you should upgrade immediately.) _Note: type `ed25519` directly, do not replace this with your username. It stands for the "Edwards curve over the prime `2^255-19`" cryptographic group, if you want to know._
+  * **On your own machine**, type the command `ssh-keygen -t ed25519`. (If you get an "unknown key type" error, then you are using an outdated version of OpenSSH and for security reasons you should upgrade immediately.) _Note: type `ed25519` directly, do not replace this with your username. It stands for the "Edwards curve over the prime `2^255-19`" cryptographic group, if you want to know._
   * When it asks you where to save the file, just press ENTER to accept the default, but make a note of the path - normally it's a folder `.ssh` in your home directory.
   * If it asks you "Overwrite (y/n)", say no (n, then ENTER) as it means you already have a key for something else - either ssh directly or something that uses it, like github. Restart key generation but pick a different file name.
   * When it asks you for a password, we recommend that you just press ENTER which doesn't set a password (good security, maximum convenience). If you do set a password, it will ask you to type it twice and then you will need the password and the key file to use this key (maximum security, less convenient).
@@ -84,25 +75,29 @@ The public key permissions are `(-)(rw-)(r--)(r--)` which means that the owner c
 
 `known_hosts` is where SSH stores the public keys of computers you've already connected to: every time you answer yes to an "Are you sure you want to connect?" question when you connect to a new computer for the first time, it stores the result in this file and won't ask you again the next time. The file format is one key per line and you can edit the file yourself if you want to.
 
-## Set up key access on SEIS
+## Set up key access on the lab machine
 
-First, we need to upload our public key to the `~/.ssh` directory on seis. Even before this, we need to make sure the directory exists though:
+First, you need to upload your public key to the `~/.ssh` directory on your lab machine home folder. Even before this, we need to make sure the directory exists though:
 
-  - Log in to seis with ssh and your password.
+  - Log in to a lab machine with `ssh` and your password.
   - Try `ls -al ~/.ssh`. If it complains the folder doesn't exist, create it with `mkdir ~/.ssh`.
-  - Log out of seis again with `exit`.
+  - Log out again with `exit`.
 
 The command for copying a file is `scp` for secure copy, which works like `cp` but allows you to include remote hosts and does the copy over SSH. Run this from your own machine:
 
 ```
-scp ~/.ssh/id_ed25519.pub "USERNAME@seis.bris.ac.uk:~/.ssh/"
+scp ~/.ssh/id_ed25519.pub USERNAME@rd-mvb-linuxlab.bristol.ac.uk:~/.ssh/
 ```
 
-Obviously, replace USERNAME with your university username. This will ask for your password again. Note two things here: first, to set up access on seis, we are uploading the public key - not the private key! - and secondly, that we put double quotes around the destination. This is because the `~` character meaning home directory is handled by our shell, but we don't want our local shell to expand it, instead we want the shell on seis launched by scp to expand it to our home directory on that machine.
+Obviously, replace USERNAME with your university username. This will ask for your password again. Note that to set up access, we are uploading the public key - not the private key!  The point of key-based authentication is that your private key never leaves your own machine, so even university administrators never get to see it, which would not be guaranteed if you stored a copy on a university machine.
+
+Logging in to a machine does not send the key to that machine. Instead, the machine sends you a challenge - a long random number - and SSH digitally signs that with the private key on your own machine, and sends the signature back which the remote machine can verify with the public key. Seeing a signature like this does not let the machine create further signatures on your behalf, and it definitely does not reveal the key.
+
+This way, you can create one SSH key and use it for university, github and anything else that you access over SSH, and even if one service is breached then this does not give the attacker access to your accounts on the other services.
 
 The general syntax of scp is `scp source destination` and source or destination  may be of the form `[USERNAME@]HOSTNAME:PATH` - if it contains a colon (`:`), then it refers to a file on a different machine.
 
-Now log in to seis over ssh and type your password one last time. Then run the following:
+Now log in over ssh and type your password one last time. Then run the following:
 
 ```
 cd .ssh
@@ -114,91 +109,34 @@ SSH will accept a public key if it is listed in the file `authorized_keys` in th
 
 However, if the authorised keys file didn't exist already, then it has now been created with default permissions and SSH won't accept that for security reasons. `chmod` means change permissions (also known as "mod bits") and 600 is the bit pattern we want in base 8, because that is how permissions work for historical reasons. Permissions are a bitfield of 9 bits, the first three are read/write/execute for the owner, the next three the same for the group, and then for everyone else. If you `ls -l` you will see this in a slightly more human-readable format, namely `rw-------` where a minus means that a bit is turned off.
 
-Now type `exit` to get back to your own machine, and then `ssh USERNAME@seis.bris.ac.uk` to log back in to seis. It should log you in without asking for a password, and you have now set up key-based SSH authentication for seis.
+Now type `exit` to get back to your own machine, and then `ssh USERNAME@rd-mvb-linuxlab.bristol.ac.uk` to log back in. It should log you in without asking for a password, and you have now set up key-based SSH authentication. Note that even though you can log into different lab machines each time you access the load balancer, your home directory is the same across all lab machines, so you don't need to install the key on each one separately. 
 
-_Note: if you set a password on your SSH key earlier, then it will ask you for a password, and it will expect the key password not your uni password. You know not to ever reuse your uni password for anything else, right?_
+_Note: if you set a password on your SSH key earlier, then it will ask you for a password, and it will expect the key password not your uni password. You know not to ever reuse your university password for anything else, right?_
 
 If for some reason something doesn't work with ssh, the first thing to try is to add the `-v` switch enable debugging information (you can even do `-vv` or `-vvv` to see even more detail, but we don't need that). If there is a problem with the permissions on your private key file for example, then you will see SSH complain in the debugging information.
 
-## Setting up keys for lab machines
-
-You can now get into seis with a key, but you want to be on a lab machine to get work done.
-
-To connect from your machine to seis, you need a private key on your machine and a public key on seis. To connect from seis to a lab machine, it would seem like you need a public key on the lab machine and a private key on seis. You do not want to upload your private key to seis though for security reasons, so instead we are going to use a SSH feature called _agent forwarding_ which means that if you SSH into one machine, then when you try and SSH further into another machine SSH will reuse the same key. The way to do this is to use the `-A` command line flag.
-
-The point of key-based authentication is that your private key never leaves your own machine, so even university administrators never get to see it, which would not be guaranteed if you stored a copy on a university machine.
-
-Logging in to a machine does not send the key to that machine. Instead, the machine sends you a challenge - a long random number - and SSH digitally signs that with the private key on your own machine, and sends the signature back which the remote machine can verify with the public key. Seeing a signature like this does not let the machine create further signatures on your behalf, and it definitely does not reveal the key.
-
-What agent forwarding does is it allows challenges and signatures to be forwarded across multiple connections, but the key never leaves your own machine.
-
-This way, you can create one SSH key and use it for university, github and anything else that you access over SSH, and even if one service is breached then this does not give the attacker access to your accounts on the other services.
-
-To set this up:
-
-  * Log in to seis with `ssh USERNAME@seis.bris.ac.uk`. You should not need a password anymore.
-  * Log in to the lab machines with `ssh rd-mvb-linuxlab.bristol.ac.uk` and enter your password. Check that the `~/.ssh` folder exists and create it if it doesn't, as you did before on seis, then `exit` again to seis.
-  * Copy your public key file from seis to the lab machines with `scp ~/.ssh/id_ed25519.pub "rd-mvb-linuxlab.bristol.ac.uk:~/.ssh/"`. This will ask for your password again.
-  * Log in to a lab machine with `ssh rd-mvb-linuxlab.bristol.ac.uk` and enter your password one last time. On the lab machine, install the public key with the following:
-
-```
-cd .ssh
-cat id_ed25519.pub >> authorized_keys
-chmod 600 authorized_keys
-```
-
-  - Log out of the lab machine and seis again by typing `exit` twice.
-
-The steps above were necessary because your home directory on seis is not the same as on the lab machines. However, your home directory is the same across all lab machines, so you don't need to install the key on each one separately. You might have noticed that when copying or `ssh`-ing from seis to the lab machines, you don't have to repeat your username: this is because it is the same on all these machines.
 
 From now on, from you own machine, you should be able to get directly into a lab machine with the following command, which should not ask for your password at all:
 
 ```
-ssh -A -J USERNAME@seis.bris.ac.uk USERNAME@rd-mvb-linuxlab.bristol.ac.uk
+ssh USERNAME@rd-mvb-linuxlab.bristol.ac.uk
 ```
-
-_Unfortunately, `-J` will not work on a windows CMD terminal, although it should work on Windows Subsystem for Linux. Once we have set up a configuration file, there will be a way to work around this problem. Mac and Linux users should be fine though, as should anyone running these commands from a Linux VM on their own machine, whatever their host OS._
 
 ## Setting up a configuration file
 
-You now have a log in command that works, but you still have to type a lot, and you need to type your username twice. We can improve this by using a configuration file.
+You now have a login command that works, but you still have to remember the load balancer address, which can be a pain. One way to offload this memory exercise is to store the details in a configuration file.
 
 SSH reads two configuration files: one for all users at `/etc/ssh/ssh_config` (`/etc` is where POSIX programs typically store global settings) and a per-user one at `~/.ssh/config`. The site [https://www.ssh.com/ssh/config/](https://www.ssh.com/ssh/config/) or just `man ssh_config | less` on a terminal contain the documentation (`man` means manual page, and `less` is a program that shows a file on page at a time and lets you scroll and search).
 
 Create a file called simply `config` in your `.ssh` directory on your own machine. You can do this for example with `touch config` (make sure you're in the `.ssh` directory first, `cd ~/.ssh` gets you there), and then editing it in your favourite text editor. Add the following lines, replacing USERNAME with your username twice:
 
 ```
-Host seis
-  HostName seis.bris.ac.uk
-  User USERNAME
-
 Host lab
   HostName rd-mvb-linuxlab.bristol.ac.uk
-  ProxyJump seis
   User USERNAME
 ```
 
-This now lets you use simply `ssh lab` to log in to a lab machine via seis (agent forwarding is implied when you use `ProxyJump`), or `ssh seis` if you want to access seis directly for example to update your keys there.
-
- * Try `ssh lab` from your own machine. This will be your main way to log in to a lab machine from now onwards.
-
-
-If you are on Windows and are using OpenSSH through a CMD terminal, a bug in OpenSSH prevents the `-J` option from working. However, you can write your file like this instead:
-
-```
-# ~/.ssh/config file for WINDOWS CMD users only
-
-Host seis
-  HostName seis.bris.ac.uk
-  User USERNAME
-
-Host lab
-  HostName rd-mvb-linuxlab.bristol.ac.uk
-  ProxyCommand ssh.exe -W %h:%p seis
-  User USERNAME
-```
-
-This should get `ssh lab` to work for you as well.
+This now lets you use simply `ssh lab` to log in to a lab machine.
 
 ## Using different keys
 

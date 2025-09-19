@@ -15,7 +15,7 @@ you choose a text editor.
 There are some common pitfalls at this stage in the unit, and in partcular
 students often get confused by standard SSH output.  Please watch [this
 supplementary
-video](https://web.microsoftstream.com/video/d2736b4b-80de-4740-9084-2ab458a9dbab)
+video](https://uob-my.sharepoint.com/:v:/g/personal/me17847_bristol_ac_uk/EU8xAeeT1x5fKcyWtWoAyYwBTQBfFbs3L93Xjgcvt1A9XA?e=7cgdcl)
 ([slides](./SSH.pdf)) before the lab. As with all weeks, it is also a good idea to
 look at the exercises below before the start of the lab itself.
 
