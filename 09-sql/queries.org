@@ -1,0 +1,26 @@
+#+title: SQL Demo
+#+PROPERTY: header-args:sqlite :headers on
+
+#+begin_src sqlite :db chinook.db :prologue .headers on
+
+  select track.name, genre.name, artist.name from track
+  join genre on track.genreid = genre.genreid
+  join album on track.albumid = album.albumid
+  join artist on album.artistid = artist.artistid
+  where track.name LIKE 'War Pigs'
+  ;
+#+end_src
+
+#+RESULTS:
+| Name     | Name               | Name          |
+| War Pigs | Alternative & Punk | Faith No More |
+| War Pigs | Rock               | Ozzy Osbourne |
+| War Pigs | Alternative        | Cake          |
+
+#+begin_src sqlite :db chinook.db :prologue .headers on
+  select * from track limit 1
+#+end_src
+
+#+RESULTS:
+| TrackId | Name                                    | AlbumId | MediaTypeId | GenreId | Composer                                  | Milliseconds |    Bytes | UnitPrice |
+|       1 | For Those About To Rock (We Salute You) |       1 |           1 |       1 | Angus Young, Malcolm Young, Brian Johnson |       343719 | 11170334 |      0.99 |
