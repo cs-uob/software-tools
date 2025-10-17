@@ -315,7 +315,7 @@ If you have many devices (desktop, laptop) that you work from and many
 servers (github, gitlab, lab machine etc.) that you connect to, how do
 you manage keys?
 
-Whilst ising the same public key for different services is not exactly a
+Whilst using the same public key for different services is not exactly a
 security problem: even if one service gets hacked and you connect to it
 while it's under the hacker's control, that does not leak your private
 key; it feels a bit icky. Generating keys is easy and it is barely any
