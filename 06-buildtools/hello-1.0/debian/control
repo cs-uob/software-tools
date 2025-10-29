@@ -1,0 +1,13 @@
+Source: hello
+Maintainer: Jo Hallett <joseph.hallett@bristol.ac.uk>
+Section: misc
+Priority: optional
+Standards-Version: 4.7.0
+Build-Depends: debhelper-compat (=13)
+
+Package: hello
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: greet the world
+ Just a demo of a package.
+
