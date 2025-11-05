@@ -224,7 +224,7 @@ You can do this exercise either in your VM, or on your own machine where you hav
 
 ## Installing on Debian
 
-On Debian, install the `openjdk-17-jdk` and `maven` packages. This
+On Debian, install the `default-jdk` and `maven` packages. This
 should set things up so you're ready to go but if you have _multiple
 versions_ of Java installed you may need to set the `JAVA_HOME` and
 `PATH` variables to point to your install.
@@ -268,7 +268,7 @@ _If you get a "not found" error, then most likely the maven `bin`
  
 The first time you run it, maven will download a lot of libraries.
 
-Maven will first show a list of all archetypes known to humankind (3046 at the time of counting) but you can just press ENTER to use the default, 2098 ("quickstart"). Maven now asks you for the version to use, press ENTER again.
+Maven will first show a list of all archetypes known to humankind (~~3046~~ 3602 at the time of counting) but you can just press ENTER to use the default, 2298 ("quickstart"). Maven now asks you for the version to use, press ENTER again.
 
 You now have to enter the triple of (groupId, artifactId, version) for your project - it doesn't really matter but I suggest the following:
 
@@ -310,25 +310,15 @@ The artifact's identifier (group id, artifact id, version):
 <version>0.1</version>
 ```
 
-The build properties determine what version of Java to compile against (by passing a flag to the compiler). Unfortunately, the default maven template seems to go with version 7 (which for complicated reasons is called 1.7), but version 8 was released back in 2014 which is stable enough for us, so please change the 1.7 to 1.8 (there are some major changes from version 9 onwards, which I won't go into here):
-
-```xml
-<properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
-</properties>
-```
-
 The dependencies section is where you add libraries you want to use. By default, your project uses `junit`, a unit testing framework - note that this is declared with `<scope>test</scope>` to say that it's only used for tests, not the project itself. You do not add this line when declaring your project's real dependencies.
 
 ```xml
 <dependencies>
     <dependency>
         <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>4.11</version>
-        <scope>test</scope>
+        <artifactId>junit-bom</artifactId>
+        <version>5.11.0</version>
+        <scope>import</scope>
     </dependency>
 </dependencies>
 ```
@@ -341,7 +331,7 @@ The one thing you should add here is the `exec-maven-plugin` as follows, so that
 <plugin>
     <groupId>org.codehaus.mojo</groupId>
     <artifactId>exec-maven-plugin</artifactId>
-    <version>3.0.0</version>
+    <version>3.6.2</version>
     <configuration>
         <mainClass>org.example.App</mainClass>
     </configuration>
@@ -461,13 +451,4 @@ that make your life *a lot* easier.  All that above code translates to just:
 
 ```java
 public record Unit(String name, List<String> topics) {}
-```
-
-Unfortunately support for more recent Java releases is a bit spotty
-(and worse in the _real_ world).  You'll need to get rid of the
-`maven.compiler.target` and `maven.compiler.source` bits you added in
-your pom.xml and replace it with a new:
-
-```
-<maven.compiler.release>17</maven.compiler.release>
 ```
