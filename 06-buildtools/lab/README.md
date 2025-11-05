@@ -172,6 +172,8 @@ packaged up as a system package too: if it is at the version you need
 you could install that instead.  Try searching for it with `apt search
 scipy`.
 
+If you're still getting errors after you installed it, your virtual-environment might not be including system packages.  You can create an environment which does include them with the `--system-site-packages` flag to `python -m venv`, or just re-SSH in to go back to system Python.
+
 The following commands show if it is correctly installed, by sampling
 5 times from a Normal distribution with mean 200 and standard
 deviation 10:
