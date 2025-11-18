@@ -1,5 +1,6 @@
 #! /usr/bin/env bash
-gmake -B all
+command -v gmake && gmake -B all
+command -v make && make -B all
 
 printf "Crackme 1: "
 >/dev/null ./crackme-1 <<<"Beetlejuice" && printf "PASS\n" || printf "FAIL\n";
