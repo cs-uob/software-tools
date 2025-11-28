@@ -1,5 +1,5 @@
 # SQL Queries
-
+ 
 This week's exercises use two databases: the results from the 2014
 elections in Bristol, and the 2021 UK census.
 
