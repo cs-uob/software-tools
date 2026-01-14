@@ -34,7 +34,8 @@ having to do anything else.
 
 If however it succeeds (shows "Connected" or "200 OK" anywhere), then someone or
 something else is using port 8000, and you need to figure out what that is and
-work around it. 
+work around it. **The majority of issues in this lab stem from students not
+reading these last two paragraphs properly!**
 
 First, run
 
