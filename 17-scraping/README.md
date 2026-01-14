@@ -11,7 +11,7 @@ by writing our own scraping code.
 ## Pre-reading
 
 Please watch [this introductory
-video](https://web.microsoftstream.com/video/9ceda4de-3749-4d9e-ad2c-3def7cd0c7d0)
+video](https://uob.sharepoint.com/:v:/t/UnitTeams-COMSM0085-2024-25-TB-4-A/IQC314nwqBSURqO_KBugNwnkAfuDc0BAGIFmIY_KN4KUhXc?e=d3Bfcd)
 ([slides](./Scraping.pdf)) before the lab. As with all weeks, it can also be a
 good idea to look at the exercises below before the start of the lab itself.
 
