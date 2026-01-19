@@ -40,7 +40,7 @@ in alternative locations as per your timetable.
 - All lectures are delivered on Tuesdays at **16:00** in Priory Road Lecture Theatre.
 - All labs are held on Fridays in MVB 2.11:
     - 11:00 - 13:00 for COMS10012 students
-    - 15:00 - 17:00 for COMSM0085 students
+    - 14:00 - 16:00 for COMSM0085 students
 - The assessment for TB2 takes place during the summer exam period and is
   timetabled separately. 
 
