@@ -11,9 +11,9 @@
  6. Asynchronous Javscript
  7. _Reading Week_
  8. Web scraping (`wget`, BeautifulSoup)
- 9. Library management
+ 9. PGP encryption (`pgp`)
 10. Other internet protocols
-11. Practical encryption (`gpg`, OpenSSL, LetsEncrypt)
+11. Testing
 
 ---
 

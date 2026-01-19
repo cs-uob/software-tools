@@ -55,8 +55,8 @@ in alternative locations as per your timetable.
 | 7 | [Asynchronous Javascript](16-js) | Matthew |
 | 8 | [Web scraping](./17-scraping/) | Matthew | 
 | 9 | [PGP](./18-pgp) | Joseph |
-| 10| [Internet protocols](./19-inetd) | Joseph |
-| 11| Certificates | Joseph |
+| 10| [Internet protocols](./19-protocols) | Joseph |
+| 11| [Testing](./20-testing) | Joseph |
 
 ## Assessment 
 
