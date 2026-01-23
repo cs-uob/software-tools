@@ -65,7 +65,7 @@ Vagrantfile.
 ## A basic HTTP server and client
 
 Open a terminal on the machine where you want to run the server, and download
-the file [http-response](./http-response) to the folder where your terminal is
+the file [http-response](https://github.com/cs-uob/software-tools/raw/refs/heads/main/11-http/lab/http-response) to the folder where your terminal is
 open (for example with `wget`). Then run the (non-terminating) command
 
 ```
@@ -84,7 +84,7 @@ nothing). The file contains some standard HTTP:
 
     HTTP/1.1 200 OK
     Content-type: text/plain
-    Content-length: 18
+    Content-length: 16
     Connection: close
 
     Hello over HTTP!
