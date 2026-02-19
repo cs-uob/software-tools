@@ -85,8 +85,8 @@ logic:
    - If the tile is not a mine, set its class to `clear`.
 
 You should now be able to click around the board and see the tiles change. If you're
-not sure whether you're just not encountering bombs by chance or you haven'
-t implemented them correctly, try adjusting the bomb-laying probability in your 
+not sure whether you're just not encountering bombs by chance or you haven't 
+implemented them correctly, try adjusting the bomb-laying probability in your 
 `newGame` function.
 
 ## Winning and Losing
@@ -172,6 +172,9 @@ following features to enrich the player experience:
 etc.
  - **Chain reaction**: When a bomb is encountered, rather than just revealing
    the bomb the player clicked on, reveal all the bombs on the board.
+ - **Flagging bombs**: The classic version of minesweeper allows the player to
+   right-click on tiles to visibly 'flag' them as bombs. Look up what event you
+would have to capture to implement this behaviour.
  - **Timed runs**: Winning is good, but how fast can the player win the game?
    Investigate how you would add a timer to show a winner how long they took.
  - **Scoreboard**: Keep track of performance over multiple games. Add a
