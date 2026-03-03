@@ -4,25 +4,30 @@ import json
 import urllib
 import requests
 
+def error(reason):
+  print("Content-Type: application/json")
+  print()
+  print('{"error": "'+reason+'"}')
+
+
 args = urllib.parse.parse_qs(os.environ["QUERY_STRING"])
 params = {'action':'query', 'prop':'extracts','exsectionformat' : 'plain',
           'exsentences' : 10, 'formatversion' : 2, 'format':
           'json'}
 
-if 'term' in args:
+if 'term' not in args:
+  error('No term entered')
+  
+else:
   params['titles'] = args['term']
   r = requests.get('https://en.wiktionary.org/w/api.php', params=params)
-  robj = r.json()
-  if 'query' in robj and 'extract' in robj['query']['pages'][0]:
-    print("Content-Type: text/html")
-    print()
-    print(robj['query']['pages'][0]['extract'])
+  if r.ok:
+    robj = r.json()
+    if 'query' in robj and 'extract' in robj['query']['pages'][0]:
+      print("Content-Type: text/html")
+      print()
+      print(robj['query']['pages'][0]['extract'])
+    else:
+      error(r.text)
   else:
-    print("Content-Type: application/json")
-    print()
-    print(r.text)
-else:
-  print("Content-Type: application/json")
-  print()
-  print('{"error": "no query term"}')
-
+    error('{} {}'.format(r.status_code,r.reason))
