@@ -2,7 +2,7 @@
 
 This week's lab is going to focus on PGP.  We're going to start by generating keys, using them to sign and encrypt things and send email and then conclude by signing each other's keys.
 
-For the examples in this lab I'm going to be emailing François Dupressoir (a lecturer in the Cryptography group) a lot.  Replace him and me with a friend and yourself as appropriate.
+For the examples in this lab I'm going to be emailing François Dupressoir (head of the Cryptography group) a lot.  Replace him and me with a friend and yourself as appropriate.
 
 We're going to be working on *the lab machines* directly this time!  No VM required!
 
