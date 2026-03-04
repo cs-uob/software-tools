@@ -54,6 +54,7 @@ Add an event listener to the `dictform` that:
  1. Prevents the default form submission event (look up how to do this).
  2. Queries `cgi-bin/whatmeans` with a parameter `term` set to the value from the `dictbox`
  3. Handles the response, which in successful queries should be a list of JSON
-    objects representing words, with multiple definitions that you will need to
-step through to add them to the `resultbox` in a sensible format.
+    objects representing words, each with multiple definitions that you will need to
+step through to add them to the `resultbox` in a sensible format. You may want
+to 'pretty print' an example JSON reponse to understand the structure.
 
