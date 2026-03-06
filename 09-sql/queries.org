@@ -2,15 +2,63 @@
 #+PROPERTY: header-args:sqlite :headers on
 
 #+begin_src sqlite :db chinook.db :prologue .headers on
-  select track.name, genre.name, artist.name from track
-  join genre on track.genreid = genre.genreid
-  join album on track.albumid = album.albumid
-  join artist on album.artistid = artist.artistid
-  where track.name LIKE 'War Pigs'
+  .tables
   ;
 #+end_src
 
+#+RESULTS:
+| Album          Employee       InvoiceLine    PlaylistTrack |
+| Artist         Genre          MediaType      Track         |
+| Customer       Invoice        Playlist                     |
 
 #+begin_src sqlite :db chinook.db :prologue .headers on
-  select * from track limit 1
+  select count(album.title) from album
+  ;
 #+end_src
+
+#+RESULTS:
+| count(album.title) |
+|                347 |
+
+
+#+begin_src sqlite :db chinook.db :prologue .headers on
+  select count(title) albums, genre from (
+      select album.title as title, genre.name as genre
+      from track
+      join album
+      on track.albumid = album.albumid
+      join genre
+      on track.genreid = genre.genreid
+      group by album.albumid
+  )
+  group by genre
+  order by albums desc
+  ;
+#+end_src
+
+#+RESULTS:
+| albums | genre              |
+|    116 | Rock               |
+|     72 | Classical          |
+|     38 | Latin              |
+|     32 | Metal              |
+|     23 | Alternative & Punk |
+|     13 | Jazz               |
+|      9 | TV Shows           |
+|      7 | Blues              |
+|      5 | Alternative        |
+|      4 | Soundtrack         |
+|      4 | R&B/Soul           |
+|      3 | World              |
+|      3 | Reggae             |
+|      3 | Pop                |
+|      3 | Heavy Metal        |
+|      3 | Electronica/Dance  |
+|      2 | Hip Hop/Rap        |
+|      1 | Science Fiction    |
+|      1 | Sci Fi & Fantasy   |
+|      1 | Rock And Roll      |
+|      1 | Opera              |
+|      1 | Easy Listening     |
+|      1 | Drama              |
+|      1 | Bossa Nova         |
