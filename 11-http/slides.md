@@ -8,12 +8,12 @@
  3. Visual style (CSS)
  4. Design with CSS 
  5. Dynamic content (Javascript) 
- 6. Asynchronous Javscript
- 7. _Reading Week_
+ 6. _Reading Week_
+ 7. Asynchronous Javscript
  8. Web scraping (`wget`, BeautifulSoup)
- 9. Library management
+ 9. PGP encryption (`pgp`)
 10. Other internet protocols
-11. Practical encryption (`gpg`, OpenSSL, LetsEncrypt)
+11. Testing
 
 ---
 

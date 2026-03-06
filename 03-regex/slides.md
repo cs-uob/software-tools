@@ -14,8 +14,9 @@
 
 Issues and topics from last week's lab:
 
-1. Still not got Vagrant working.
+1. Vagrantfile issues.
 2. Filesystem confusion.
+3. Group membership vs group ownership.
 
 
 ---

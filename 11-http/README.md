@@ -15,9 +15,9 @@ comprehensive outline of the protocol for HTTP, but you can focus on sections
 
 | Video | Length | Slides |
 |-------|-------:|--------|
-| [HTTP](https://web.microsoftstream.com/video/99c10922-d2fa-4a82-8098-4f779ea026e8) | 26 minutes | [slides](HTTP.pdf) | 
-| [The Internet](https://web.microsoftstream.com/video/43097d0a-1064-42d0-8a3a-dd67bc78542c) | 15 minutes | [slides](the_internet.pdf) | 
-| [URLs](https://web.microsoftstream.com/video/4ed9cab8-021d-41b1-bffb-4fdf5fa11fe4) | 7 minutes | [slides](URLs.pdf) | 
+| [HTTP](https://uob-my.sharepoint.com/:v:/g/personal/me17847_bristol_ac_uk/IQCVXaK8AjbmWhLzeOHMR6CkAVoOfg1vMOMZZTTl8n5FucQ?e=ozUobb) | 26 minutes | [slides](HTTP.pdf) | 
+| [The Internet](https://uob-my.sharepoint.com/:v:/g/personal/me17847_bristol_ac_uk/IQAOWcXSp0uFVvUPMDlqw11wAair4vhc9-ceCJBqvWCnEX0?e=aWqW3b) | 15 minutes | [slides](the_internet.pdf) | 
+| [URLs](https://uob-my.sharepoint.com/:v:/g/personal/me17847_bristol_ac_uk/IQALvhGIxPlmXQKye_2lqKDWAVg0_9cTn7KBC6c9wOU-rzI?e=XWX1mY) | 7 minutes | [slides](URLs.pdf) | 
 
 ## Exercises
 

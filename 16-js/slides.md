@@ -47,14 +47,25 @@ console.log("Task A ended")
 
 ## Asynchronous != simultaneous
 
-Asynchronous code can difficult to reason about because switching can happen at any point. 
+Asynchronous code (in general) can difficult to reason about because switching can happen at any point. 
 
 In future studies you'll encounter ways of writing multithreaded code that can safely read from and write to variables. 
 
-In this unit we are only concerned with how JavaScript handles asynchronous
-function invocations.
+In this unit we are only concerned with how JavaScript handles asynchronous function invocations.
 
+---
 
+## JavaScript's Event Loop
+
+Your browser's JS interpreter itself is (within a window's context) single-threaded, so many of the concurrency problems you would encounter in other contexts won't come up (this makes your lives easier!).
+
+However, certain operations (e.g., requesting resources from the network, setting timers) are inherently _asynchronous_, making use of other browser threads that operate concurrently with the interpreter. How can these be integrated without blocking user input? 
+
+Answer: the _event loop_, a form of job queue, waits to execute callback functions (in the JS interpreter) from a stack that other threads can write to. It starts doing this as soon as the JS interpreter's call stack is empty, taking the first job from the queue¹.
+
+[Visual demonstration](https://www.javascripttutorial.net/javascript-event-loop/)
+
+¹ To make this more complicated, there are actually two queues with different priorities.
 
 ---
 
@@ -104,8 +115,8 @@ The same concept can be applied to async functions. (You could even model
 human users as just slightly more complicated asynchronous functions). 
 
 There are two 'events' that need handling for an asynchronous function: it
-completes successfully ('success handler') or it fails ('failure/error
-handler').
+completes successfully ('success/fulfillment handler') or it fails
+('failure/error/rejection handler').
 
 You can attach these handlers to a Promise using the method `.then(successCallback,
 failureCallback)`.
@@ -143,11 +154,13 @@ async function destroyTheDeepState(){
 }
 
 let promisedit = destroyTheDeepState()
+
 promisedit.then(function(result){ 
     console.log("We got "+result+", celebrate!")
 }, function(error){
     console.error("Oh no, there was an "+error)
 })
+
 //continue doing other things in the meantime
 ```
 

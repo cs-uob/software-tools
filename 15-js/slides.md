@@ -29,8 +29,8 @@ Review issues from the HTML+CSS labs.
 ## JavaScript Syntax: Variables
 
 ```javascript
-const birthdate = "2005-02-11"
-let age = 20
+const birthdate = "2005-02-17"
+let age = 21
 ```
 
 Can also see `var` in place of `let`. `var` is an older construct that permits some odd things:
@@ -110,14 +110,13 @@ Switch statements:
 ```js
 switch(input){
     case "hello":
-        console.log("Hello yourself, what's on your mind?")
+        console.log("Hello yourself, what's on your mind?");
         break;
     case "bye":
-        console.log("Wait, come back!")
+        console.log("Wait, come back!");
         break;
     default:
-        console.log("How interesting, tell me more...")
-        break 
+        console.log("How interesting, tell me more...");
 }
 
 ```

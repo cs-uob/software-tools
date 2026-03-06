@@ -15,8 +15,8 @@ pages.
 
 | Video | Length | Slides |
 |-------|-------:|--------|
-| [CSS part 1](https://web.microsoftstream.com/video/966c07b6-6f2f-4676-b348-e942101be174) | 14 minutes | [slides](CSS_1.pdf) |
-| [CSS part 2](https://web.microsoftstream.com/video/b38974b4-2675-4143-82c8-a8ff2c6a3288) | 10 minutes | [slides](CSS_2.pdf) |
+| [CSS part 1](https://uob-my.sharepoint.com/:v:/g/personal/me17847_bristol_ac_uk/IQAiR7Jpb-lLVgOLGLG43CfKAf_T2fUXYLBVENwQhqiGEgs?e=EiFMES) | 14 minutes | [slides](CSS_1.pdf) |
+| [CSS part 2](https://uob-my.sharepoint.com/:v:/g/personal/me17847_bristol_ac_uk/IQDFOB3wJTPSUxAJFV3c6QjNAYu_10mgh124UFSifNO1rEE?e=cMVcQW) | 10 minutes | [slides](CSS_2.pdf) |
 
 ### MDN
 

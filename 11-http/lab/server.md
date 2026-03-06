@@ -36,5 +36,5 @@ The `htmlPage` method replies to requests for `localhost:8000/html`. Here we wan
 
 ## Exercises
 
-  - Compile and run the application, and test both `localhost:8000` an `localhost:8000/html` in your browser. Observe both the headers in the developer tools, and the log messages that spring prints out for each request.
+  - Compile and run the application, and test both `localhost:8000` and `localhost:8000/html` in your browser. Observe both the headers in the developer tools, and the log messages that Spring prints out for each request.
   - Add a method that replies to requests for `localhost:8000/bad` with a HTTP `404 NOT FOUND` error. The body of the page can be a simple string with a message of your choice. Stop and restart the application, and check that you get the correct error message when you try and open this page.

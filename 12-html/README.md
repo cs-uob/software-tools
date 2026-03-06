@@ -21,8 +21,8 @@ reference for much of the web development portion of this unit.
 
 | Video | Length | Slides |
 |-------|-------:|--------|
-| [HTML5](https://web.microsoftstream.com/video/60b286e4-2a48-457c-b564-fec86ee2169d) | 16 minutes | [slides](HTML5.pdf) |
-| [HTML elements](https://web.microsoftstream.com/video/eccbed8b-eca0-4d67-a4fe-ac9f440e422d) | 9 minutes | [slides](HTML_elements.pdf) |
+| [HTML5](https://uob-my.sharepoint.com/:v:/g/personal/me17847_bristol_ac_uk/IQC_8jS0bJl8Ww3NGaCMocV2AYFzeQTG-1gc3cxFTL8PeEo?e=lZVqdw) | 16 minutes | [slides](HTML5.pdf) |
+| [HTML elements](https://uob-my.sharepoint.com/:v:/g/personal/me17847_bristol_ac_uk/IQDIpM52PV3KV0R3awHJ5y_BAVEz3CloKkVKPQ1PMeXCU5w?e=W0iUAW) | 9 minutes | [slides](HTML_elements.pdf) |
 
 ### MDN reading
 

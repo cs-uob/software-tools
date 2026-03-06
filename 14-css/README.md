@@ -16,9 +16,9 @@ Please watch the introductory videos below, and read the MDN links provided.
 
 | Video | Length | Slides |
 |-------|-------:|--------|
-| [Design](https://web.microsoftstream.com/video/ef9e9dcf-f9b8-4bcf-8ac6-f8608514cc22) | 13 minutes | [slides](Design.pdf) |
-| [CSS grids](https://web.microsoftstream.com/video/93c2a47c-5fd4-432d-9f93-71e7181fd104) | 7 minutes | [slides](CSS_grids.pdf) |
-| [Responsive Layout](https://web.microsoftstream.com/video/d2099c95-eef3-474e-9ae8-4f5a84521d18) | 3 minutes | [slides](Responsive_layout.pdf) |
+| [Design](https://uob-my.sharepoint.com/:v:/g/personal/me17847_bristol_ac_uk/IQDHvUXdOdqOX8R7xIrVjhUUAWtYY-RE0XsUQcADEBh3hR4?e=Y0grfv) | 13 minutes | [slides](Design.pdf) |
+| [CSS grids](https://uob.sharepoint.com/:v:/t/UnitTeams-COMSM0085-2024-25-TB-4-A/IQDmD8BcpxyDTaRfQchVNW81AQMJRXAIvxMFs-e0j6sE4WM?e=3SDA0i) | 7 minutes | [slides](CSS_grids.pdf) |
+| [Responsive Layout](https://uob.sharepoint.com/:v:/t/UnitTeams-COMSM0085-2024-25-TB-4-A/IQCTvbjcocksTpb_DwRReHmjAfRi11ALuz1lISJF-XwTWmY?e=Bjjvfd) | 3 minutes | [slides](Responsive_layout.pdf) |
 
 ### MDN
 

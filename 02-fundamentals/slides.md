@@ -19,9 +19,9 @@ Warning: a lot more pre-reading (watching) this week.
 Issues and topics from last week's lab:
 
 1. "What is a text editor?"
-2. Diagnose this `cp` problem...
+2. Tilde (~) problems on Windows
 3. Vagrant on Apple Silicon
-4. Multiuser systems
+4. Diagnose this `cd` issue
 
 
 ---
