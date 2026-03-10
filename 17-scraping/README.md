@@ -20,3 +20,8 @@ good idea to look at the exercises below before the start of the lab itself.
 
 1. [Crawling](./lab/crawl.md) 
 2. [BeautifulSoup](./lab/soup.md)
+
+
+## Optional Reading
+
+[Are you a robot?](https://neal.fun/not-a-robot/)
