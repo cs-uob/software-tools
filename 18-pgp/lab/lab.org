@@ -28,16 +28,20 @@ For the identity set your real name and default email address.  If you have a co
 
 Lets rerun =--list-secret-keys=:
 
-#+begin_src sh
+#+begin_src sh :results raw
   gpg --list-secret-keys
 #+end_src
 
 : [keyboxd]
 : ---------
 : sec   rsa3072 2023-04-25 [SC]
-:       364B 7926 504D 5645 1377  7801 4131 09AF 27CB FBF9
-: uid           [ultimate] Joseph Hallett <bogwonch@bogwonch.net>
-: ssb   rsa3072 2023-04-25 [E] [expires: 2025-04-24]
+:       364B7926504D564513777801413109AF27CBFBF9
+: uid           [ultimate] Jo Hallett (jh18636) <joseph.hallett@bristol.ac.uk>
+: uid           [ultimate] Jo Hallett (Gretchin) <josephhallett@gmail.com>
+: uid           [ultimate] Jo Hallett (Gretchin) <bogwonch@bogwonch.net>
+: uid           [ultimate] [jpeg image of size 3876]
+: ssb   rsa3072 2023-04-25 [E]
+
 
 I've got a 3K RSA key from 2023, that expires in a few months!  The big hex string is the key's /id/.  Keep a note of yours... you'll need it later!
 
@@ -76,7 +80,7 @@ Hmm! My key looks like it is going to expire soon.  Since I don't think it's com
        trust: ultimate      validity: ultimate
   ssb  rsa3072/F1DD3FD0F590B1B7
        created: 2023-04-25  expires: 2025-04-24  usage: E
-  [ultimate] (1). Joseph Hallett <bogwonch@bogwonch.net>
+  [ultimate] (1). Jo Hallett <bogwonch@bogwonch.net>
 
   gpg> expire
   Changing expiration time for the primary key.
@@ -95,7 +99,7 @@ Hmm! My key looks like it is going to expire soon.  Since I don't think it's com
        trust: ultimate      validity: ultimate
   ssb  rsa3072/F1DD3FD0F590B1B7
        created: 2023-04-25  expires: 2025-04-24  usage: E
-  [ultimate] (1). Joseph Hallett <bogwonch@bogwonch.net>
+  [ultimate] (1). Jo Hallett <bogwonch@bogwonch.net>
 
   gpg>
 
@@ -104,13 +108,13 @@ Hmm! My key looks like it is going to expire soon.  Since I don't think it's com
        trust: ultimate      validity: ultimate
   ssb  rsa3072/F1DD3FD0F590B1B7
        created: 2023-04-25  expires: 2025-04-24  usage: E
-  [ultimate] (1). Joseph Hallett <bogwonch@bogwonch.net>
+  [ultimate] (1). Jo Hallett <bogwonch@bogwonch.net>
 
   gpg> quit
   Save changes? (y/N) y
 #+end_src
 
-There are other "fun" options[fn:2] in the =--edit-key= interface!  Type =help= to see commands
+There are other "fun" options[fn:2] in the =--edit-key= interface!  Type =help= to see commands... =addphoto= looks interesting...
 
 * Distributing your key
  
@@ -119,6 +123,8 @@ Now that you have a key you ought to tell others about it!  You can send it to o
 #+begin_src sh
   gpg --keyserver keyserver.ubuntu.com --send-keys '364B 7926 504D 5645 1377  7801 4131 09AF 27CB FBF9'
 #+end_src
+
+#+RESULTS:
 
 #+begin_src :exports code :results nil
 gpg: sending key 413109AF27CBFBF9 to hkps://keyserver.ubuntu.com
@@ -130,25 +136,20 @@ To find other people's keys you can either retrieve them with the key-id directl
   gpg --keyserver keyserver.ubuntu.com --recv-keys '364B 7926 504D 5645 1377  7801 4131 09AF 27CB FBF9'
 #+end_src
 
-Or you can search for them on a keyserver.  My key is number 5.  You can import it if you like.
+Or you can search for them on a keyserver.  My key is number 1.  You can import it if you like.
 
 #+begin_src sh :results code
-  gpg --keyserver keyserver.ubuntu.com --search-key 'Joseph Hallett'
+  gpg --keyserver keyserver.ubuntu.com --search-key 'Jo Hallett'
 #+end_src
 #+RESULTS:
 #+begin_src sh
-(1)	  4096 bit RSA key 36CE492163638F40, created: 2013-07-27
-(2)	  4096 bit RSA key 7893CE33E61599F0, created: 2012-10-18
-(3)	  4096 bit RSA key 379BC1BBFA55B2B2, created: 2018-03-29
-(4)	  4096 bit RSA key 127F5E2AA56E9783, created: 2018-04-16
-(5)	Joseph Hallett <bogwonch@bogwonch.net>
+(1)	Jo Hallett (jh18636) <joseph.hallett@bristol.ac.uk>
+	Jo Hallett (jh18636) <josephhallett@bristol.ac.uk>
+	Jo Hallett (Gretchin) <josephhallett@gmail.com>
+	Jo Hallett (Gretchin) <bogwonch@bogwonch.net>
+	Joseph Hallett <bogwonch@bogwonch.net>
 	Joseph Hallett <joseph.hallett@bristol.ac.uk>
 	  3072 bit RSA key 413109AF27CBFBF9, created: 2023-04-25
-(6)	  4096 bit RSA key 79AD19FB758FA77C, created: 2012-10-18
-(7)	  4096 bit RSA key 0797DFD3EEA569BD, created: 2012-10-06
-(8)	Joseph Hallett (jah) <josephhallett@gmail.com>
-	  1024 bit DSA key 2253EC6EED00814E, created: 2009-05-17
-(9)	  4096 bit RSA key 5724E1FB8537ECCE, created: 2018-04-04
 #+end_src
 
 Talk to your friends/people you're sitting next to.  Find and import their keys!  You'll need them for the next bits!
@@ -288,7 +289,7 @@ pub  rsa4096/26BB2BE0FD06DFA9
      François Dupressoir <fdupress@gmail.com>
 
 Are you sure that you want to sign this key with your
-key "Joseph Hallett <bogwonch@bogwonch.net>" (413109AF27CBFBF9)
+key "Jo Hallett <bogwonch@bogwonch.net>" (413109AF27CBFBF9)
 
 Really sign? (y/N) y
 #+end_src
@@ -360,8 +361,8 @@ Check that you =message.sig= really does prove that you sent the =message.txt= b
 #+begin_src 
 gpg: Signature made Thu 23 Jan 2025 14:59:59 GMT
 gpg:                using RSA key 364B7926504D564513777801413109AF27CBFBF9
-gpg: Good signature from "Joseph Hallett <bogwonch@bogwonch.net>" [ultimate]
-gpg:                 aka "Joseph Hallett <joseph.hallett@bristol.ac.uk>" [ultimate]
+gpg: Good signature from "Jo Hallett <bogwonch@bogwonch.net>" [ultimate]
+gpg:                 aka "Jo Hallett <joseph.hallett@bristol.ac.uk>" [ultimate]
 Primary key fingerprint: 364B 7926 504D 5645 1377  7801 4131 09AF 27CB FBF9
 #+end_src
 
