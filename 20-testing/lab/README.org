@@ -1,45 +1,71 @@
-#+title: Testing
+#+title: Testing and Cribbage
 
-For this final lab it is time to get testing.  You all have enough code by now that you could be writing tests for---so go pick a project from this or any other unit[fn:¹]---and start writing tests.
+You're so close to being free...
 
-Start with basic unit tests and find a testing framework you like.  Which ones do we recommend?
-- Java :: JUnit is the normal one
-- C :: [[https://www.throwtheswitch.org/unity][Unity]] looks good but I normally just write a separate =main= linked against the core libraries and do it manually.  You do you.
-- Python :: [[https://docs.pytest.org/en/stable/][PyTest]] was the standard one, but there's [[https://docs.python.org/3/library/unittest.html][unittest]] built into the core libraries now (which PyTest can integrate with)
-- Haskell :: We used to use [[https://hunit.sourceforge.net/][HUnit]] but there's [[https://hackage.haskell.org/package/HUnit-Plus][HUnit-Plus]] now too
-- Commonlisp :: [[https://fiveam.common-lisp.dev/][FiveAM]] is the standard one.
+For this final lab we're going to practice writing tests.  To do that I'm going to give you some code +that is buggy and poorly written+.  Your task is to get used to writing tests and get a feel for defining properties.
 
-But also try and write property tests too with a Quickcheck-like framework and see how you like that.  What kind of properties might you like to check?  What about checking the parsing code you wrote for the finger server last week: check that for any arbitrary finger query, if you print it as a string and then parse it back in you get the same query as you printed.
+The code is written in /Python/ and I'd recommend writing the tests using [[https://docs.pytest.org/en/stable/][pytest]] and [[https://github.com/t2y/pytest-quickcheck][pytest-quickcheck]] (for property tests) but you can do what you like.  Adding =if= statements to the various =if __name__ == '__main__'= blocks will also work.  If you fancy giving /Behavioural Driven Development/ and testing ago [[https://behave.readthedocs.io/en/latest/][behave]] is a semi-official port of Cucumber to Python.  The learning outcome we want[fn:1] is that you've tried writing tests: not that you know any particular framework.
 
-Want a QuickCheck library?
-- Haskell :: Just use the original and best [[https://www.cse.chalmers.se/~rjmh/QuickCheck/][QuickCheck]].
-- Python :: [[https://hypothesis.readthedocs.io/en/latest/quickstart.html][Hypothesis]] looks nice and has a tutorial.
-- C :: [[https://github.com/silentbicycle/theft][Theft]] looks okay, but you need to write your own generators.
-- Java :: [[QuickTheories]] looks okay.
-- Commonlisp :: [[https://fiveam.common-lisp.dev/docs/Checks.html#Random_0020_0028QuickCheck-ish_0029_0020testing][FiveAM]] can do it but [[https://github.com/DalekBaldwin/check-it][Check-It]] can be a bit more convenient.
+So what does this code do?
+Well, its a simulator for my favourite card game: cribbage
+
+* Cribbage
+Cribbage is an old English card game.  [[https://en.wikipedia.org/wiki/Cribbage][Wikipedia]] has a good description of the rules.  Read through the article and try and get a feel for it.
+
+*Task*: Skim read the Wikipedia article on cribbage: [[https://en.wikipedia.org/wiki/Cribbage]]
+
+The code I've given you simulates a game between two players.  If you run =python3 cribbage.py= (or your equivalent Python command) you should see a game being played between two AIs[fn:2].
+
+*Task*: Read through the code and get a feel for where it's neat and where it's horrible[fn:3].
+
+If you're still unsure about the rules, I'll have some cribbage boards around and will happily play a game with you.
+
+* Testing
+
+Your task now is to write some tests!  What sort of things should you test?  Here are some ideas!
+
+*Hint.* If the cards being hidden by default is annoying... see the debug hint in =card.py=
+
+*Hint.* Sometimes you need to change the code to make it easier to test...
+
+*NB.* I'm not kidding when I say this code is buggy... if you make a test that cannot pass... you might need to fix the code (or do the classic QA engineer behaviour of opening an /issue/ on our Github and make me fix it[fn:4]!)
+
+** Unit or behavioural tests
+
+1. When I create a /Jack of clubs/ it has a =value()= of 10 (see =card.py=)
+2. The /Jack of Hearts/ and the /3 of Spades/ do not return =True= when their =is_black_jack()= method is called (see =card.py=).
+3. If you score a hand worth 4 points, the game should always say /"and the rest don't score"/.
+4. The highest scoring hand in cribbage is 4 5's (and a Black Jack on the turn).  It scores 27.
+5. (/Trickier!/) All cards of suit /Hearts/ and /Diamonds/ are always red when printed (see =card.py=).
+6. (/Trickier!/) You travel round a cribbage board by going up the outside lane, and back down the inside lane.
 
 
-* But I need structured learning!
+** Property tests
 
-You really don't and the *best* way to learn about testing is to do it.  But hey: it's the end of the unit and we're all tired... give these things a go in any order! 
+1. It is impossible to score 19 in the hand when playing. (see =game.py: _play_hand=)
 
-- Learn Cucumber!  There's a nice tutorial on their website that'll take you through the basics of /behavioural driven development/ and the testing framework in Java or JavaScript[fn:³]
+2. When a game ends, exactly one player's score is greater than 120 (see =game.py=).
 
-  [[https://cucumber.io/docs/guides/10-minute-tutorial]]
+3. No run in the play is ever longer than 7 cards (see =scoring/play.py=).
 
-- At the end of the lecture we touched on /formal methods/ and the /Lean/ proof assistant.  Have a play with learning how to use it by playing the /natural number game/: will you eventually be able to prove that exponentiation by squaring is equivalent to the standard algorithm?
+4. You cannot score a pair of 5 matching cards (see =scoring/hand.py=)
 
-  [[https://adam.math.hhu.de/#/g/leanprover-community/nng4]]
+** Bonus stuff
 
-- Why not learn a new programming language by writing and completing tests?  Google's Common Lisp Koans can help you learn Jo's favourite[fn:²][fn:⁴] programming language by writing tests.  
+1. Make it so that your test suite is automatically run /before/ making a Git commit.  If the tests don't pass you shouldn't be able to commit ([[https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks][hint]]).
 
-  [[https://github.com/google/lisp-koans]]
+* Formal Methods
 
-* Footnotes:
-[fn:¹]  Though the /finger/ server and client you were working on last week would make a good one...
+Teaching these is beyond the scope of my abilities (and this unit), but they are worth having a play with.  The [[https://adam.math.hhu.de/#/g/leanprover-community/nng4][Lean Natural Numbers Game]] is an addictive way to get started: give it a try!
 
-[fn:²]  Honest!  I learned it from Paul Graham's ANSI Common Lisp right in my first year of university and I have yet to find a language I like more (well, scheme possibly but that's just /pretty/ lisp...)
+[[https://adam.math.hhu.de/#/g/leanprover-community/nng4]]
 
-[fn:³] Or Ruby... I like Ruby... really nice scripting language that falls somewhere between Perl and Python.   Good one to learn if Perl puts you off with its dark magic.
+* Footnotes
 
-[fn:⁴] Or Ruby... Ruby Koans exist too! [[https://github.com/edgecase/ruby_koans]].
+[fn:1] i.e. the examinable bit.
+
+[fn:2] And if you tweak the code to use the Human agent you could even play!
+
+[fn:3] It's mostly horrible, I'm afraid: Python isn't my favourite programming language but if I did it in [[https://lisp-lang.org][Common Lisp]] you'd kill me for using something obscure (but worth learning).  Bugs (probably) a plenty!
+
+[fn:4] There's a reason everyone hates QA people... 
