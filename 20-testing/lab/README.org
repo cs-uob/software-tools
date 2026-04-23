@@ -4,7 +4,7 @@ You're so close to being free...
 
 For this final lab we're going to practice writing tests.  To do that I'm going to give you some code +that is buggy and poorly written+.  Your task is to get used to writing tests and get a feel for defining properties.
 
-The code is written in /Python/ and I'd recommend writing the tests using [[https://docs.pytest.org/en/stable/][pytest]] and [[https://github.com/t2y/pytest-quickcheck][pytest-quickcheck]] (for property tests) but you can do what you like.  Adding =if= statements to the various =if __name__ == '__main__'= blocks will also work.  If you fancy giving /Behavioural Driven Development/ and testing ago [[https://behave.readthedocs.io/en/latest/][behave]] is a semi-official port of Cucumber to Python.  The learning outcome we want[fn:1] is that you've tried writing tests: not that you know any particular framework.
+The code is written in /Python/ and I'd recommend writing the tests using [[https://docs.pytest.org/en/stable/][pytest]] and [[https://github.com/t2y/pytest-quickcheck][pytest-quickcheck]] (for property tests) but you can do what you like.  Adding =if= statements to the various *if __name__ == '__main__'* blocks will also work.  If you fancy giving /Behavioural Driven Development/ and testing ago [[https://behave.readthedocs.io/en/latest/][behave]] is a semi-official port of Cucumber to Python.  The learning outcome we want[fn:1] is that you've tried writing tests: not that you know any particular framework.
 
 So what does this code do?
 Well, its a simulator for my favourite card game: cribbage
