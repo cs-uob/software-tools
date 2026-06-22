@@ -12,51 +12,47 @@ content.
 
 ## TB1 Schedule
 
-- All lectures are delivered on Tuesdays at 11:00 in Priory Road Lecture Theatre.
-- All labs are held on Fridays in MVB 2.11:
-    - 09:00 - 11:00 for COMSM0085 students
-    - 11:00 - 13:00 for COMS10012 students
-- The assessment for TB1 takes place in Week 12 at 10:30 on Thursday (2025-12-11).
+- All lectures are delivered on *TBD*
+- All labs are held on *TBD* in MVB 2.11.
+- The assessment for TB1 takes place in *TBD*.
   For most students the test will be held in MVB 2.11, but some of you will be
 in alternative locations as per your timetable. 
 
-| Week | Topic | Lecturer |
-|------|-------|----------|
-| 1 | [System administration](./01-sysadmin/) | Matthew |
-| 2 | [POSIX fundamentals](./02-fundamentals/)| Matthew |
-| 3 | [Regular expressions](./03-regex/)| Matthew |
-| 4 | [Git basics](./04-git/) | Joseph |
-| 5 | [Collaborating using Git](./05-git/) | Joseph |
-| 6 | Reading Week | NA |
-| 7 | [Build tools](./06-buildtools/) | Joseph |
-| 8 | [Debugging](./07-debugging/) | Joseph | 
-| 9 | [SQL](./08-sql/) | Joseph |
-| 10| [More SQL](./09-sql/) | Joseph |
-| 11| [Programming with SQL](./10-sql/) | Joseph |
-| 12| _50% assessment: in-class test_ | NA |
+| Week | Topic                                    | Lecturer |
+|------+------------------------------------------+----------|
+|    1 | [System administration](./01-sysadmin/)  | Jo       |
+|    2 | [POSIX fundamentals](./02-fundamentals/) | Jo       |
+|    3 | [Regular expressions](./03-regex/)       | Jo       |
+|    4 | [Git basics](./04-git/)                  | Matthew  |
+|    5 | [Collaborating using Git](./05-git/)     | Matthew  |
+|    6 | Reading Week                             | NA       |
+|    7 | Testing                                  | Matthew  |
+|    8 | [Debugging](./07-debugging/)             | Matthew  |
+|    9 | [SQL](./08-sql/)                         | Matthew  |
+|   10 | [More SQL](./09-sql/)                    | Matthew  |
+|   11 | [Programming with SQL](./10-sql/)        | Matthew  |
+|   12 | _50% assessment: in-class test_          | NA       |
 
 ## TB2 Schedule
 
-- All lectures are delivered on Tuesdays at **16:00** in Priory Road Lecture Theatre.
-- All labs are held on Fridays in MVB 2.11:
-    - 11:00 - 13:00 for COMS10012 students
-    - 14:00 - 16:00 for COMSM0085 students
+- All lectures are delivered on *TBD*
+- All labs are held on *TBD* in MVB 2.11.
 - The assessment for TB2 takes place during the summer exam period and is
   timetabled separately. 
 
-| Week | Topic | Lecturer |
-|------|-------|----------|
-| 1 | [HTTP](./11-http/) | Matthew |
-| 2 | [HTML](./12-html/) | Matthew |
-| 3 | [CSS basics](./13-css/) | Matthew |
-| 4 | [Design with CSS](./14-css/) | Matthew |
-| 5 | [Javascript basics](./15-js) | Matthew |
-| 6 | Reading Week | NA |
-| 7 | [Asynchronous Javascript](16-js) | Matthew |
-| 8 | [Web scraping](./17-scraping/) | Matthew | 
-| 9 | [PGP](./18-pgp) | Joseph |
-| 10| [Internet protocols](./19-protocols) | Joseph |
-| 11| [Testing](./20-testing) | Joseph |
+| Week | Topic                            | Lecturer     |
+|------+----------------------------------+--------------|
+|    1 | Protocols                        | Jo           |
+|    2 | HTML and HTTP                    | Jo           |
+|    3 | [CSS](./13-css/)                 | Jo           |
+|    4 | Javascript                       | Jo           |
+|    5 | More Javascript                  | Jo           |
+|    6 | Reading Week                     | NA           |
+|    7 | Cryptography Tools               | Jo           |
+|    8 | [Web scraping](./17-scraping/)   | Matthew      |
+|    9 | Containers                       | Matthew      |
+|   10 | LLMs: How to use them            | Matthew & Jo |
+|   11 | LLMs: Why you shouldn't use them | Jo & Matthew |
 
 ## Assessment 
 
