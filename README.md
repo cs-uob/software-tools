@@ -32,7 +32,7 @@ in alternative locations as per your timetable.
 | 8 | [Debugging](./07-debugging/) | Matthew | 
 | 9 | [SQL](./08-sql/) | Matthew |
 | 10| [More SQL](./09-sql/) | Matthew |
-| 11| [Programming with SQL](./10-datalog/) | Matthew |
+| 11| [Datalog](./10-datalog/) | Matthew |
 | 12| _50% assessment: in-class test_ | NA |
 
 ## TB2 Schedule
