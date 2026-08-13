@@ -62,9 +62,10 @@ in alternative locations as per your timetable.
 
 Assessment for this unit consists of two components, both of which are 1-hour
 paper-based multiple-choice tests, covering everything taught in the
-corresponding TB, and worth 50% of the mark for this unit.  The tests are
-open-book, meaning you can bring unlimited paper-based notes with you (but no
-electronic assistance).
+corresponding TB, and worth 50% of the mark for this unit. The tests are not
+must-pass: it is possible to pass the unit based on your overall mark, even if
+you have failed one test. The tests are open-book, meaning you can bring
+unlimited paper-based notes with you (but no electronic assistance).
 
  - The TB1 test will be held in Week 12 (2025-12-07) at 10:30. An entry should
    already be in your timetable. The test will cover everything taught in TB1.
