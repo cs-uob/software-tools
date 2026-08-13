@@ -20,7 +20,7 @@ There are some substantial topics to introduce here, so there's a lot of
 material we're explaining in advance. We don't advise watching all of this in
 one go -- instead, watch the videos on a topic and then look ahead at the
 corresponding exercise to see if you understand how to apply it. It's also a
-good idea to break your preparation up into two or three sesssions.
+good idea to break your preparation up into two or three sessions.
 
 | Video | Length | Slides |
 |-------|-------:|--------|
