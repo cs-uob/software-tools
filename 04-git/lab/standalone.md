@@ -236,7 +236,7 @@ it'll likely be when you `git rebase` something.  To rescue yourself from such a
 situation you'll need to read the documentation and experiment with commands we
 haven't told you about.  Your task is to read the docs and figure it out!
 
-## Setup
+### Setup
 
 1.  Create a new branch in a repo you're working on.
 2.  Add a bunch of commits… more than 3.
@@ -249,7 +249,7 @@ haven't told you about.  Your task is to read the docs and figure it out!
     where you branched]`) and delete the commit you made with 'treasure' in the
 commit message.  Squash some other stuff. Make a real mess of this branch.
 
-## Tasks
+### Tasks
 
 If you look at your `git log`, your *treasure* commit is going to have vanished.
 Your task is going to be to recover it. If you can find the commit id of your
