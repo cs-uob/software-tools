@@ -18,20 +18,20 @@ content.
   For most students the test will be held in MVB 2.11, but some of you will be
 in alternative locations as per your timetable. 
 
-| Week | Topic                                    | Lecturer |
-|------+------------------------------------------+----------|
-|    1 | [System administration](./01-sysadmin/)  | Jo       |
-|    2 | [POSIX fundamentals](./02-fundamentals/) | Jo       |
-|    3 | [Regular expressions](./03-regex/)       | Jo       |
-|    4 | [Git basics](./04-git/)                  | Matthew  |
-|    5 | [Collaborating using Git](./05-git/)     | Matthew  |
-|    6 | Reading Week                             | NA       |
-|    7 | Testing                                  | Matthew  |
-|    8 | [Debugging](./07-debugging/)             | Matthew  |
-|    9 | [SQL](./08-sql/)                         | Matthew  |
-|   10 | [More SQL](./09-sql/)                    | Matthew  |
-|   11 | [Programming with SQL](./10-sql/)        | Matthew  |
-|   12 | _50% assessment: in-class test_          | NA       |
+| Week | Topic                                    | Lecturer  |
+|------+------------------------------------------+-----------|
+|    1 | [System administration](./01-sysadmin/)  | Gretch/Jo |
+|    2 | [POSIX fundamentals](./02-fundamentals/) | Gretch/Jo |
+|    3 | [Regular expressions](./03-regex/)       | Gretch/Jo |
+|    4 | [Git basics](./04-git/)                  | Matthew   |
+|    5 | [Collaborating using Git](./05-git/)     | Matthew   |
+|    6 | Reading Week                             | NA        |
+|    7 | Testing                                  | Matthew   |
+|    8 | [Debugging](./07-debugging/)             | Matthew   |
+|    9 | [SQL](./08-sql/)                         | Matthew   |
+|   10 | [More SQL](./09-sql/)                    | Matthew   |
+|   11 | [Programming with SQL](./10-sql/)        | Matthew   |
+|   12 | _50% assessment: in-class test_          | NA        |
 
 ## TB2 Schedule
 
@@ -40,19 +40,19 @@ in alternative locations as per your timetable.
 - The assessment for TB2 takes place during the summer exam period and is
   timetabled separately. 
 
-| Week | Topic                            | Lecturer     |
-|------+----------------------------------+--------------|
-|    1 | Protocols                        | Jo           |
-|    2 | HTML and HTTP                    | Jo           |
-|    3 | [CSS](./13-css/)                 | Jo           |
-|    4 | Javascript                       | Jo           |
-|    5 | More Javascript                  | Jo           |
-|    6 | Reading Week                     | NA           |
-|    7 | Cryptography Tools               | Jo           |
-|    8 | [Web scraping](./17-scraping/)   | Matthew      |
-|    9 | Containers                       | Matthew      |
-|   10 | LLMs: How to use them            | Matthew & Jo |
-|   11 | LLMs: Why you shouldn't use them | Jo & Matthew |
+| Week | Topic                            | Lecturer            |
+|------+----------------------------------+---------------------|
+|    1 | Protocols                        | Gretch/Jo           |
+|    2 | HTML and HTTP                    | Gretch/Jo           |
+|    3 | [CSS](./13-css/)                 | Gretch/Jo           |
+|    4 | Javascript                       | Gretch/Jo           |
+|    5 | More Javascript                  | Gretch/Jo           |
+|    6 | Reading Week                     | NA                  |
+|    7 | Cryptography Tools               | Gretch/Jo           |
+|    8 | [Web scraping](./17-scraping/)   | Matthew             |
+|    9 | Containers                       | Matthew             |
+|   10 | LLMs: How to use them            | Matthew & Gretch/Jo |
+|   11 | LLMs: Why you shouldn't use them | Gretch/Jo & Matthew |
 
 ## Assessment 
 
