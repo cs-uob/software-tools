@@ -584,3 +584,58 @@ Most remote repositories will reject attempts to `push` updates when the remote
 repository contains changes that aren't in your local history. If this occurs
 you need to `pull` the remote changes **first**, resolve the merge, and then
 push that updated version.
+
+---
+
+### I am confused
+
+Understanding version control can be difficult. Understanding Git is even more
+difficult.
+
+There are **many** different subcommands, tools and different ways of solving
+problems within Git. You are not expected to understand all of them.
+
+Focus (this week) on learning:
+
+   1. The core loop of committing your changes to the repository.
+   2. How to check and undo changes to your current files using the repository history.
+   3. How to create and use a branch, and why you might want to.
+   4. How to back up your repository to a remote (like GitHub).
+
+---
+
+### Recap
+
+The crucial commands
+
+#### Core loop
+   - Create a new repository with `git init`
+   - Tell the repository to track a file with `git add`
+   - View the repository status with `git status`
+   - Commit changes to the repository with `git commit`
+   
+#### Using history
+   - See the history with `git log`
+   - Compare current files to the repository version with `git diff`
+   - Restore a current file to the repository version with `git restore`
+
+#### Time travelling
+   - Go back to an old version of the directory with `git checkout [commit ID]`
+   - Go back to the most recent version with `git checkout master` (or `main`).
+   - Create a branch in your timeline with `git branch [name]`
+   - Travel to a branch with `git checkout [name]`
+   - Merge a branch back into your current branch with `git merge [name]`
+
+#### Using remotes
+   - Create a copy of a Git remote with `git clone [repository URL]`
+   - Connect your existing repository to a new remote with `git remote add origin [repository URL]`
+   - Update your local repository to match the remote with `git pull`
+   - Update the remote repository to match your (committed) local changes with `git push`
+
+---
+
+### The End
+
+We'll see you in the labs on Friday.
+
+
