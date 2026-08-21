@@ -1,17 +1,18 @@
 # Working with others in Git
 
-For this weeks labs we're going to practice working with others using
-a Git forge.  You'll need to work in *at least* pairs for this. Need
+For this week's lab you are going to practice working with others using
+a Git forge.  You will need to work in *at least* pairs for this. Need
 someone to work with?  Ask the person you're sitting next to.
 
 ## Practice the push workflow
 
 Have one person create a private repository on a Git forge like
-`github.com` (tick the box to add a README file) and adds everyone else in the group to it. You all need to have an account with the same provider for this to work.
+`github.com` (tick the box to add a README file) and add everyone else in the group to the repository. 
+You all need to have an account with the same provider for this to work.
 
-  * On Github, the way to add people to a repository is on the repository page: choose _Settings_ in the top menu, then _Manage access_. Here you can press _Invite a collaborator_ and enter their Github username. This causes Github to send them an e-mail with a link they need to click to accept the invitation and be added to the repository. _Note: you must be logged in to github when you click the link on the invitation e-mail, otherwise you will get an error message._
+  * On Github, the way to add people to a repository is on the repository page: choose _Settings_ in the top menu, then _Manage access_. Here you can press _Invite a collaborator_ and enter their Github username. This causes Github to send them an e-mail with a link they need to click to accept the invitation and be added to the repository. _Note: you must be logged in to GitHub when you click the link on the invitation e-mail, otherwise you will get an error message._
 
-Everyone `git clone`s the repository to their own machine.
+Everyone should then `git clone` the repository to their own machine.
 
 Everyone does the following, one person at a time doing all steps (coordinate among each other):
 

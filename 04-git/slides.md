@@ -471,7 +471,7 @@ git branch
 To switch to a branch:
 
 ```
-git checkout notesapp
+git switch notesapp
 ```
 
 ```
@@ -482,9 +482,9 @@ git commit
 Compare branch contents:
 
 ```bash
-git checkout master
+git switch master
 ls
-git checkout notesapp
+git switch notesapp
 ls
 vim notes.txt
 git commit -a
@@ -505,7 +505,7 @@ So we've created a split in the timeline -- but how do we bring the timelines ba
 together?
 
 ```bash
-git checkout master
+git switch master
 git merge notesapp
 ```
 
@@ -623,7 +623,7 @@ The crucial commands
    - Go back to an old version of the directory with `git checkout [commit ID]`
    - Go back to the most recent version with `git checkout master` (or `main`).
    - Create a branch in your timeline with `git branch [name]`
-   - Travel to a branch with `git checkout [name]`
+   - Switch to a branch with `git switch [name]`
    - Merge a branch back into your current branch with `git merge [name]`
 
 #### Using remotes
