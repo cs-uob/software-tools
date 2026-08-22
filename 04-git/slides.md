@@ -397,6 +397,13 @@ git restore -s [commitID] hello.txt
 
 Note: `git status` here still shows a change to `hello.txt`, why?
 
+If you need to 'undo' an entire complex commit:
+
+```bash
+git revert [commitID]
+```
+
+
 ---
 
 ### Using your repository history
@@ -618,6 +625,7 @@ The crucial commands
    - See the history with `git log`
    - Compare current files to the repository version with `git diff`
    - Restore a current file to the repository version with `git restore`
+   - 'Undo' a commit with a commit that reverses changes: `git revert`
 
 #### Time travelling
    - Go back to an old version of the directory with `git checkout [commit ID]`

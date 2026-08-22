@@ -26,11 +26,15 @@ feature) it's often a good idea to do this in a branch.
 
 You need to create the branch:
 
-`git branch newidea`
+```bash
+git branch newidea
+```
 
 And also switch to it:
 
-`git switch newidea`
+```bash
+git switch newidea
+```
 
 Then any new commits get added to this 'newidea' branch instead of your default
 branch. If you need to go back to the other version you can `git switch`.
@@ -399,5 +403,181 @@ Now: *editing the historical record* with `git rebase`
 (Beware, this is a common cause of catastrophic issues with your repository).
 
 ---
+
+### Simple rebasing
+
+A common usage is you want to 'update' a branch that split from `master` at an
+earlier point, to make it seem like your changes split off the most recent
+point.
+
+Going from:
+
+
+```
+~~~graph-easy --as=boxart
+[ A ] ==> [ B ] ==> [ C ] ==> [ D ] = master => [ ]
+[ B ] --> [ E ] --> [ F ] - branch -> [ ]
+~~~
+```
+
+To:
+
+```
+~~~graph-easy --as=boxart
+[ A ] ==> [ B ] ==> [ C ] ==> [ D ] = master => [ ]
+[ D ] --> [ E ]{ origin: D; offset: 1,2; } --> [ F ] - branch -> [ ]
+~~~
+```
+
+You thus 're-base' your branch from commit A to commit D.
+
+---
+
+### Simple rebasing: in practice
+
+You can accomplish this through:
+
+```bash
+git switch branch
+git rebase master
+```
+
+Git will then find the commits in your branch that are missing from `master`,
+change your directory state to the current state of `master`, and 're-play' the commits in your branch as if they were changes to that repository.
+
+Then, either:
+  1. You are very lucky and this completes without issue, or;
+  2. At some point there will be a merge conflict which you will have to fix.
+
+
+Merge conflicts are presented in the same way as you have seen in `git merge` and `git pull` (`>>>>>` and `<<<<<`), but once they are dealt with, you don't make a new commit for the merge, instead you run:
+
+```bash
+git add [file(s)]
+git rebase --continue
+```
+
+You will then be given the opportunity to edit the commit message for this
+change, in case the explanation needs to change as well.
+
+Then, Git will carry on through the rebase process, and find the next conflict for you to solve, until you reach:
+
+> Successfully rebased and updated refs/heads/[branch]
+
+---
+
+### Simple rebasing: in practice
+
+While dealing with conflicts during rebasing, you are also presented with two other options.
+
+To give up on the whole idea:
+
+```bash
+git rebase --abort
+```
+
+To 'skip' a commit -- to throw away the changes that a particular problematic commit introduced:
+
+```bash
+git rebase --skip
+```
+
+Note that you are discarding changes! Doing this can create difficult-to-reverse
+problems.
+
+---
+
+### More rebasing
+
+You can also use `git rebase` to rebase branches onto *different branches*,
+using the `--onto` argument. 
+
+```bash
+git rebase --onto master branch subbranch
+```
+
+This can be applied to simply remove bad commits from a branch's commit history:
+
+```bash
+git rebase --onto master~5 master~3 master
+```
+
+```
+~~~graph-easy --as=boxart
+[ A ] --> [ B ] --> [ C ] --> [ D ] --> [ E ] --> [ F ] - master -> []
+~~~
+```
+
+```
+~~~graph-easy --as=boxart
+[ A ] --> [ D ] --> [ E ] --> [ F ] - master -> []
+~~~
+```
+
+
+
+
+(Q: How is this different from `git revert`?)
+
+---
+
+### Interactive rebasing
+
+To give more overall control and clarity for timeline-editing, you can invoke an *interactive* rebase `git rebase -i`.
+
+This opens your text editor with the 'todo' list that the rebase operation will follow, and allows you to alter it.
+
+Options for each commit include:
+ - `pick`: use a commit as normal (only stop if there's a conflict)
+ - `reword`: use a commit, but edit the commit message
+ - `edit`: use a commit, but stop here for additional edits
+ - `squash`: use a commit, but meld it with a previous commit
+ - `drop`: remove a commit
+
+It is also possible (if fiddly) to *split* commits during a rebase (see this
+week's reading).
+
+---
+
+### I don't want to be a time wizard
+
+Simple rebasing is often necessary when working on large, rapidly-moving
+software projects. Some projects/teams require rebasing of contributions to
+create a more linear timeline. 
+
+(If you want to adopt this: rather than running a `merge` as the default action
+when you `git pull`, you can have Git try to `rebase` your local commits on top of the changes
+from the remote by setting the `pull.rebase` option.)
+
+Many rebasing features are useful for collapsing and rationalising messy commit
+histories, so that proposed changes can be more easily understood.
+
+Sometimes your commits can be embarrassing 
+
+```bash 
+git commit -am "My laptop was running low on battery"
+```
+
+Sometimes you made back-and-forth changes as you were debugging an issue.
+
+Like "writing meaningful commit messages", rebasing is most wanted when working in *collaboration*, but has other benefits.
+
+---
+
+### Recap
+
+We covered:
+ - Branching, merging and resolving merge conflicts.
+ - Collaboration with shared access (`clone`, `pull`, `push`)
+ - Collaboration without write access ('forking' and 'pull requests')
+ - Collaboration through patches (`format-patch`, `apply`, `am`)
+ - Timeline editing (`rebase`)
+
+
+---
+
+### The End
+
+We'll see you in the labs on Friday.
 
 
