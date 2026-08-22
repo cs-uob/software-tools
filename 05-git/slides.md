@@ -311,7 +311,7 @@ This week you will be experimenting with both modes.
 
 In the case where all collaborators have write access to the remote repository:
 
-- All collaboraters have a local copy of the remote (e.g., through `git clone [url]`)
+- All collaborators have a local copy of the remote (e.g., through `git clone [url]`)
 - Collaborators independently do local work and `commit` to their own history.
 - To synchronise work from the local repository to the remote:
 1. `git pull`
@@ -329,7 +329,7 @@ When collaborating like this, you very commonly encounter **merge conflicts**.
 
 This model is very similar to how you work with local branches -- changes go on
 'simultaneously' and then are resolved by merging divergent timelines. Rather than simply
-being commited as updates to the default branch, resolved versions are `git
+being committed as updates to the default branch, resolved versions are `git
 push`ed to the remote so they are accessible to all collaborators. 
 
 Note: It's considered very impolite to `push` broken code!

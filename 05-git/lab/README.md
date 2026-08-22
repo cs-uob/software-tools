@@ -1,8 +1,5 @@
 # Working with others in Git
 
-For this week's lab you are going to practice working with others using
-a Git forge.  You will need to work in *at least* pairs for this. Need
-someone to work with?  Ask the person you're sitting next to.
 
 ## Practice the push workflow
 
