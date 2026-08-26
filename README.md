@@ -16,7 +16,7 @@ content.
 - All labs are held on Fridays in MVB 2.11:
     - 09:00 - 11:00 for COMSM0085 students
     - 11:00 - 13:00 for COMS10012 students
-- The assessment for TB1 takes place in Week 12 at 10:30 on Thursday (2025-12-07).
+- The assessment for TB1 takes place in Week 12 at 10:30 on Thursday (2025-12-10).
   For most students the test will be held in MVB 2.11, but some of you will be
 in alternative locations as per your timetable. 
 
@@ -67,7 +67,7 @@ must-pass: it is possible to pass the unit based on your overall mark, even if
 you have failed one test. The tests are open-book, meaning you can bring
 unlimited paper-based notes with you (but no electronic assistance).
 
- - The TB1 test will be held in Week 12 (2025-12-07) at 10:30. An entry should
+ - The TB1 test will be held in Week 12 (2025-12-10) at 10:30. An entry should
    already be in your timetable. The test will cover everything taught in TB1.
  - The TB2 test will be held in the summer exam period, and will be scheduled
    closer to the time by the university's exam timetabling department. The test
