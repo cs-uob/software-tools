@@ -31,14 +31,14 @@ top right corner of the screen that represents your avatar (you can of course
 set a custom one if you like) and choose *Settings* in the menu, then on the
 settings page choose *SSH and GPG keys*.
 
-Choose *New SSH key*, and paste your SSH public key in the `Key` box
-(you created one last week, see `man ssh-keygen`). Give your key a title
-if you like, then add it with the green button. Github supports all
-common SSH key formats, but will warn you if you do something silly like
-upload a private key or a key in an outdated and weak cipher. Some
-providers (Bitbucket) insist you use a specific type of key (usually
-`ed25519`): add the appropriate flag when generating the key to create
-it (`-t ed25519`) if you want that.
+Choose *New SSH key*, and paste your SSH public key in the `Key` box (you
+created one in the first week, see `man ssh-keygen` if you need to redo it).
+Give your key a title if you like, then add it with the green button. Github
+supports all common SSH key formats, but will warn you if you do something silly
+like upload a private key or a key in an outdated and weak cipher. Some
+providers (Bitbucket) insist you use a specific type of key (usually `ed25519`):
+add the appropriate flag when generating the key to create it (`-t ed25519`) if
+you want that.
 
 If you have many devices (desktop, laptop) that you work from and many
 servers (GitHub, GitLab, lab machine etc.) that you connect to, how do
