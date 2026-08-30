@@ -23,6 +23,6 @@ For this week's lab you are going to practice working with others using
 a Git forge.  You will need to work in *at least* pairs for this. Need
 someone to work with?  Ask the person you're sitting next to.
 
-- [Collaborating with access](,/lab/pushpull.md)
+- [Collaborating with access](./lab/pushpull.md)
 - [Collaborating without access](./lab/pullrequest.md)
 - [A puzzle](./lab/puzzle.md)
