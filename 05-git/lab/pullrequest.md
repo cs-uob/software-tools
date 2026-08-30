@@ -5,12 +5,12 @@ projects _without_ everyone having push-access to a repository. This is still a
 group activity, and you will need to work with others to test things out.
 
 
-### Forks and Pull Requests
+## Forks and Pull Requests
 
 The first collaboration approach we will cover is one supported by features
 built into GitHub and many comparable forges, but not inherent to Git itself.
 
-## Setup
+### Setup
 
 Each group member should create a new *public* repository on GitHub. However,
 you should not add the other group members as collaborators -- this is a project
@@ -21,7 +21,7 @@ Make sure there are some files in the repository -- the owner of the repo can
 some content.
 
 
-## Forks
+### Forks
 
 Each member of the group should navigate to every other group member's new
 repository on the GitHub website (while logged in) and find and click the 'Fork'
@@ -45,7 +45,7 @@ familiar with open-source software: find software you understand on GitHub, fork
 the repository, and try to develop it yourself to fix issues or create features
 you think are valuable.
 
-## Pull Requests
+### Pull Requests
 
 Once you have committed changes to your fork, you should be able to see a
 message at the top of the repository page on GitHub, 
@@ -77,7 +77,7 @@ merge your changes into their repository.
 
 _Practice this workflow, so everyone in your team has forked a repo and
 submitted a pull request, as well as handled approving a pull request to a
-repository they own. _
+repository they own._
 
 (Note: You can also use pull requests between branches on the same repository.
 Some development teams use pull requests within projects where they all have
@@ -85,7 +85,7 @@ shared access, to keep a clear log of how changes from one branch were merged
 into another.)
 
 
-### Applying Patches
+## Applying Patches
 
 The collaboration workflow above is a common one in open-source development, but
 not universal. Some developers don't like the reliance on GitHub's web

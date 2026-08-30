@@ -218,8 +218,8 @@ progress, or back up your work), this also is insufficient -- we need to push ou
 branches to the remote as well.
 
 In practice, a lot of software projects use branches as an organisation system
-for approving changes, with updates to the default branch made only certain
-conditions. 
+for approving changes, with updates to the default branch made only under
+certain conditions. 
 
 ### Set-up
 
