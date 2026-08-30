@@ -204,7 +204,7 @@ repositories by ommitting the `--global` flag.
 
 
 
-## Coordinationg using development branches 
+## Coordination using development branches 
 
 The workflows we discuss above involved developers merging or rebasing changes
 directly into the default branch on a remote. In many large software projects,
