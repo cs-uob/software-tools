@@ -272,7 +272,13 @@ Every team member now independently tries the following:
 
 Since everyone is working on a different branch, you will never get a conflict this way.
 
-Anyone who is a project member can visit the GitHub page can see all the feature branches there, but a normal `git branch` will not show other people's branches that you've never checked out yourself. Instead, you want to do `git branch -a`  again that will show you all the branches, with names like `remotes/origin/NAME` for branches that so far only exist on the origin repository. You can check these out like any other branch to see their contents in your working copy.
+Anyone who is a project member can visit the GitHub page and can see all the
+feature branches there, but a normal `git branch` will not show other people's
+branches that you've never checked out yourself. Instead, you would run `git
+branch -a`, which will show you all the branches, with names like
+`remotes/origin/NAME` for branches that so far only exist on the origin
+repository. You can check these out like any other branch to see their contents
+in your working directory.
 
 ### Merging
 
