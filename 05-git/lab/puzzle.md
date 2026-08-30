@@ -1,5 +1,4 @@
-
-## An advanced puzzle 
+# An advanced puzzle 
 
 The following material relies on researching some deeper, trickier aspects of
 how Git works. This material isn't examinable, but it is useful for those of you
