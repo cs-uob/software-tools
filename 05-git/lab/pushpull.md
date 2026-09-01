@@ -176,20 +176,19 @@ Different companies and teams have different opinions on when a rebase makes
 sense: some places forbid rebasing like this entirely, at least for work that is
 genuninely shared between different people. There is more or less a general
 consensus that you should not rebase when different people were editing the same
-files, but it is a technique worth knowing about for conflicts like the one you
-just created where different people have edited different files, as it makes for
-a cleaner commit graph. 
+files, but it is a technique worth knowing about for conflicts where different
+people have edited different files, as it makes for a cleaner commit graph. 
 
 Try out rebasing a few times and try to understand the difference from your
 earlier merges.
 
-If you look at the repository's page on Github
-(`https://github.com/USERNAME/REPONAME`, where `USERNAME` is the name of the
-user who created the repository), then you can click on _Insights_ in the top
-bar then _Network_ on the left menu to see the commit history for the repository
-as a graph. Hovering over a commit node shows the committer, the message and the
-commit hash - and clicking on a node takes you to a page where you can see which
-changes were made in this commit.
+Want help tracking how merges and rebasing look in your history? If you look at
+the repository's page on Github (`https://github.com/USERNAME/REPONAME`, where
+`USERNAME` is the name of the user who created the repository), then you can
+click on _Insights_ in the top bar then _Network_ on the left menu to see the
+commit history for the repository as a graph. Hovering over a commit node shows
+the committer, the message and the commit hash - and clicking on a node takes
+you to a page where you can see which changes were made in this commit.
 
 On the main Github page for the repository, you can also click the clock icon
 with a number in the top right (on a wide enough screen it also shows the word
@@ -294,7 +293,9 @@ When a feature is done, you want to merge it into develop. Everyone should try t
 
 If no-one else has changed `develop` since you started your branch, or if you have only changed files that no-one else has changed, then the merge might succeed on the first attempt. It's still a good idea to check that the project is in a good state (for example, compile it again) just in case, and fix anything that's broken on the develop branch.
 
-If the merge fails with a conflict, then you need to manually edit all the conflicted files (git will tell you which ones these are, do `git status` if you need a reminder) and `git commit` again.
+If the merge fails with a conflict, then you need to manually edit all the
+conflicted files (As you saw above, Git will tell you which ones these are, run
+`git status` if you need a reminder) and `git commit` again.
 
 The workflow for merging and resolving conflicts is essentially the same as when everyone was pushing changes to `main`, but since everyone is developing on a separate branch, the only time when you have to deal with a possible merge conflict is when you are merging your changes into `develop` - your own branches are "private" and you don't have to worry about hitting a conflict if you quickly want to commit and push your changes as the last thing you do before going home at the end of a long day's work.
 
