@@ -22,9 +22,9 @@ in alternative locations as per your timetable.
 
 | Week | Topic | Lecturer |
 |------|-------|----------|
-| 1 | [System administration](./01-sysadmin/) | Joseph |
-| 2 | [POSIX fundamentals](./02-fundamentals/)| Joseph |
-| 3 | [Regular expressions](./03-regex/)| Joseph |
+| 1 | [System administration](./01-sysadmin/) | Gretch |
+| 2 | [POSIX fundamentals](./02-fundamentals/)| Gretch |
+| 3 | [Regular expressions](./03-regex/)| Gretch |
 | 4 | [Git basics](./04-git/) | Matthew |
 | 5 | [Collaborating using Git](./05-git/) | Matthew |
 | 6 | Reading Week | NA |
@@ -46,17 +46,17 @@ in alternative locations as per your timetable.
 
 | Week | Topic | Lecturer |
 |------|-------|----------|
-| 1 | [Internet protocols](./11-protocols/) | Joseph |
-| 2 | [HTTP/HTML](./12-html/) | Joseph |
-| 3 | [CSS](./13-css/) | Joseph |
-| 4 | [Javascript basics](./14-js) | Joseph |
-| 5 | [Asynchronous Javascript](./15-js/) | Joseph |
+| 1 | [Internet protocols](./11-protocols/) | Gretch |
+| 2 | [HTTP/HTML](./12-html/) | Gretch |
+| 3 | [CSS](./13-css/) | Gretch |
+| 4 | [Javascript basics](./14-js) | Gretch |
+| 5 | [Asynchronous Javascript](./15-js/) | Gretch |
 | 6 | Reading Week | NA |
-| 7 | [PGP](./16-pgp) | Joseph |
+| 7 | [PGP](./16-pgp) | Gretch |
 | 8 | [Web scraping](./17-scraping/) | Matthew | 
 | 9 | [Containers](./18-containers/) | Matthew | 
 | 10| [Coding assistants](./19-bots) | Matthew |
-| 11| [Coding assailants](./20-bots) | Joseph |
+| 11| [Coding assailants](./20-bots) | Gretch |
 
 ## Assessment 
 
