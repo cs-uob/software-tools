@@ -20,4 +20,3 @@ This week, you should read [this blogpost explaining TDD](https://vinish.dev/tes
 - [Building by Testing](./lab/tdd.md)
 - [Continuous Integration](./lab/actions.md)
 
-
