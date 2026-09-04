@@ -177,7 +177,7 @@ The first part, under `on:` says that these jobs will run whenever someone
 pushes to the `main` branch, or whenever there is a pull request for that
 branch.
 
-Under `jobs:`, the `build` jobs describes what should happen, with named steps.
+Under `jobs:`, the `build` job describes what should happen, with named steps.
 First, it specifies that GitHub should use the latest version of Ubuntu as the
 test server environment.  Then: 
   - one step checks out the latest version of your repository into a directory
