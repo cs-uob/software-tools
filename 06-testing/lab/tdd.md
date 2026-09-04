@@ -145,8 +145,8 @@ would test the basic functionality of a `sub` function that subtracts two
 numbers.  Invoke your new test in the same way `test_add` works. If you try to
 build your tests now, you will find this fails because the function doesn't even
 exist.  Directly copy your `add` function in `calc.c` and rename the copied
-function `sub`, then build and run your tests.  You should see something like
-this:
+function `sub` (but don't make any other changes), then build and run your
+tests.  You should see something like this:
 
 ```
 test.c:17:test_add:PASS
