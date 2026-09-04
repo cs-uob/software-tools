@@ -180,14 +180,15 @@ branch.
 Under `jobs:`, the `build` jobs describes what should happen, with named steps.
 First, it specifies that GitHub should use the latest version of Ubuntu as the
 test server environment.  Then: 
-    - one step checks out the latest version of your repository into a directory `main`, 
-    - another step checks out the Unity testing suite into a directory `unity`. 
-    - In another step, we make sure `gcc` is installed on this VM
-    - Then we compile the tests. Note that this is done a little differently
-      than we have been doing it locally -- we are compiling against the Unity
-source files rather than installing it as a library on the GitHub test VM. This
-_should_ be equivalent. 
-    - Finally, we get GitHub to run the test executable. 
+  - one step checks out the latest version of your repository into a directory
+  `main`, 
+  - another step checks out the Unity testing suite into a directory `unity`. 
+  - In another step, we make sure `gcc` is installed on this VM
+  - Then we compile the tests. Note that this is done a little differently than we
+  have been doing it locally -- we are compiling against the Unity source files
+rather than installing it as a library on the GitHub test VM. This _should_ be
+equivalent.  
+  - Finally, we get GitHub to run the test executable. 
 
 
 To test this out, first `git add` the .yml file you created, commit the change,
