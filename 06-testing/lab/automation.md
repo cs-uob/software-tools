@@ -191,11 +191,11 @@ equivalent.
   - Finally, we get GitHub to run the test executable. 
 
 
-To test this out, first `git add` the .yml file you created, commit the change,
-and then `git push`. Open the repository webpage on GitHub fast enough and you
-should see an indication that GitHub is doing something -- you can track this by
-going to the _Actions_ tab and expanding the job. You can watch as the build
-process takes place and each of our steps from the workflow is ticked off.
+To test this out, first `git add` the `.yml` file you created, commit the
+change, and then `git push`. Open the repository webpage on GitHub fast enough
+and you should see an indication that GitHub is doing something -- you can track
+this by going to the _Actions_ tab and expanding the job. You can watch as the
+build process takes place and each of our steps from the workflow is ticked off.
 Because you have tested your code locally, you should see that every stage
 passes, and you get a pleasant green tick next to your commit message.
 
