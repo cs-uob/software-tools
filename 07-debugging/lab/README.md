@@ -49,11 +49,13 @@ $ git clone https://github.com/cs-uob/software-tools/
  <...>
 $ cd software-tools/07-debugging/lab/
 $ make
-cc -g -Og -Wall -Wextra -pedantic --std=c11    crackme-1.c   -o crackme-1
-cc -g -Og -Wall -Wextra -pedantic --std=c11    crackme-2.c   -o crackme-2
-cc -g -Og -Wall -Wextra -pedantic --std=c11    crackme-3.c   -o crackme-3
-cc -g -Og -Wall -Wextra -pedantic --std=c11    crackme-4.c   -o crackme-4
-cc -g -Og -Wall -Wextra -pedantic --std=c11    crackme-5.c   -o crackme-5
+cc -g -O0    crackme-1A.c   -o crackme-1A
+cc -g -O0    crackme-1B.c   -o crackme-1B
+cc -g -O0    crackme-1.c   -o crackme-1
+cc -g -O0    crackme-2.c   -o crackme-2
+cc -g -O0    crackme-3.c   -o crackme-3
+cc -g -O0    crackme-4.c   -o crackme-4
+cc -g -O0    crackme-5.c   -o crackme-5
 $ ./crackme-1
 What is the password?
 password
