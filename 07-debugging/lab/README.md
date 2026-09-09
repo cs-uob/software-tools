@@ -1,9 +1,9 @@
 # Debugging (and Crackmes)
 
-For this lab we're going to solve some crackmes!  Crackmes are little
-reverse engineering puzzles where you have to figure out a password
-for a program without being able to look directly at code that is
-being run.
+For this lab we're going to solve some 'crackme' puzzles!  Crackmes are little
+reverse engineering puzzles where you have to figure out a password for a
+program without being able to look directly at the source code that is being
+run.
 
 Each program runs directly on a commandline and will prompt you for a
 password.  Your task is to figure out what that password is.  The
@@ -12,12 +12,11 @@ absolutely anywhere).
 
 ## To begin
 
-To begin download the source code and run `make` to build the
-crackmes.
+To begin download the source code (clone the unit repository from GitHub, if you
+haven't already) and run `make` in this lab's directory to build the crackme
+executables.
 
-<https://github.com/uob-jh/crackmes>
-
-You'll end up with five little crackme programs to run.
+You'll end up with seven little crackme programs to run.
 
 **Note**: You also have the source code for all the crackmes... but
 reading it defeats the objective somewhat.  If you *really* can't do
@@ -46,15 +45,9 @@ lab machines):
 
 ## Tutorial
 ```
-$ git clone https://github.com/uob-jh/crackmes
-Cloning into 'crackmes'...
-remote: Enumerating objects: 10, done.
-remote: Counting objects: 100% (10/10), done.
-remote: Compressing objects: 100% (8/8), done.
-remote: Total 10 (delta 2), reused 10 (delta 2), pack-reused 0
-Receiving objects: 100% (10/10), done.
-Resolving deltas: 100% (2/2), done.
-$ cd crackmes/
+$ git clone https://github.com/cs-uob/software-tools/
+ <...>
+$ cd software-tools/07-debugging/lab/
 $ make
 cc -g -Og -Wall -Wextra -pedantic --std=c11    crackme-1.c   -o crackme-1
 cc -g -Og -Wall -Wextra -pedantic --std=c11    crackme-2.c   -o crackme-2
@@ -67,7 +60,7 @@ password
 Nope
 ```
 
-Hmm... the password isn't `password`... what else could it be?  Lets
+Hmm... the password isn't `password`... what else could it be?  Let's
 try the `strings` tool to see if we can find it…
 
 ```
@@ -142,10 +135,13 @@ happening (`i r` for registers `p` for expressions).
   
 ## Hints
 
-- `crackme-1`: this is easy... read the output of `ltrace`!
-- `crackme-2`: a bit harder! I've taken steps to ensure you can't use
-  `strings` or `ltrace` like `crackme-1`... you should be able to work
-  it out from the disassembly though…
+- `crackme-1`: this is easy... read the output of `strings`!
+- `crackme-1A`: just a little more work, try one of the other tools?
+- `crackme-1B`: what does it really mean to compare a string, anyway? Can you
+  follow the execution in `gdb`?
+- `crackme-2`: Okay, getting serious. You can't use `strings` or `ltrace` like
+  you could with `crackme-1`... and there's something going on that's different
+from 1B.
 - `crackme-3`: if you use `ltrace` the password you provide doesn't
   look like its getting tested against the real password? What is
   happening?
@@ -163,7 +159,7 @@ This should work anywhere... if you want to do it on your own computer
 have at it! There are plenty of other debugging tools out there and they're all
 useful to varying degrees. 
 
-Just bare in mind two things:
+Just bear: in mind two things:
 - That it's fair for us to ask questions on the ones on the lab machines (the above list) in any exam you may sit `;-)`
 - That the TAs don't know how your computer works.  They've all used
   GDB before though…
@@ -174,6 +170,6 @@ have `dtrace` which can do a lot of what `strace` does (and a bit
 more).
 
 If you run Windows... Visual Studio has a nice debugger, but it'll
-show you the code unless your careful! [x64dbg looks like a nice
+show you the code unless you're careful! [x64dbg looks like a nice
 tool.](https://x64dbg.com)
 
