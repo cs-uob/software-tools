@@ -142,7 +142,7 @@ For this we want _unit tests_.
 Unit tests run your code against a set of inputs, comparing the actual result of
 running the code to what you declare the result _should_ be.
 
-There are frameworks to make this easier in many langugages. Some even try to
+There are frameworks to make this easier in many languages. Some even try to
 help generate tests for you.
 
 If any test fails, your current version of the code is broken, and you need to
