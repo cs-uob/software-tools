@@ -35,8 +35,7 @@ lab machines):
   available
   online.](https://sourceware.org/gdb/current/onlinedocs/gdb)  It
   is intimidating to use at first, but with practice it'll get easier:
-  it is *the standard* debugger for a reason and it is crazilly
-  powerful.
+  it is *the standard* debugger for a reason.
 - `strace`: check what system calls a program makes.
 - `ltrace`: check what library calls a program makes.
 - `strings`: look for strings of printable characters in an arbitrary
@@ -87,7 +86,7 @@ Nope
 ```
 
 Anything in there look suspicious?  What about that `;*3$` on the last
-line?  Lets try that.
+line?  Let's try that:
 
 ```
 $ ./crackme-1 <<<';*3$'
@@ -132,7 +131,7 @@ Dump of assembler code for function main:
    0x00000000004006be <+24>:	movq   $0x0,-0x10(%rbp)
    ```
    
-Step (`si`) it through and use the print commands to look at what is
+Step (`si`) through and use the print commands to look at what is
 happening (`i r` for registers `p` for expressions).
   
 ## Hints
@@ -145,7 +144,7 @@ happening (`i r` for registers `p` for expressions).
   you could with `crackme-1`... and there's something going on that's different
 from 1B.
 - `crackme-3`: if you use `ltrace` the password you provide doesn't
-  look like its getting tested against the real password? What is
+  look like it's getting tested against the real password? What is
   happening?
 - `crackme-4`: if you use `ltrace` you'll see this one is
   random... have I used the random number generator correctly though?
@@ -161,10 +160,10 @@ This should work anywhere... if you want to do it on your own computer
 have at it! There are plenty of other debugging tools out there and they're all
 useful to varying degrees. 
 
-Just bear: in mind two things:
-- That it's fair for us to ask questions on the ones on the lab machines (the above list) in any exam you may sit `;-)`
-- That the TAs don't know how your computer works.  They've all used
-  GDB before though…
+Just bear in mind two things:
+- The tools we have introduced are the ones you'll be examined on.
+- The TAs don't know everything -- they can help you with some tools, but you
+  may be on your own if you're using something unusual. 
 
 If you use a Mac or run BSD the standard debugger is `lldb` instead of
 `gdb`.  It is *very* similar, but does things differently.  You also
