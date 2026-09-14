@@ -67,5 +67,5 @@ or `sqlite3 Census.db`) or use the `ATTACH DATABASE` command to load them all at
   - occupation is the name of the occupation class.
   - Only rows with count >= 10000 appear in the table.
   - The table is sorted by count ascending.
-11. Create a table with three columns occupation, women and men and one row per occupation class. The occupation column should list the occupation class names. The women and men columns in each row should list the total number of women resp. men in the row's occupation class in the whole dataset. The intention here is not to have to copy-paste a subquery 9 times.
+11. Create a table with three columns: occupation, women and men, with one row per occupation class. The occupation column should list the occupation class names. The women and men columns in each row should list the total number of women or men in the row's occupation class in the whole dataset. The intention here is not to have to copy-paste a subquery 9 times.
 12. The same as question 9, but now with a 10th row in the table listing the value for all of England. You can use the string 'England' for the region column.

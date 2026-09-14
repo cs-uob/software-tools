@@ -34,7 +34,7 @@ You can draw the diagram with pen and paper or you can use a free modelling tool
 
 # Implementing a Schema
 
-Write a CREATE/DROP script for the schema that you have just designed, we'll cover CREATE TABLE in more detail in next weeks lecture, but for now [you can find a description of the syntax here](https://www.sqlite.org/lang_createtable.html).
+Write a CREATE/DROP script for the schema that you have just designed, we'll cover CREATE TABLE in more detail in next week's lecture, but for now [you can find a description of the syntax here](https://www.sqlite.org/lang_createtable.html).
 
   * A create/drop script starts with a sequence of DROP TABLE IF EXISTS statements followed by a sequence of CREATE TABLE scripts. The effect of running it is to make sure all tables exist and are empty, whether or not the tables existed before.
   * If table A has a foreign key to table B then you must create table B before A and drop table A before dropping B. The simple way to do this is work out the CREATE order, then put all DROP statements in the exact opposite order.
@@ -48,7 +48,7 @@ sqlite3 <myscript.sql
 
 # More modelling
 
-Using what you have learnt so far about relational modelling, think about and discuss in groups how you would model a university database to store student's academic progress, such as units enrolled on and completed, marks obtained etc. based on your understanding of how the University of Bristol works. For example, a unit can have different assessments with different weights. You will of course also need a `Students` table, and you can make the model more involved if you like by including that different students are on different degree programmes, and that sometimes students have to resit units.
+Using what you have learnt so far about relational modelling, think about and discuss in groups how you would model a university database to store students' academic progress, such as units enrolled on and completed, marks obtained etc. based on your understanding of how the University of Bristol works. For example, a unit can have different assessments with different weights. You will of course also need a `Students` table, and you can make the model more involved if you like by including that different students are on different degree programmes, and that sometimes students have to resit units.
 
 You should end up with a more detailed version of the model briefly shown at the top of the previous page - if you have the time you can make both an ER diagram and a create/drop script.
 

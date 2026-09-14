@@ -9,7 +9,7 @@ To get started download and run the AbcDatalog JAR file:
   java -jar AbcDatalog-0.7.0.jar &
 #+end_src
 
-**SSH Users:** the app has a GUI!  If you are SSHing into the lab machines you will need to enable X-Forwarding to see the app's windows (i.e. =ssh -X bristol-lab=).
+*SSH Users:* the app has a GUI!  If you are SSHing into the lab machines you will need to enable X-Forwarding to see the app's windows (i.e. =ssh -X bristol-lab=).
 
 
 * The Addams Family (warm up!)
@@ -31,7 +31,7 @@ Firstly you'll need to create the knowledge base in Horn-clauses.  Start by defi
 
 *Task 1.* Capture the Addams Family tree using Horn clauses. To test run the query =parent(X,sharron)= to see if /Sharron/ is anyone's parent.  The only match should be /Debbie/.
 
-The next step is start trying to define some rules.  A /grandparent/ is your parent's parent we can write this in Datalog as:
+The next step is start trying to define some rules.  A /grandparent/ is your parent's parent. We can write this in Datalog as:
 
 #+begin_src prolog
   grandparent(X,Z) :- parent(X,Y), parent(Y,Z).
@@ -62,18 +62,18 @@ In your system you should have the following predicates:
 ** Discretionary access control
 
 - All files have an =owner=.  =owner(F,P)= states that principal =P= is the owner of file =F=.
-- You can read a file if you are it's owner.
+- You can read a file if you are its owner.
 - You can read a file if =othersCanRead(F)= is true.
 
 ** Delegated access control
 
 - The owner of a file can state who else can read it. =saysCanRead(P1,P2,F)= states that =P1= says that =P2= can read file =F=. Remember to check that =P1= can only delegate access if they own =F=.
 - A principal can delegate to other principals to decide who can read their files. =delegatesTo(P1,P2)= states that =P1= will allow =P2= to make access control decisions for them.
-- Make sure that a principal whose been delegated to can also redelegate the decision to someone else!
+- Make sure that a principal who has been delegated to can also redelegate the decision to someone else!
 
 ** Role-based access control
 
-- Add roles to your access control system.  For example, a principal may be happy to say that an auditor can read their files, but may not know who the auditor's currently are.
+- Add roles to your access control system.  For example, a principal may be happy to say that an auditor can read their files, but may not know who the auditors currently are.
 - =holds(P,R)= states that a principal =P= holds a role =R=.  Update your =saysCanRead= rule to account for roles.
 
 ** Mandatory access control

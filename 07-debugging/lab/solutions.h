@@ -1042,6 +1042,7 @@
  * https://knowyourmeme.com/memes/you-cheated-not-only-the-game-but-yourself
  */
 #define PASSWORD_1 "Beetlejuice"
+#define PASSWORD_1A "Lydia"
 
 #define PASSWORD_2A 'B'
 #define PASSWORD_2B 'e'
