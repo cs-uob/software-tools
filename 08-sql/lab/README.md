@@ -1,5 +1,6 @@
+# Entity Relationships & Schema Design
 
-# Reading an ER diagram
+## Reading an ER diagram
 
 Here is an ER diagram for a fictional university database:
 
@@ -13,7 +14,7 @@ Looking at the diagram and the table schemas, answer the following questions for
   * Which relationships are one-one, one-many or many-many?
   * How do the above affect the placement of foreign keys? For example, why is the foreign key for "lecturer belongs to research group" on the Lecturer table?
 
-# Drawing an ER diagram
+## Drawing an ER diagram
 
 Draw an ER diagram for the following scenario.
 
@@ -32,7 +33,7 @@ You can draw the diagram with pen and paper or you can use a free modelling tool
 
 
 
-# Implementing a Schema
+## Implementing a Schema
 
 Write a CREATE/DROP script for the schema that you have just designed, we'll cover CREATE TABLE in more detail in next week's lecture, but for now [you can find a description of the syntax here](https://www.sqlite.org/lang_createtable.html).
 
@@ -46,7 +47,7 @@ To test that it works, run it in SQLite3
 sqlite3 <myscript.sql
 ```
 
-# More modelling
+## More modelling
 
 Using what you have learnt so far about relational modelling, think about and discuss in groups how you would model a university database to store students' academic progress, such as units enrolled on and completed, marks obtained etc. based on your understanding of how the University of Bristol works. For example, a unit can have different assessments with different weights. You will of course also need a `Students` table, and you can make the model more involved if you like by including that different students are on different degree programmes, and that sometimes students have to resit units.
 

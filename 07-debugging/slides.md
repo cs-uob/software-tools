@@ -243,7 +243,7 @@ As with `strace` and `valgrind`, you pass your program as an argument to `gdb`
 gdb ./badcode
 ```
 
-(As with `strace`, you can also connect to a running process with `gbd -p
+(As with `strace`, you can also connect to a running process with `gdb -p
 [pid]`)
 
 Unlike those tools, `gdb` does not automatically run the program. GDB presents
