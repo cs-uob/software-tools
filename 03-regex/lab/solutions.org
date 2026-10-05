@@ -1,0 +1,970 @@
+Please don't look at this... especially in the first instance.
+Also the dictionary file you have on your computer might not be the same as the one on mine... 
+
+Knowing what the solution is, isn't the same as being able to work out how to get to the solution. 
+
+* Grep
+
+#+begin_src shell
+grep Q </usr/share/dict/words
+#+end_src
+
+#+RESULTS:
+| Q             |
+| Qoheleth      |
+| Quader        |
+| Quadi         |
+| Quadragesima  |
+| Quadrantid    |
+| Quadratifera  |
+| Quadrula      |
+| Quadrumana    |
+| Quaequae      |
+| Quaitso       |
+| Quaker        |
+| Quakerdom     |
+| Quakeress     |
+| Quakeric      |
+| Quakerish     |
+| Quakerishly   |
+| Quakerishness |
+| Quakerism     |
+| Quakerization |
+| Quakerize     |
+| Quakerlet     |
+| Quakerlike    |
+| Quakerly      |
+| Quakership    |
+| Quakery       |
+| Quamasia      |
+| Quamoclit     |
+| Quapaw        |
+| Quartodeciman |
+| Quashee       |
+| Quasimodo     |
+| Quassia       |
+| Quatsino      |
+| Quechua       |
+| Quechuan      |
+| Quelea        |
+| Querciflorae  |
+| Quercus       |
+| Querecho      |
+| Querendi      |
+| Querendy      |
+| Queres        |
+| Quernales     |
+| Quiangan      |
+| Quiche        |
+| Quidae        |
+| Quiddist      |
+| Quiina        |
+| Quiinaceae    |
+| Quileute      |
+| Quillagua     |
+| Quillaja      |
+| Quimbaya      |
+| Quimper       |
+| Quinaielt     |
+| Quinault      |
+| Quinnipiac    |
+| Quinquagesima |
+| Quinquatria   |
+| Quinquatrus   |
+| Quintilis     |
+| Quintillian   |
+| Quintin       |
+| Quintius      |
+| Quirinal      |
+| Quirinalia    |
+| Quirite       |
+| Quirites      |
+| Quisqualis    |
+| Quitemoca     |
+| Quiteno       |
+| Quitu         |
+| Quixote       |
+| Qung          |
+| Quoratean     |
+| Qurti         |
+
+#+begin_src shell
+  grep -c '[rR]' /usr/share/dict/words
+#+end_src
+
+#+RESULTS:
+: 129109
+
+#+begin_src shell
+  grep 'j$' /usr/share/dict/words
+#+end_src
+
+#+RESULTS:
+| benj    |
+| Bhumij  |
+| gaj     |
+| gunj    |
+| hadj    |
+| hajilij |
+| j       |
+| Kaj     |
+| kharaj  |
+| munj    |
+| Natraj  |
+| Raj     |
+| raj     |
+| saj     |
+| samaj   |
+| swaraj  |
+| taj     |
+
+#+begin_src shell
+  grep -ci q /usr/share/dict/words
+#+end_src
+
+#+RESULTS:
+: 3642
+
+#+begin_src shell
+  grep cl /usr/share/dict/words | sed -n '1,5p'
+#+end_src
+
+(or =head -n5=...)
+
+#+begin_src shell
+  grep '[^c]kp' /usr/share/dict/words
+#+end_src
+
+#+RESULTS:
+| akpek       |
+| barkpeel    |
+| barkpeeler  |
+| barkpeeling |
+| bookplate   |
+| bookpress   |
+| cheekpiece  |
+| crankpin    |
+| drinkproof  |
+| Drokpa      |
+| Drukpa      |
+| ekphore     |
+| frankpledge |
+| Hunkpapa    |
+| inkpot      |
+| leakproof   |
+| paukpan     |
+| porkpie     |
+| riskproof   |
+| shankpiece  |
+| shriekproof |
+| shrinkproof |
+| sparkproof  |
+| squeakproof |
+| stinkpot    |
+| trekpath    |
+| workpan     |
+| workpeople  |
+| workpiece   |
+| workplace   |
+
+#+begin_src shell
+  grep '^..$' /usr/share/dict/words | tail -n 15
+#+end_src
+
+#+RESULTS:
+| wa |
+| we |
+| wi |
+| wo |
+| Wu |
+| wy |
+| xi |
+| ya |
+| ye |
+| ym |
+| yn |
+| yo |
+| yr |
+| za |
+| zo |
+
+#+begin_src shell
+  grep '^[^aoeuiy]\{3\}$' /usr/share/dict/words
+#+end_src
+
+#+RESULTS:
+| Aht |
+| Alb |
+| Alf |
+| Ann |
+| Art |
+| cwm |
+| Emm |
+| grr |
+| Ind |
+| Ing |
+| Mrs |
+| nth |
+| Ods |
+| Odz |
+| Old |
+| Osc |
+| pst |
+| tch |
+| tck |
+| tst |
+| Uds |
+| Urs |
+
+#+begin_src shell
+  grep '^..e.ded$' /usr/share/dict/words
+#+end_src
+
+#+RESULTS:
+| blended |
+| cleaded |
+| creeded |
+| fielded |
+| shedded |
+| sledded |
+| tweeded |
+| unended |
+
+#+begin_src shell
+  grep -i '^p\(.*a\)\{4,\}' /usr/share/dict/words
+#+end_src
+
+#+RESULTS:
+| Pacaguara               |
+| padmasana               |
+| Paganalia               |
+| Paganalian              |
+| palaeoalchemical        |
+| palaeoanthropography    |
+| palaeoatavism           |
+| palaeoatavistic         |
+| palaeobotanical         |
+| palaeobotanically       |
+| Palaeocarida            |
+| palaeoceanography       |
+| palaeofauna             |
+| Palaeogaea              |
+| Palaeogaean             |
+| Palaeognathae           |
+| palaeographical         |
+| palaeographically       |
+| palaeontographical      |
+| Palaeostraca            |
+| palaeostracan           |
+| palaeostriatal          |
+| palaeothalamus          |
+| palaeotypographical     |
+| palapalai               |
+| palatalization          |
+| palatoalveolar          |
+| palatomaxillary         |
+| palatonasal             |
+| palatopharyngeal        |
+| palatoquadrate          |
+| Palliobranchiata        |
+| Panamaian               |
+| Panamanian              |
+| Panathenaea             |
+| Panathenaean            |
+| pancreatalgia           |
+| pancreatorrhagia        |
+| Pandanaceae             |
+| pantagraphical          |
+| pantanencephalia        |
+| Pantastomatida          |
+| papaprelatical          |
+| Papaveraceae            |
+| Papayaceae              |
+| parabanate              |
+| parabaptization         |
+| parabasal               |
+| parabranchia            |
+| parabranchial           |
+| parabranchiate          |
+| paracaseinate           |
+| parachaplain            |
+| parachromatopsia        |
+| paradigmatical          |
+| paradigmatically        |
+| paradisaically          |
+| paradisiacal            |
+| paradisiacally          |
+| paradoxographical       |
+| paragammacism           |
+| paragastral             |
+| paragastrula            |
+| paragastrular           |
+| paragrammatist          |
+| paragraphia             |
+| paragraphical           |
+| paragraphically         |
+| paragraphistical        |
+| Paraguayan              |
+| paralactate             |
+| paralalia               |
+| paralambdacism          |
+| paralambdacismus        |
+| parallactical           |
+| parallactically         |
+| parallelogrammatic      |
+| parallelogrammatical    |
+| parallelogrammical      |
+| paramastigate           |
+| paramatta               |
+| paranasal               |
+| Parapaguridae           |
+| parapathia              |
+| paraphasia              |
+| paraphernalia           |
+| paraphernalian          |
+| paraphrasable           |
+| paraphrasia             |
+| paraphrasian            |
+| paraphrastical          |
+| paraphrastically        |
+| parapraxia              |
+| paraquadrate            |
+| Pararctalia             |
+| Pararctalian            |
+| paratactical            |
+| paratactically          |
+| paratartaric            |
+| paratracheal            |
+| paratragedia            |
+| paratragoedia           |
+| paratransversan         |
+| Pareiasauria            |
+| pareiasaurian           |
+| Pariasauria             |
+| parliamentarian         |
+| parliamentarianism      |
+| parliamentarization     |
+| Parnassiaceae           |
+| parousiamania           |
+| pathoanatomical         |
+| pathologicoanatomical   |
+| Pentaphylacaceae        |
+| phacoanaphylaxis        |
+| phacomalacia            |
+| Phalacrocoracidae       |
+| Phalangigrada           |
+| phantasmagoria          |
+| phantasmagorial         |
+| phantasmagorially       |
+| phantasmagorian         |
+| phantasmagorical        |
+| phantasmalian           |
+| phantasmata             |
+| phantasmatical          |
+| phantasmatically        |
+| phantasmatography       |
+| pharmacodynamical       |
+| pharmacomania           |
+| pharmacomaniac          |
+| pharmacomaniacal        |
+| Phylactolaemata         |
+| Pitahauirata            |
+| Plantaginaceae          |
+| Platanaceae             |
+| praeacetabular          |
+| pratiyasamutpada        |
+| preamalgamation         |
+| preambassadorial        |
+| Pseudolamellibranchiata |
+
+* Sed
+
+#+begin_src shell
+  sed -n -e '/ay$/p' /usr/share/dict/words | sed 's/day/week/'
+#+end_src
+
+#+RESULTS:
+| abacay       |
+| aweek        |
+| adlay        |
+| affray       |
+| afterplay    |
+| airway       |
+| alackaweek   |
+| allay        |
+| alleyway     |
+| alway        |
+| ambay        |
+| Ambonnay     |
+| amiray       |
+| anay         |
+| antiholiweek |
+| anyway       |
+| appay        |
+| arborway     |
+| archway      |
+| areaway      |
+| array        |
+| Ashluslay    |
+| assay        |
+| astay        |
+| astray       |
+| asway        |
+| autospray    |
+| away         |
+| ay           |
+| backstay     |
+| backway      |
+| bagataway    |
+| bahay        |
+| balangay     |
+| balinghasay  |
+| bangalay     |
+| bantay       |
+| barangay     |
+| barway       |
+| bay          |
+| bebay        |
+| beweek       |
+| bedway       |
+| beeway       |
+| begay        |
+| begray       |
+| belay        |
+| bepray       |
+| beray        |
+| bespray      |
+| bestay       |
+| betray       |
+| bewray       |
+| birthweek    |
+| blay         |
+| blowspray    |
+| bobstay      |
+| bogway       |
+| Bombay       |
+| bothway      |
+| bowermay     |
+| branchway    |
+| bray         |
+| breakaway    |
+| breezeway    |
+| bridgeway    |
+| Broadway     |
+| broadway     |
+| buckstay     |
+| byplay       |
+| byway        |
+| cableway     |
+| calangay     |
+| caranweek    |
+| caraway      |
+| carriageway  |
+| cartway      |
+| castaway     |
+| Cathay       |
+| causeway     |
+| cay          |
+| cellarway    |
+| chambray     |
+| chariotway   |
+| chay         |
+| churchway    |
+| clanjamfray  |
+| Clay         |
+| clay         |
+| cloverlay    |
+| coachway     |
+| cogway       |
+| companionway |
+| coothay      |
+| corupay      |
+| cotterway    |
+| counterplay  |
+| counterpray  |
+| craneway     |
+| crossway     |
+| crowshay     |
+| cumay        |
+| cupay        |
+| cutaway      |
+| daresay      |
+| week         |
+| deadpay      |
+| deathweek    |
+| decay        |
+| defray       |
+| delay        |
+| deray        |
+| diceplay     |
+| disarray     |
+| dismay       |
+| display      |
+| dittay       |
+| Djagatay     |
+| dollyway     |
+| domesweek    |
+| doomsweek    |
+| doorway      |
+| downway      |
+| dray         |
+| driftway     |
+| driveaway    |
+| driveway     |
+| dugway       |
+| embay        |
+| enray        |
+| entranceway  |
+| entryway     |
+| essay        |
+| estray       |
+| everyweek    |
+| expressway   |
+| fadeaway     |
+| fairway      |
+| fallaway     |
+| fallway      |
+| faraweek     |
+| faraway      |
+| Fay          |
+| fay          |
+| featherway   |
+| feedway      |
+| fenceplay    |
+| ferryway     |
+| fishway      |
+| flangeway    |
+| flatway      |
+| flay         |
+| fleay        |
+| floodway     |
+| floorway     |
+| flyaway      |
+| flyway       |
+| folkway      |
+| footway      |
+| foray        |
+| forebay      |
+| foreweek     |
+| forehatchway |
+| forelay      |
+| foresay      |
+| forestay     |
+| fray         |
+| freeway      |
+| Friweek      |
+| gainsay      |
+| Galloway     |
+| galloway     |
+| gangway      |
+| gateway      |
+| gay          |
+| getaway      |
+| giveaway     |
+| gombay       |
+| gray         |
+| guanay       |
+| guideway     |
+| gunplay      |
+| haggaweek    |
+| halfway      |
+| Hallowweek   |
+| hallway      |
+| hatchway     |
+| haulageway   |
+| hay          |
+| headway      |
+| hearsay      |
+| heighweek    |
+| hereaway     |
+| heyweek      |
+| hideaway     |
+| highway      |
+| Hockweek     |
+| hogmanay     |
+| hoistaway    |
+| hoistway     |
+| holiweek     |
+| holyweek     |
+| hootay       |
+| hornstay     |
+| horseplay    |
+| horseway     |
+| hypospray    |
+| importray    |
+| inlay        |
+| interlay     |
+| interplay    |
+| interrailway |
+| islay        |
+| jackshay     |
+| jackstay     |
+| Jay          |
+| jay          |
+| jibstay      |
+| Kay          |
+| kay          |
+| keyway       |
+| Kioway       |
+| knifeway     |
+| Kootenay     |
+| lackaweek    |
+| ladderway    |
+| lancegay     |
+| laneway      |
+| lay          |
+| layaway      |
+| leadway      |
+| leeroway     |
+| leeway       |
+| lifeweek     |
+| Lindsay      |
+| linhay       |
+| logway       |
+| longway      |
+| luteway      |
+| lyraway      |
+| mainstay     |
+| Malay        |
+| Mandalay     |
+| manway       |
+| margay       |
+| May          |
+| may          |
+| mayweek      |
+| Mckay        |
+| mellay       |
+| midweek      |
+| middleway    |
+| midway       |
+| mileway      |
+| minaway      |
+| misarray     |
+| misassay     |
+| mislay       |
+| mispay       |
+| misplay      |
+| missay       |
+| misstay      |
+| Monanweek    |
+| Monweek      |
+| monorailway  |
+| moonway      |
+| moray        |
+| morgay       |
+| morglay      |
+| motorway     |
+| mulloway     |
+| Murray       |
+| nay          |
+| naysay       |
+| nearaway     |
+| nignay       |
+| nongray      |
+| noonweek     |
+| Norroway     |
+| Norway       |
+| nosegay      |
+| Nottoway     |
+| nowaweek     |
+| noway        |
+| oathay       |
+| oilway       |
+| Ojibway      |
+| onlay        |
+| outbray      |
+| outlay       |
+| outpay       |
+| outplay      |
+| outpray      |
+| outray       |
+| outsay       |
+| outstay      |
+| overbray     |
+| overlay      |
+| overpay      |
+| overplay     |
+| overpray     |
+| overstay     |
+| oversway     |
+| overway      |
+| owrelay      |
+| pacay        |
+| packway      |
+| palay        |
+| panchway     |
+| Paraguay     |
+| parkway      |
+| parlay       |
+| passageway   |
+| passway      |
+| pathway      |
+| pay          |
+| payweek      |
+| photoplay    |
+| pickaway     |
+| Pilpay       |
+| pisay        |
+| Piscataway   |
+| plateway     |
+| play         |
+| playweek     |
+| plugtray     |
+| pochay       |
+| popinjay     |
+| portray      |
+| portway      |
+| pray         |
+| prebetray    |
+| preweek      |
+| predecay     |
+| predefray    |
+| predelay     |
+| predisplay   |
+| preholiweek  |
+| prepay       |
+| preportray   |
+| prerailway   |
+| presay       |
+| prodelay     |
+| prodisplay   |
+| proholiweek  |
+| quay         |
+| raceway      |
+| rackway      |
+| railway      |
+| Ray          |
+| ray          |
+| rearray      |
+| reassay      |
+| reastray     |
+| rebetray     |
+| redelay      |
+| redisplay    |
+| relay        |
+| repay        |
+| replay       |
+| repray       |
+| resay        |
+| reslay       |
+| respray      |
+| ridgeway     |
+| riverway     |
+| roadway      |
+| Rockaway     |
+| rockaway     |
+| rockelay     |
+| rocklay      |
+| rokelay      |
+| rolleyway    |
+| rollway      |
+| roloway      |
+| ropeway      |
+| rosebay      |
+| roundelay    |
+| Rudmasweek   |
+| runaway      |
+| runway       |
+| salay        |
+| sandstay     |
+| Sanjay       |
+| sashay       |
+| Saturweek    |
+| sawway       |
+| say          |
+| scatteraway  |
+| scourway     |
+| scray        |
+| screenplay   |
+| seaway       |
+| semibay      |
+| semidecay    |
+| semiessay    |
+| shaftway     |
+| shay         |
+| shieldmay    |
+| shipway      |
+| sidesway     |
+| sideway      |
+| sinamay      |
+| skidway      |
+| skyway       |
+| slay         |
+| slideway     |
+| slipway      |
+| sluiceway    |
+| soakaway     |
+| solay        |
+| someweek     |
+| someway      |
+| sompay       |
+| soothsay     |
+| spay         |
+| speedaway    |
+| speedway     |
+| spillway     |
+| splay        |
+| splineway    |
+| spray        |
+| spurway      |
+| stairway     |
+| stateway     |
+| stay         |
+| steerageway  |
+| stepway      |
+| sternway     |
+| stingray     |
+| stowaway     |
+| straightaway |
+| straightway  |
+| stray        |
+| strayaway    |
+| streamway    |
+| streetway    |
+| subrailway   |
+| subway       |
+| summerlay    |
+| Sunweek      |
+| sunray       |
+| sunway       |
+| superhighway |
+| surnay       |
+| swashway     |
+| swatchway    |
+| sway         |
+| swordplay    |
+| talisay      |
+| tatouay      |
+| tay          |
+| telpherway   |
+| thereaway    |
+| threadway    |
+| throwaway    |
+| Thursweek    |
+| tideway      |
+| toweek       |
+| Tokay        |
+| tokay        |
+| tongueplay   |
+| tournay      |
+| towkay       |
+| trackway     |
+| trafficway   |
+| trainway     |
+| tramway      |
+| transbay     |
+| translay     |
+| tray         |
+| troughway    |
+| truckway     |
+| trunkway     |
+| Tuesweek     |
+| tunnelway    |
+| turnaway     |
+| tway         |
+| unarray      |
+| unastray     |
+| unaway       |
+| unbay        |
+| unbetray     |
+| unbirthweek  |
+| unclay       |
+| underclay    |
+| underlay     |
+| underpay     |
+| underplay    |
+| understay    |
+| underway     |
+| undismay     |
+| undisplay    |
+| unholiweek   |
+| unlay        |
+| unpray       |
+| unray        |
+| unsay        |
+| upbay        |
+| upbray       |
+| uplay        |
+| upstay       |
+| upsway       |
+| upway        |
+| urunweek     |
+| Vijay        |
+| virelay      |
+| wagonway     |
+| walkaway     |
+| walkway      |
+| warweek      |
+| washaway     |
+| washweek     |
+| washtray     |
+| washway      |
+| waterway     |
+| way          |
+| waylay       |
+| Wednesweek   |
+| weekweek     |
+| wellaway     |
+| westaway     |
+| wheelway     |
+| whereaway    |
+| whichway     |
+| Whitmonweek  |
+| Whitsunweek  |
+| widthway     |
+| windway      |
+| winemay      |
+| wireway      |
+| wishmay      |
+| withstay     |
+| wordplay     |
+| workaweek    |
+| workaway     |
+| workweek     |
+| worldway     |
+| Woyaway      |
+| yaray        |
+| yweek        |
+| yearweek     |
+| yesterweek   |
+
+#+begin_src shell
+  sed 's/^s.*/sway/' /usr/share/dict/words 
+#+end_src
+
+#+begin_src shell
+  sed 's/.*day.*/& day/' /usr/share/dict/words | grep ' day' | head -n 5
+#+end_src
+
+#+RESULTS:
+| aday        | day |
+| adays       | day |
+| afterdays   | day |
+| alackaday   | day |
+| antiholiday | day |
+
+#+begin_src shell
+  sed 's/^\(^.*\)day$/\1week/' /usr/share/dict/words | grep 'week$' | head -n 5
+#+end_src
+
+#+RESULTS:
+| aweek        |
+| alackaweek   |
+| antiholiweek |
+| aweek        |
+| beweek       |
+
+#+begin_src shell
+  sed 's/^\(.*\)\([dw]ay\)$/\2 (\1)/' /usr/share/dict/words | grep '(' | head -n 5
+#+end_src
+
+#+RESULTS:
+| day | (a)      |
+| way | (air)    |
+| day | (alacka) |
+| way | (alley)  |
+| way | (al)     |
+
+* Advanced stuff
+
+...you wish ;-P
