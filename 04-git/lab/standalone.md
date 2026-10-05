@@ -47,15 +47,15 @@ git config --global user.email "YOUREMAIL"
 ```
 
 The name and email address aren't actually sent anywhere or checked…
-they're just listed with alongside the changes you make to the code so
+they're just listed alongside the changes you make to the code so
 later programmers know who to blame (see `man git-blame`). You can 
 put anything you like here (Git will happily accept `-` as your email address,
 and it does not send you email).
 
-This alters the *global* git configuration (the settings applied to
+This alters the *global* Git configuration (the settings applied to
 *every* git repository you work on), but you can also make these changes
 on a repository by repository basis. Just drop the `--global` and run
-the command inside the git repository you want to apply the changes to.
+the command inside the Git repository you want to apply the changes to.
 This is useful if you're *Bruce Wayne* and need to keep your public and
 private development projects separate (or if you do subcontracted
 development work).
@@ -98,9 +98,9 @@ cd project1
 git init
 ```
 
-The last command created an empty git repository in a subfolder called
+The last command created an empty Git repository in a hidden subfolder called
 `.git`. We can check with `git status` to see whether there are any
-changes, and git reports `nothing to commit`.
+changes, and Git reports `nothing to commit`.
 
 Create a file `main.c`, with your preferred text editor and add some sample
 content like this (you should be able to copy-paste into your terminal):
@@ -116,7 +116,7 @@ int main() {
 ```
 
 Run `git status` and you will see `main.c` in red under *untracked files* - this
-is a new file that git does not know about yet. Run `git add main.c` followed by
+is a new file that Git does not know about yet. Run `git add main.c` followed by
 another `git status` and the file is now green under *files to be committed*.
 
 Commit the file with `git commit -m "first file"` or something like that—you
@@ -126,8 +126,8 @@ working tree clean*, which means your current folder contents match the versions
 git has most recently recorded.  Try `git log` and you will see that there is
 now one commit in the log.
 
-Every git commit must have a commit message. You can either add one with
-the `-m` flag, or leave that off and git will drop you into the system default
+Every Git commit must have a commit message. You can either add one with
+the `-m` flag, or leave that off and Git will drop you into the system default
 editor to write one. That editor is normally `vim` by default (the command to
 quit is press the escape key then `ZZ`). You can change the default text editor
 by setting *environment variables* with command `export EDITOR=nano`.
@@ -158,7 +158,7 @@ copy and build from there. Among other things this means that people on
 different platforms e.g. Linux and Mac, Intel and ARM and so on can each
 compile the version that works for them.
 
-So we want to tell git to ignore the file `program` and any changes in it, which
+So we want to tell Git to ignore the file `program` and any changes in it, which
 we do by creating a file called `.gitignore` and adding an expression on each
 line to say which file(s) or folders to ignore—you can use `*.o` to select all
 object code files, for example.

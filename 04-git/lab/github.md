@@ -1,6 +1,6 @@
 # Git forges
 
-Now we are going set up and use a git forge account with a remote provider.  The
+Now we are going set up and use a Git forge account with a remote provider.  The
 *typical* ones you usually see for hosting Git repositories are:
 
 - [github.com](https://github.com)
@@ -8,8 +8,8 @@ Now we are going set up and use a git forge account with a remote provider.  The
 - [bitbucket.org](https://bitbucket.org)
 
 But *many* more exist. You can even create your own with little more than an SSH
-server. If you do want to build your own git server from scratch you have to
-work with *bare* git repos (not covered in this unit) and set some funky file
+server. If you do want to build your own Git server from scratch you have to
+work with *bare* Git repos (not covered in this unit) and set some funky file
 permissions.  [Instructions can be found here for the
 brave.](https://git-scm.com/book/en/v2/Git-on-the-Server-Getting-Git-on-a-Server)
 
@@ -112,13 +112,13 @@ providing a different folder name as an extra command-line argument to
 `git clone`, or you can just move or rename the folder later on.
 
 /Note: certain OS/ISP/DNS combinations might get you "resource
-temporarily unavailable" when you try and access GitHub via ssh. The
+temporarily unavailable" when you try and access GitHub via SSH. The
 problem is that the actual address is `ssh.github.com` and not all
 set-ups correctly pass on the redirection when you try and connect to GitHub
 directly. **If you are experiencing this error**, you can either use
 `ssh.github.com` in place of `github.com`, or add an entry in your
 `~/.ssh/config` file as follows (if you have to create this file first, make
-sure it is not writable by anyone except yourself or ssh will refuse to accept
+sure it is not writable by anyone except yourself or SSH will refuse to accept
 it):/
 
 ``` example
