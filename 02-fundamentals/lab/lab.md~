@@ -1,0 +1,333 @@
+# Shell expansion
+
+This exercise is about studying shell expansion. You should run it on your Debian VM in Vagrant.
+
+Create a C program `arguments.c` with the following contents. You can use `nano arguments.c` for this, for example.
+
+```C
+#include <stdio.h>
+
+int main(int argc, char** argv) {
+  for(int i=0; i < argc; i++) {
+    printf("Argument #%i: [%s]\n", i, argv[i]);
+  }
+  return 0;
+}
+```
+
+Compile this with `gcc -Wall arguments.c -o arguments`. 
+
+## Whitespace
+
+The program prints all its arguments, one per line. The program gets its arguments from the program that started it - in this case the shell.
+Try running the program with the following commands:
+
+    ./arguments
+    ./arguments hello
+    ./arguments one two three
+
+Now that you are familiar with what the program does, try the following:
+
+    ./arguments one       two
+    ./arguments "one two"
+    ./arguments "one      two"
+
+How, based on these examples, does the shell handle whitespace in the line you type?
+
+## Pattern matching
+
+Try the following:
+
+  * `./arguments *` in the folder that contains the arguments program, and its source code arguments.c.
+  * Make an empty subfolder with `mkdir empty`, switch to it with `cd empty` and then run `../arguments *`. Since you are now in the subfolder, we need two dots at the start to say "run the program arguments from the folder _above_". What happens?
+  * Go back to the folder with the program by running `cd ..` and then do `ls` to check you're back in the right folder. In this folder, find three different ways to get the program to produce the following output:
+
+```
+Argument #0: [./arguments]
+Argument #1: [*] 
+```
+
+## Files with spaces in their names
+
+The command `touch FILENAME` creates a file. Create a file with a space in its name by typing `touch "silly named file"`. What would happen if you left the quotes off (you can try it, then do `ls`)?
+
+Start typing `ls sill` and then press TAB to autocomplete. Assuming you have no other files whose name starts with _sill_, what happens? Use this method to get the arguments program to print the following:
+
+```
+Argument #0: [./arguments]
+Argument #1: [Hello world!] 
+```
+
+The command `rm` (remove) deletes files again. Use it to remove your file with spaces in its name, using one of several methods to get the shell to pass the spaces through to `rm`.
+
+## Shell variables
+
+In the shell, `VARIABLE=VALUE` sets a variable to a value and `$VARIABLE` retrieves its value. For example, to save typing a filename twice:
+
+    p=arguments
+    gcc -Wall $p.c -o $p
+
+which expands to `gcc -Wall arguments.c -o arguments`. If you want to use a variable inside a word, you can use curly braces: `${a}b` means the value of the variable `a` followed by the letter b, whereas `$ab` would mean the value of the variable `ab`.
+
+It is good practice to double-quote variables used like this, because if you tried for example to compile a program called `silly name.c` with a space in its name, then
+
+    program="silly name"
+    gcc -Wall $program.c -o $program
+
+would expand to
+
+    gcc -Wall silly name.c -o silly name
+
+and this would confuse your compiler because you are telling it to compile three source files called `silly`, `name.c` and `name` to a program called `silly`. Correct would be:
+
+    program="silly name"
+    gcc -Wall "$program.c" -o "$program"
+
+which expands to
+
+    gcc -Wall "silly name.c" -o "silly name"
+
+which does what you want - if you indeed want a program with a space in its name!
+
+There is no harm in double-quoting a shell variable every time you want to use it, and this is good practice as it still works if the variable is set to a value that contains spaces.
+
+Note that we also had to quote setting the variable name in the first place, because
+
+    program=silly name
+
+would translate as: set the variable `program` to the value `silly`, then execute the program `name`. Variable assignments only apply to the first argument following them, although you can assign more than one variable.
+
+Note that this does not work as expected either:
+
+    file=arguments gcc -Wall "$file.c" -o "$file"
+
+The problem here is that the shell first reads the line and substitutes in the value of `$file` (unset variables expand to the empty string by default) before starting to execute the command, so you are reading the variable's value before writing it. Leaving off the quotes doesn't help: you need to set the variable on a separate line.
+# File permissions
+
+Log in to your Debian VM for the following exercises.
+
+## Create a user and a group
+
+Create a new user with `sudo adduser NAME` - I'm going to be using `brian` as an example name in these notes. When it asks for a password, you can just use `brian` or something; it will complain about the password being too short but it will create the user anyway. You can skip the GECOS information asking for a full name and phone number---it's just to help an admin contact you if needed.
+
+Check the user and group files with `tail /etc/passwd` and `tail /etc/group` to check that the new user has been created - `tail` displays the last 10 lines of a file by default; `tail -n N FILE` would display the last N lines. Your new user `brian` (or whatever you called them) should appear in both files. Also check with `ls -l /home` that the home directory for Brian exists and is set to the correct user and group.
+
+Time to change user: `su brian` and enter the password. Notice that the prompt has changed to `brian@debian12:/home/vagrant$` (at least if you started off in that folder). So the user has changed, and because `/home/vagrant` is no longer the current user's home directory, it gets written out in full. Run `cd` to go home followed by `pwd` and check that you are now in `/home/brian` or whatever you called your new user.
+
+Next, create a user `nigel` (or some other name) add both your two new users, but not `vagrant`, to the group `users` (which already exists) using the command `sudo usermod -aG GROUPNAME USERNAME`, where group and username are changed accordingly. Note: `brian` cannot use sudo, so you have to exit his terminal to get back to one running as the user `vagrant` for this.
+
+## Explore file permissions
+
+As user `brian` (or whatever you called your first new user), set up your home directory using what you learnt in the videos so that
+
+  * You can do everything (rwx).
+  * Members of the `users` group can list files and change to your home directory, but not add/remove files. You will need to change the group of your home directory to `users` for this, using the command `chgrp -R GROUPNAME DIRECTORY`.
+  * Everyone else cannot do anything with your home directory.
+
+Create a file in your home directory, e.g. `nano readme.txt` then add some content.
+
+Check, by using `su USERNAME` to log in as the different users, that:
+  * `nigel` can view Brian's home directory but not create files there; 
+  * `nigel` can view but not edit Brian's readme file; 
+  * `vagrant` cannot list files in or enter Brian's home directory at all. What happens when you try?
+
+_Of course, vagrant can use sudo to get around all these restrictions. Permissions do not protect you from anyone who can become root._
+
+Also as `brian`, make a `private` subdirectory in your home folder that no-one but you can access (read, write or execute). Create a file `secret.txt` in there with `nano private/secret.txt` as user `brian` from Brian's home directory, and put something in it. Do not change any permissions on `secret.txt` itself.
+
+Check as Nigel that you can see the folder itself, but not cd into it nor list the file. Check that even knowing the file name (`cat /home/brian/private/secret.txt`) as Nigel doesn't work.
+
+Using `ls -l` as Brian in both `~` and `~/private`, compare the entries for the files `~/readme.txt`, `~/private/secret.txt` and the folder `~/private`. Why do the groups of the two files differ?
+
+Note that, even though the secret file has read permissions for everyone by default, Nigel cannot read it. The rule is that you need permissions on the whole path from `/` to a file to be able to access it.
+
+_This is another reminder that if you want to store private files on a lab machine, then put it in a folder that is only accessible to you. Other students can read your home directory by default, and they would be able to look at your work. This has led to plagiarism problems in the past, but good news: we keep logs and can usually figure out what happened! `:-)`._
+
+_Altenatively you could remove permissions from everyone else on your home directory there, but this prevents you from being able to share files in specific folders that you do want to share with other students._
+
+## Setuid
+
+We are going to create a file to let Nigel (and others in the users group) send Brian messages which go in a file in his home directory.
+
+As Brian, create a file `message-brian.c` in your home directory and add the following lines:
+
+```C
+#include <stdio.h>
+#include <stdlib.h>
+
+const char *filename ="/home/brian/messages.txt";
+
+int main(int argc, char **argv) {
+  if (argc != 2) {
+    puts("Usage: message-brian MESSAGE");
+    return 1;
+  }
+  FILE *file = fopen(filename, "a");
+  if (file == NULL) {
+    puts("Error opening file");
+    return 2;
+  }
+  int r = fputs(argv[1], file);
+  if (r == EOF) {
+    puts("Error writing message");
+    return 2;
+  }
+  r = fputc('\n', file);
+  if (r == EOF) {
+    puts("Error writing newline");
+    return 2;
+  }
+  fclose(file);
+  return 0;
+}
+```
+
+Compile it with `gcc -Wall message-brian.c -o message-brian` (you should not get any warnings) and check with `ls -l`, you will see a line like
+
+    -rwxr-xr-x    1 brian     brian         19984 Oct 28 13:26 message-brian
+
+These are the default permissions for a newly created executable file; note that gcc has set the three `+x` bits for you. Still as Brian, run `chmod u+s message-brian` and check the file again: you should now see `-rwsr-xr-x` for the file permissions. The `s` is the setuid bit.
+
+As Nigel (`su nigel`), go into Brian's home directory and run `./message-brian "Hi from Nigel!"`. The quotes are needed here because the program accepts only a single argument.
+
+Now run `ls -l` and notice that a `messages.txt` has appeared with owner and group `brian`. Check the contents with `cat messages.txt`. Although Nigel cannot create and edit files in Brian's home directory himself (he can't edit `messages.txt` for example, although he can read it), the program `message-brian` ran as Brian, which let it create the file. Nigel can send another message like this (`./message-brian "Hi again!"`), which gets appended to the file: try this out.
+
+This shows how setuid programs can be used to allow other users to selectively perform specific tasks under a different user account.
+
+**Warning**: writing your own setuid programs is extremely dangerous if you don't know the basics of secure coding and hacking C programs, because a bug in such a program could let someone take over your user account. The absolute minimum you should know is the contents of our security units up to and including 4th year.
+
+A general task for a security analyst might be finding all files with the setuid bit set on a system. You can try this yourself, but return to a vagrant shell first so that you're allowed to use sudo:
+
+    sudo find / -perm /4000
+
+You might get some errors relating to `/proc` files, which you can ignore: these are subprocesses that find uses to look at individual files.
+
+Apart from `message-brian`, you'll find a few files by default: `sudo`, `mount`, `umount` and `su`. The first one you already know; look up what the next two do and think about why they are setuid. Specifically, what kinds of (un)mounting are non-root users allowed to do according to the manual pages?
+
+Look up the `passwd` program in the manual pages.  Why might that program need to be setuid?
+
+## Sudo
+
+Make sure your terminal is running as `brian` and try a `sudo ls`. You will see a general message, you will be asked for your password, and then you will get the error `brian is not in the sudoers file.  This incident will be reported.` (This means that an entry has been logged in `/var/log/messages`.)
+
+So, `brian` can currently not use sudo. Switch back to `vagrant` and run the command `sudo cat /etc/sudoers`. Everything is commented out except `root ALL=(ALL) ALL` and the last line `#includedir /etc/sudoers.d` (this is not a comment!) which contains a single file `vagrant` with the line `vagrant ALL=(ALL) NOPASSWD: ALL` which is why vagrant can use sudo in the first place.
+
+However, note the commented lines such as
+
+    # %wheel ALL=(ALL) NOPASSWD: ALL
+    # %sudo ALL=(ALL) ALL
+
+If uncommented, the first one would let everyone in group wheel run commands using sudo (this is the default on some other Linux distributions), whereas the second one would allow everyone in the group `sudo` to do this, but would prompt for their own password beforehand.
+
+Let's allow people in the users group to reboot the machine. Open a root shell with `sudo su` as user `vagrant`; this is so we don't get locked out if we break sudo.
+
+Edit the sudoers file with `visudo` as root, and add the following line:
+
+    %users ALL=(ALL) /sbin/reboot
+
+and save the sudoers file.
+
+**Warning:**: Never edit `/etc/sudoers` directly and *always* use `visudo` instead.  If you make a mistake and add a syntax error to the file then `sudo` will refuse to work.  If your root account doesn't have a password (some people don't like that as a security precaution) then you'll have to spend the next half-hour figuring out how to break into your own computer and wrestle back control.  There is almost always a command to check a config file before replacing the current one: the same advice also applies to the ssh config files.  If you break them you might have to travel to wherever the server is with a keyboard and a monitor.
+
+You can now switch back to `brian` (check the prompt to make sure you are Brian) and do `sudo reboot`. After asking for Brian's password, the virtual machine will now reboot, which you notice because you get kicked out of your ssh connection. Another `vagrant ssh` after a few seconds will get you back in again.
+
+(Note: After rebooting, your `/shared` shared folder might not work. In this case, log out and do `vagrant halt` then `vagrant up` and `vagrant ssh` again on the host machine. When vagrant boots your VM, it automatically sets up the shared folder, but this doesn't always work if you reboot the VM yourself.)
+# Shell Scripting
+
+Shell scripting is a huge topic - the shell is a full programming language after all.
+In the video for this activity you have only seen a very brief introduction.
+
+## Compile helper exercise
+
+Building on what you saw in the videos and the previous exercises, write a shell script in a file called `b` (for build) that does the following:
+
+  * Your script should run under any Bourne-compatible shell (e.g. not just `bash`), and it should be written so that you can call it with `./b` (Hint: look at how we use `chmod` in the permissions exercise).
+  * `./b compile NAME` should compile the file of the given name, so for example `./b compile hello` should run `gcc -Wall -std=c11 -g hello.c -o hello`.
+  * However, your script should accept both `./b compile hello` and `./b compile hello.c` as input, and do the same thing in both cases, namely compile `hello.c`. The output file for gcc in both cases should be called just `hello`.
+  * If the source file you provided as an argument does not exist (adding `.c` if necessary) then the script should print an error message and return a nonzero exit status - _not_ invoke the C compiler.
+  * `./b run NAME` should run the program, assuming it exists in the current folder, so both `./b run hello` and `./b run hello.c` should run `./hello`. If it does not exist, again print an error message and exit with a nonzero status, don't try and run the program.
+  * `./b build NAME` should first compile the C source file, and then if the compile was successful it should run the program. If the compile failed, it should not try and run the program.
+  * If you call `./b` without any parameters, or `./b COMMAND` with a command other than compile or run or build, it should print some information on how to use it. If you call `./b compile` or another command with no filename at all, then the script should print an error message and exit with a nonzero exit status.
+
+You now have a useful tool for when you are developing C programs. Of course you can add other features of your own like a `debug` command that compiles the file and launches it in `gdb`.
+
+_If you already know about Makefiles, you might wonder why we don't just use `make` for this. You are correct, but this is specifically a shell scripting exercise. We will learn about Makefiles soon._
+
+## Strict Mode
+
+Some programming languages have an optional _strict mode_ which treats some constructs as errors that people often do by mistake. It is similar in spirit to `-Werror` in C that treats all warnings as errors. [This page](http://redsymbol.net/articles/unofficial-bash-strict-mode/) suggests using the following line near the top of your shell scripts: `set -euo pipefail`. (It also talks about IFS to improve string handling with spaces, but that's a separate matter.)
+
+You might want to use these yourself if you get into shell scripting. `set` is a shell internal command that sets shell flags which controls how commands are run.
+
+  * `set -e` makes the whole script exit if any command fails. This way, if you want to run a list of commands, you can just put them in a script with `set -e` at the top, and as long as all the commands succeed (return 0), the shell will carry on; it will stop running any further if any command returns nonzero. It is like putting `|| exit $?` on the end of every command.
+  * `set -u` means referencing an undefined variable is an error. This is good practice for lots of reasons.
+  * `set -o pipefail` changes how pipes work: normally, the return value of a pipe is that of the _last_ command in the pipe. With the `pipefail` option, if any command in the pipeline fails (non-zero return) then the pipeline returns that command's exit code.
+  
+A couple of notes on `set -u`: if you write something like `rm -rf $FOLDER/` and `$FOLDER` isn't set, then you don't accidentally end up deleting the whole system! Of course, most `rm` implementations will refuse to delete `/` without the `--no-preserve-root` option, and you should not have that trailing slash in the first place. There was a [bug in a beta version of Steam for linux](https://drj11.wordpress.com/2015/01/20/steaming/) where it tried to do `rm -rf "$STEAMROOT/"*` to delete all files in a folder (which explains the slash), but the variable in some cases got set to the _empty string_, which `-u` would not protect against. This was an installer script, so it ran as root which made things even worse.
+
+**Exercise**: think of an example in a shell script where `pipefail` makes a difference, where the last command in a pipe could succeed even if a previous one fails. As a counter-example, `cat FILE | grep STRING` would fail even without `pipefail` if the file does not exist, because grep would immediately get end-of-file on standard input.
+# Pipes
+
+The command `ls | head` runs `ls` and `head` and pipes the standard output of ls
+into the standard input of head. This 'piping' of output to input is the basis
+of composability between Unix tools, and allows you to combine single tools into
+a toolchain that produces a specific outcome. 
+
+The following shell commands are particularly useful in pipes:
+
+  - `cat [FILENAME [FILENAME...]]` writes the contents of one or more files to standard output. This is a good way of starting a pipe. If you leave off all the filenames, cat just reads its standard input and writes it to standard output.
+  - `head [-n N]` reads its standard input and writes only the first N lines (default is 10 if you leave the option off) to standard output. You can also put a minus before the argument e.g. `head -n -2` to _skip the last 2 lines_ and write all the rest.
+  - `tail [-n N]` is like head except that it writes the last N lines (with a minus, it skips the first N ones).
+  - `sort` reads all its standard input into a memory buffer, then sorts the lines and writes them all to standard output.
+  - `uniq` reads standard input and writes to standard output, but skips repeated lines that immediately follow each other, for example if there are three lines A, A, B then it would only write A, B but if it gets A, B, A it would write all three. A common way to remove duplicate lines is `... | sort | uniq | ...`.
+  - `wc [-l]` stands for word count, but with `-l` it counts lines instead. Putting a `wc -l` on the very end of a pipe is useful if you just want to know how many results a particular command or pipe produces, assuming the results come one per line.
+
+All these commands actually take an optional extra filename as argument, in which case they read from this file as input. For example, to display the first 10 lines of a file called `Readme.txt`, you could do either `cat Readme.txt | head` or `head Readme.txt`.
+
+## Word list exercises - pipes
+
+Most Linux distributions (including Debian) come with a dictionary file `/usr/share/dict/words` that contains a list of English words in alphabetical order, for use in spell-checking programs. The list includes a selection of proper nouns, for example countries and cities. 
+
+(If you want to look at this list on a system that doesn't have it already, you
+can download a version with `wget https://users.cs.duke.edu/~ola/ap/linuxwords
+-O words` -- but the file might be slightly different from the Debian installed
+version)
+
+Find one-line commands, possibly with pipes, to print the following to your
+terminal. You can either start each command with `cat /usr/share/dict/words |
+...` or do it without cat by providing the words file as an argument to the
+first command in your pipeline.
+
+  * The first word in the file. 
+  * The last word in the file. 
+  * The number of words in the words file - there is one word per line.
+  * The 6171st word in the file. 
+  * The first five words that are among the last 100 words on the list.
+  * The last ten words in the file, sorted in reverse order. 
+  
+## Redirection
+
+Find a directory on your VM that contains some files, and is writeable by your
+current user (e.g., your `/shared` directory, or your `vagrant` user's home
+directory). `cd` to that directory.
+
+ * `ls -l` prints a detailed listing of the directory to standard output.
+   Redirect this listing to instead store it in a file called `tmp` _(if you
+don't know how, revist the second video+slides on piping)_.
+ * If you inspect the file content (e.g., by `cat tmp`) and compare it to what
+   you see when re-typing `ls -l` now, you should be able to find a difference.
+However, it's a small difference and might be hard to spot. Let's use a tool
+designed to help spot small differences between files. The `diff` utility takes
+in (at least) two filenames and produces output that compares the two files
+(feel free to test this elsewhere).  We have one file, `tmp`, but the thing we
+want diff to compare against is _the result of executing ls -l again right now_,
+not a file. Can you figure out how to redirect `ls -l` output to `diff` so it
+compares it with `tmp`? 
+ * The `diff` output is also appearing on standard output. Redirect it to a file
+   `difflog` like you did for `ls -l` before. By creating this file, we're
+changing what `ls` will report about this directory. Let's keep track of that
+change by running the same `diff` command again, but this time _appending_ the
+new output to `difflog`.  Inspect the resulting file and see what it tells you
+about the changes.
+
+
