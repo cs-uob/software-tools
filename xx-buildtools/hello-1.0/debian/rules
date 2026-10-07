@@ -1,7 +1,0 @@
-#! /usr/bin/make -f
-%:
-	dh $@
-
-override_dh_auto_install:
-	mkdir -p debian/hello/usr/bin
-	install hello debian/hello/usr/bin/hello
