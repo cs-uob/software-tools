@@ -101,7 +101,7 @@ This team member now has to resolve the conflict by editing the file to produce
 the version they would like to commit. In this example, you could remove all the
 offending lines and replace them with `Created by NAME1 and NAME2.`
 
-One all the conflicts in this merge attempt have been resolved (remember,
+Once all the conflicts in this merge attempt have been resolved (remember,
 multiple conflicts can occur in a file, and there can be conflicts in more than
 one file), the team member handling the merge can `git add` all the files with
 changes and `git commit` to explain how they handled the conflict. Git will
