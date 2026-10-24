@@ -16,7 +16,8 @@ The most important thing to understand for this week's lab is how to
 conceptually organise relational databases. Please read [this
 chapter](https://harpercollege.pressbooks.pub/relationaldatabases/chapter/normalization/)
 to learn more about functional dependencies, keys, and the two most important
-normal forms.
+normal forms. For implementing the schemas you design, you will also need to
+refer to [the SQLite syntax guide for CREATE TABLE](https://www.sqlite.org/lang_createtable.html).
 
 
 ## Exercises

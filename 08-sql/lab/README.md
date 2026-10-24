@@ -35,25 +35,31 @@ You can draw the diagram with pen and paper or you can use a free modelling tool
 
 ## Implementing a Schema
 
-Write a CREATE/DROP script for the schema that you have just designed, we'll cover CREATE TABLE in more detail in next week's lecture, but for now [you can find a description of the syntax here](https://www.sqlite.org/lang_createtable.html).
+You are going to write a CREATE/DROP script for the schema that you have just designed.
+Remember [you can find a description of the CREATE TABLE syntax here](https://www.sqlite.org/lang_createtable.html). Look back at the lecture slides for a simple example for reference.
 
-  * A create/drop script starts with a sequence of DROP TABLE IF EXISTS statements followed by a sequence of CREATE TABLE scripts. The effect of running it is to make sure all tables exist and are empty, whether or not the tables existed before.
-  * If table A has a foreign key to table B then you must create table B before A and drop table A before dropping B. The simple way to do this is work out the CREATE order, then put all DROP statements in the exact opposite order.
+You can experiment with SQL commands by starting up `sqlite3` and running commands interactively. As well as writing CREATE TABLE commands that correspond to your database design, experiment with adding records to your database using INSERT statements. Try to test out the constraints you intended in your design. You can use `SELECT * FROM yourtablenamehere;` to see printouts of tables that have records.
 
-Save your script as a file (the extension `.sql` is usual for SQL scripts).
+All you need to do to create a script is write down in a text editor all the commands you intend to run within SQLite, in the right sequence. Save your script as a file (the extension `.sql` is usual for SQL scripts). To test that it works, run it in SQLite with
 
-To test that it works, run it in SQLite3
-```
+```bash
 sqlite3 <myscript.sql
 ```
+
+Note:
+  * A CREATE/DROP script starts with a sequence of DROP TABLE IF EXISTS statements followed by a sequence of CREATE TABLE scripts. The effect of running it is to make sure all tables exist and are empty, whether or not the tables existed before.
+  * If Table A has a foreign key to Table B then you must create Table B before A and drop Table A before dropping B. The simple way to do this is work out the CREATE order, then put all DROP statements in the exact opposite order.
+
+
 
 ## More modelling
 
 Using what you have learnt so far about relational modelling, think about and discuss in groups how you would model a university database to store students' academic progress, such as units enrolled on and completed, marks obtained etc. based on your understanding of how the University of Bristol works. For example, a unit can have different assessments with different weights. You will of course also need a `Students` table, and you can make the model more involved if you like by including that different students are on different degree programmes, and that sometimes students have to resit units.
 
-You should end up with a more detailed version of the model briefly shown at the top of the previous page - if you have the time you can make both an ER diagram and a create/drop script.
+You should end up with a more detailed version of the model briefly shown at the top of the previous page - if you have the time you can make both an ER diagram and a CREATE/DROP script.
 
 This is also a good point to mention another fact of how marks and credit points work: exam boards. At the end of each academic year around May, your unit directors all report their marks for each student to an exam board, which sits and decides on final marks and awarding credit. For example, an exam board can moderate the marks for a unit. This is why you do not get your exam marks until a long time after the exam has happened, even if it's a multiple choice exam that can be marked automatically: the marks still have to go through an exam board. (There is another, smaller exam board around the start of Teaching Block 2 so you don't have to wait until summer for your January exam marks to be released.)
+
 If you want to model this in your schema, the idea here is that a student has two marks associated with each unit: the "actual mark" (the input to the exam board) and the "agreed mark" (the one that comes out of the board and goes on your transcript). Of course, for most students most of the time, the two are the same. Your schema will need to store "agreed marks" explicitly, but there are ways of doing the model that does not store the "actual mark" directly. Think about how you could recompute it from other information in the database - we will of course learn how to do this in SQL in a later activity.
 
-The key idea in relational modelling is not to store information more than once if you can avoid it. If you have stored in several places that Fred is taking Introduction to Programming, and then Fred switches his units, you don't want to end up with a situation where this change is only reflected in some parts of the database.
+The key idea in relational modelling is not to store information more than once if you can avoid it. If you have stored in several places that Fred is taking Introduction to Programming, and then Fred switches his units, you don't want to end up with a situation where this change is only reflected in some parts of the database. Look back at the normal forms material in the lecture for ideas on how to solve these issues.
