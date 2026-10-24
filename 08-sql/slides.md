@@ -23,7 +23,7 @@ Questions about debugging?
 
 As computer scientists, many of you will in the future be responsible for the design and deployment of information systems. 
 
-Professional engineers are also held responsible for the safety of the the structures they build.
+Professional engineers are also held responsible for the safety of the structures they build.
 
 > I, `___`, in the presence of these my mentors and my peers in my CALLING, pledge on my HONOUR and COLD IRON, that to the best of my knowledge and power, I will not tolerate or pass, or participate in the passing of, BAD WORKMANSHIP or FAULTY MATERIAL in all that concerns my works as an ENGINEER, or in my dealings with my own conscience, before the WORLD.
 
@@ -239,7 +239,7 @@ over-normalisation. We will only cover 0NF to BCNF.
 To understand normal forms, it is useful to first understand 'functional
 dependencies'.
 
-Simply: for X and Y, we say X _functionally detemines_ Y if and only
+Simply: for X and Y, we say X _functionally determines_ Y if and only
 if for every value of X there can be at most one value of Y. 
 
 For example, StudentID and Grade: many students may have the same grade, but for
@@ -370,7 +370,7 @@ It is *also* in BCNF (3.5NF), because there are no functional dependencies other
 
 ## Boyce-Codd Normal Form (3.5NF)
 
-The aim of meeting 2NF and 3NF was to remove redunancies (because they are wasteful and complicate updating your database tables).
+The aim of meeting 2NF and 3NF was to remove redundancies (because they are wasteful and complicate updating your database tables).
 
 The original supposition was that if you remove both _partial_ and _transitive_ dependencies in the manner described above, you should have removed all functional dependencies that might be creating redundancy.
 
@@ -386,7 +386,7 @@ A table is in BCNF if *each attribute* depends on *the whole key and only the wh
 
 ## So normalisation is about reducing the number of columns and creating more tables instead?
 
-Not exactly: the aim is to remove implicit redudancies that complicate updates to your tables.
+Not exactly: the aim is to remove implicit redundancies that complicate updates to your tables.
 
 However, in practice, this is how it is often accomplished.
 
