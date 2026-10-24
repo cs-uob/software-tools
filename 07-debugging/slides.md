@@ -85,7 +85,7 @@ understand:
 strace -e open,openat ls
 ```
 
-2. The `-p` option allows you to attach strace to an _already running_ process. 
+2. The `-p` option allows you to attach `strace` to an _already running_ process. 
 
 ```
 ps aux | grep [name]
@@ -325,7 +325,7 @@ $3 = 0
 
 ## GDB: Changing values
 
-Because `print` can evaluate any expression, you can make arbitary changes at
+Because `print` can evaluate any expression, you can make arbitrary changes at
 your current point of execution.
 
 ```

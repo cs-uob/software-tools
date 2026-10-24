@@ -429,7 +429,7 @@ To:
 ~~~
 ```
 
-You thus 're-base' your branch from commit A to commit D.
+You thus 're-base' your branch from commit B to commit D.
 
 ---
 
