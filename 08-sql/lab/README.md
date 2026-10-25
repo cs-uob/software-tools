@@ -46,8 +46,15 @@ All you need to do to create a script is write down in a text editor all the com
 sqlite3 <myscript.sql
 ```
 
+By default this won't create a persistent database. If you want to do so, you need to pass a database file name as a parameter to SQLite
+when you start it up.
+
+```bash
+sqlite3 test.db <myscript.sql
+```
+
 Note:
-  * A CREATE/DROP script starts with a sequence of DROP TABLE IF EXISTS statements followed by a sequence of CREATE TABLE scripts. The effect of running it is to make sure all tables exist and are empty, whether or not the tables existed before.
+  * A CREATE/DROP script starts with a sequence of `DROP TABLE IF EXISTS tablename;` statements followed by a sequence of CREATE TABLE scripts. The effect of running it is to make sure all tables exist and are empty, whether or not the tables existed before.
   * If Table A has a foreign key to Table B then you must create Table B before A and drop Table A before dropping B. The simple way to do this is work out the CREATE order, then put all DROP statements in the exact opposite order.
 
 
@@ -56,7 +63,7 @@ Note:
 
 Using what you have learnt so far about relational modelling, think about and discuss in groups how you would model a university database to store students' academic progress, such as units enrolled on and completed, marks obtained etc. based on your understanding of how the University of Bristol works. For example, a unit can have different assessments with different weights. You will of course also need a `Students` table, and you can make the model more involved if you like by including that different students are on different degree programmes, and that sometimes students have to resit units.
 
-You should end up with a more detailed version of the model briefly shown at the top of the previous page - if you have the time you can make both an ER diagram and a CREATE/DROP script.
+You should end up with a more detailed version of the model briefly shown at the top of the page - if you have the time you can make both an ER diagram and a CREATE/DROP script.
 
 This is also a good point to mention another fact of how marks and credit points work: exam boards. At the end of each academic year around May, your unit directors all report their marks for each student to an exam board, which sits and decides on final marks and awarding credit. For example, an exam board can moderate the marks for a unit. This is why you do not get your exam marks until a long time after the exam has happened, even if it's a multiple choice exam that can be marked automatically: the marks still have to go through an exam board. (There is another, smaller exam board around the start of Teaching Block 2 so you don't have to wait until summer for your January exam marks to be released.)
 

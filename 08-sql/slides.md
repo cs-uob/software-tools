@@ -269,7 +269,7 @@ composite key).
 |-----------|-----------|-----------|-------|-------------------|
 | 32032043  | COMS10012 | BowlCut   | 50    |  Poor             |
 | 21415591  | COMS10014 | Snazzy    | 55    |  Good             |
-| 32032043  | COMS10014 | BowlCut   | 50    |  Poor             |
+| 32032043  | COMS10014 | BowlCut   | 60    |  Poor             |
 | 13121981  | COMS10012 | Wavy      | 50    |  Average          |
 
 
@@ -324,10 +324,10 @@ You would make this 2NF by again extracting `SafetyOfficer` and creating another
 
 |*Location | SafetyOfficer |
 |----------|---------------|
-| Queens 1 | Ray Money     |
+| Queens 1 | Rob Money     |
 | Fulham 4 | George Foreman|
 
-Now we have removed the redundancy in the Event table: we don't keep repeating Ray Money's name.
+Now we have removed the redundancy in the Event table: we don't keep repeating Rob Money's name.
 
 ---
 ## Normal Forms Examples: 2NF->3NF
