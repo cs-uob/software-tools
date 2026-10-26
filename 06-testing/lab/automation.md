@@ -142,9 +142,6 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
   build:
@@ -174,8 +171,7 @@ jobs:
 
 This is a 'workflow' that will be executed by GitHub under certain conditions.
 The first part, under `on:` says that these jobs will run whenever someone
-pushes to the `main` branch, or whenever there is a pull request for that
-branch.
+pushes to the `main` branch.
 
 Under `jobs:`, the `build` job describes what should happen, with named steps.
 First, it specifies that GitHub should use the latest version of Ubuntu as the
