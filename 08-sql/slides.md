@@ -438,6 +438,9 @@ You can see it exists in the output of the SQLite command `.tables`
 
 Note convention: capitalise SQL keywords.
 
+Can add constraint `PRIMARY KEY(a, b)` at the end of list of columns to use
+attributes `a` and `b` as a **composite key**. 
+
 ---
 ## Making Relations
 
