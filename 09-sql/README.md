@@ -12,7 +12,10 @@ particular how to use SQL queries to extract information from databases.
 
 The crucial reference for this week's lab is the [SQLite syntax guide for SELECT
 statements](https://www.sqlite.org/lang_select.html). Most of the lab questions
-can be solved with simple SELECTs from appropriately-joined tables.
+can be solved with simple SELECTs from appropriately-joined tables. To revisit
+the different types of JOIN [this
+tutorial](https://dbschema.com/blog/tutorials/sql-joins-explained/) has some
+clear examples
 
 ## Exercises
  - [Election and Census Queries](./lab/README.md)
