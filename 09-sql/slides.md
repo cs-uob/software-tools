@@ -2,7 +2,7 @@
 (COMS10012 / COMSM0085)
 
 ## Week 9: Querying Databases with SQL
-(or, "Working with tables as a joiner")
+(or, "My CS degree led to me working as a joiner")
   - A little more table-making
   - Asking for things selectively 
   - Working with aggregates
@@ -124,6 +124,7 @@ This gives us a manageable number of rows, but what if we care about `ORDER`?
 
 ```sql
 SELECT CustomerID, FirstName, LastName, Email FROM Customer ORDER BY FirstName LIMIT 10;
+SELECT CustomerID, FirstName, LastName, Email FROM Customer ORDER BY FirstName DESC LIMIT 10;
 ```
 
 (Note: `ORDER` before `LIMIT`).
@@ -253,11 +254,139 @@ HAVING NoCustomers > 2;
 
 ## JOINing tables
 
+So far we've only used `SELECT` queries where `FROM` has its simplest form: a
+single table.
 
+Database normalisation means information is spread across multiple tables. When
+the information we want draws on multiple tables, our `SELECT` needs to draw
+records `FROM` a _temporary combination_ of those tables. This is called a
+**join**.  
+
+```sql
+SELECT Customer.FirstName, Customer.LastName, Employee.FirstName, Employee.LastName 
+FROM Employee JOIN Customer ON Employee.EmployeeId = Customer.SupportRepId 
+WHERE Customer.Country = 'Germany' AND Employee.ReportsTo = 2;
+```
+
+Note that the join happens _before_ filtering with `WHERE` or our selection of columns.
+
+You can `JOIN` tables using foreign keys: here `Customer.SupportRepId` was a
+foreign key pointing at `Employee.EmployeeId`, so this was a natural way to join.
+
+```sql
+SELECT Album.Title AS AlbumTitle, Artist.Name AS ArtistName
+FROM Artist JOIN Album ON Artist.ArtistId = Album.ArtistId 
+WHERE Artist.Name LIKE 'Al%' OR Album.Title LIKE 'Al%';
+```
 
 
 ---
 
+## Types of JOIN
+
+The default `JOIN` is an `INNER JOIN`. You most often will want an inner join.
+
+When joining tables `a` and `b` on `a.id = b.id`: 
+
+| Join Type      |   Includes from a |   Includes from b | Good For          |
+|----------------|-------------------|-------------------|-------------------|
+| INNER JOIN     | only matches in b | only matches in a | only matches      | 
+| LEFT JOIN      | all values        | only matches in a | all a, b optional |
+| RIGHT JOIN     | only matches in b | all values        | all b, a optional |
+| FULL JOIN      | all values        | all values        | either optional   |
+
+`LEFT`, `RIGHT` and `FULL` are types of `OUTER` join (they all create `NULL`s).
+Sometimes you will see this specified, e.g., `FULL OUTER JOIN` -- the meaning is
+the same.
+
+There is also a `CROSS JOIN` which accepts no ON condition and simply creates a
+Cartesian product of the two tables.
+
+Note the difference: `FULL JOIN` gets you all records in `a` or `b` at least
+once, even when one doesn't have a match. `CROSS JOIN` pairs **every** record in 
+`a` to **every** record in `b`, with no attempt to match.
+
+---
+
+## Sub-queries
+
+The `JOIN` creates a temporary table for us to `SELECT` `FROM`, stitching
+together real tables in the way we defined.
+
+But what if we want to create some type of summary table, and then query that
+table?
+
+(One answer is we could `CREATE TEMPORARY TABLE AS SELECT`, to avoid storage)
+
+The general solution is **sub-queries**: using the results of one `SELECT`
+query as a temporary table we can query.
+
+```sql
+SELECT sum(Albums) AS Albums, 
+       count(Name) AS Artists,
+       round(avg(Albums),2) AS AlbumsPerArtist 
+FROM (
+  SELECT count(Album.Title) AS Albums, Artist.Name
+  FROM Album RIGHT JOIN Artist ON Album.ArtistId = Artist.ArtistId
+  GROUP BY Artist.Name
+);
+```
+
+Here we further aggregated an aggregate query: necessary for answering tricky questions.
+
+(Why `RIGHT JOIN` instead of `INNER JOIN`?)
+
+---
+
+## SELECTive memory
+
+There are a lot of parts to `SELECT`. It's important to put things in the right
+place. When solving problems using SQL, try considering in order:
+
+1. `FROM`: What table am I selecting records from? Is it a temporary table
+   I need to form with a `JOIN` or a sub-query?
+
+2. `SELECT`: Which attributes (columns) do I want to see? If I am performing an
+   _aggregate_ query, do I need to `GROUP BY` some attribute?
+
+3. `WHERE`: Which records (rows) do I want to see? If this is an aggregate
+   query, do I mean `HAVING`?
+
+4. Do I want to `ORDER BY` an attribute, or `LIMIT` the records displayed?
+
+Experiment in your SQLite shell to get rapid feedback, but write completed
+commands down in a script so you can replicate them later.
+
+---
+
+## Enough SELECT
+
+You've seen `CREATE TABLE` and `DROP TABLE`, `INSERT` and `SELECT`.
+
+For database _maintenance_:
+  - `ALTER TABLE` to rename table, remove columns, redefine columns.
+  - `UPDATE` to alter records (identify which with `WHERE`); or
+  - use special `ON CONFLICT` clause in `INSERT` to 'UPSERT'
+
+```sql
+CREATE TABLE vocabulary(word TEXT PRIMARY KEY, count INT DEFAULT 1);
+INSERT INTO vocabulary(word) VALUES('jovial')
+  ON CONFLICT(word) DO UPDATE SET count=count+1;
+```
+
+In concurrent application settings, to retain ACID consistency, you may need to
+use **transactions**
+
+```sql
+BEGIN TRANSACTION
+ ... some INSERTs/ UPDATEs, etc...
+END TRANSACTION
+```
+
+Either **all** changes in the transaction complete successfully, or **none** do.
+
+
+---
 ## The End
 
 We'll see you in the labs on Friday.
