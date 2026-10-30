@@ -26,7 +26,7 @@ To get started download and run the AbcDatalog JAR file:
 
 [[https://en.wikipedia.org/wiki/The_Addams_Family][The Addams Family]] tree (or a cut down version of it) is shown above.  Your task is to encode the family tree in Datalog.  To do this you'll need to describe the relationships in Horn clauses.
 
-Firstly you'll need to create the knowledge base in Horn-clauses.  Start by defining a relationship between parent and children.  For example,
+Firstly you'll need to create the knowledge base in Horn clauses.  Start by defining a relationship between parent and children.  For example,
 =parent(pugsley,gomez)= states that Pugsley's parent is Gomez. 
 
 *Task 1.* Capture the Addams Family tree using Horn clauses. To test run the query =parent(X,sharron)= to see if /Sharron/ is anyone's parent.  The only match should be /Debbie/.
