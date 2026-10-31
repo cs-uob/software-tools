@@ -230,7 +230,7 @@ over-normalisation. We will only cover 0NF to BCNF.
 - **1NF**: ONF + every attribute in your tables is **atomic** -- no nested lists.
 - **2NF**: 1NF + there are no _partial functional dependencies_ of non-key attributes on candidate keys.
 - **3NF**: 2NF + there are no _transitive functional dependencies_ of non-key attributes on candidate keys.
-- **BCNF**: 3NF + there are no _functional dependences_ other than on candidate keys.
+- **BCNF**: 3NF + there are no _functional dependences_ other than direct functional dependences of non-key attributes on full candidate keys.
 
 ---
 

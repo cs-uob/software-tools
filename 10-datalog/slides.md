@@ -50,7 +50,7 @@ database using `sqlite3_open` and `sqlite3_exec`.
 All the program is really doing is getting the user to supply an ID:
 
 ```c
-	char appointmentID[7];
+char appointmentID[7];
 ```
 
 And then it creates a string in the form of a `SELECT`
@@ -89,7 +89,7 @@ in queries cannot be misinterpreted as SQL clauses.
 ## Appointment checker (v2)
 
 ```c
-	sqlite3_stmt *stmt;
+    sqlite3_stmt *stmt;
 
     //Use a prepared statement with '?' for input locations
     char *sql = "SELECT * FROM Appointment WHERE AppointmentID = ?";
