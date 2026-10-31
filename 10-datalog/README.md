@@ -11,6 +11,14 @@ relational databases.
 
 ## Pre-reading
 
+Please [read more about SQL injection](https://community.owasp.org/attacks/SQL_Injection).
+The particular Datalog implementation we will use in the labs is AbcDatalog,
+see the basic usage guide [here](https://harvardpl.github.io/AbcDatalog/).
+That's all!
+
 
 ## Exercises
  - [AbcDatalog](./lab/README.org)
+
+## Optional Reading
+ - [More about sqlite3 from C](https://zetcode.com/db/sqlitec/)
