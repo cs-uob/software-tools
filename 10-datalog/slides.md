@@ -2,7 +2,7 @@
 (COMS10012 / COMSM0085)
 
 ## Week 10: Databases, beyond SQL
-(or, "When is a riddle a database?")
+(or, "When is a puzzle a database?")
   - Notes on using SQL from code.
   - Cursing recursive data structures.
   - Datalog fundamentals
@@ -104,8 +104,8 @@ in queries cannot be misinterpreted as SQL clauses.
     }
 ```
 
-By having `prepare` and `bind` carefully make clear that input should not be
-treated as part of our SQL, we assure that user input of `1 OR 1=1` is parsed
+By having `prepare` and `bind` carefully make clear that user input should not
+be treated as part of our SQL, we assure that user input of `1 OR 1=1` is parsed
 properly:
 
 ```sql
@@ -116,13 +116,82 @@ SELECT * FROM Appointment WHERE AppointmentID = '1 OR 1=1';
 Always look for the DB interface library's prepared statement functionality when
 handling user input.
 
+(Do note: there are several other problems with this example code).
 
 ---
 ## SQL and recursion
 
+I have a database of managerial relationships.
+
+```bash
+sqlite3 bosses.db
+```
+
+```sql
+SELECT manager.manager FROM manager WHERE manager.employee = 'Matthew Edwards';
+```
+
+Can I find out who my manager's manager is, in one query? Sure:
+
+
+```sql
+SELECT a.manager, b.manager AS managermanager 
+FROM manager a JOIN manager b ON a.manager = b.employee 
+WHERE a.employee = 'Matthew Edwards';
+```
+
+This is a `SELF JOIN` -- perfectly sensible in some situtations. Note we have to
+name `a` and `b` to be clear which side of the join we are talking about.
+
+But can I find **all** of my managers?
+
+---
+
+## SQL and recursion
+
+Not really. I **can** keep on JOINing...
+
+```sql
+SELECT  a.manager, 
+        b.manager AS manager2,
+        c.manager AS manager3
+FROM manager a 
+  JOIN manager b ON a.manager = b.employee 
+  JOIN manager c on b.manager = c.employee
+WHERE a.employee = 'Matthew Edwards';
+```
+
+But this is awkward -- I need to know how deep I have to go in advance and I
+can't just have the query climb all the way up the heirarchy.
+
+What if there are 5 more layers? What if there are 24?
+
 
 ---
 ## Recursive data structures
+
+You know (I hope, from your programming lessons) that certain recursive data structures 
+(like trees and graphs) can be efficient data representations for lots of problems.
+
+- organisational hierarchies
+- file storage
+- process relationships
+
+While you **can** implement storage of these structures in relational databases,
+they can be difficult to query effectively.
+
+This is frustrating, because what we want in our management example is
+conceptually quite simple: a list of `Y` for a given person `X`, where either:
+ - `X` directly reports to `Y`, or 
+ - `Y` manages whoever `X` directly reports to:
+
+You could formalise this a little like:
+
+```prolog
+manages(Y, X) :- directreport(Y,X).
+manages(Y, X) :- directreport(Z,X), manages(Y, Z).
+```
+
 
 
 ---
