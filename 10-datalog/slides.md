@@ -140,7 +140,7 @@ FROM manager a JOIN manager b ON a.manager = b.employee
 WHERE a.employee = 'Matthew Edwards';
 ```
 
-This is a `SELF JOIN` -- perfectly sensible in some situtations. Note we have to
+This is a `SELF JOIN` -- perfectly sensible in some situations. Note we have to
 name `a` and `b` to be clear which side of the join we are talking about.
 
 But can I find **all** of my managers?
@@ -162,7 +162,7 @@ WHERE a.employee = 'Matthew Edwards';
 ```
 
 But this is awkward -- I need to know how deep I have to go in advance and I
-can't just have the query climb all the way up the heirarchy.
+can't just have the query climb all the way up the hierarchy.
 
 What if there are 5 more layers? What if there are 24?
 
@@ -193,24 +193,204 @@ manages(Y, X) :- directreport(Z,X), manages(Y, Z).
 ```
 
 
-
 ---
 ## Datalog
 
+If that formalism makes sense to you: congratulations, you already understand
+most of Datalog.
+
+Datalog is a strict subset of the programming language Prolog (all Prolog
+interpreters can handle Datalog syntax, though the evaluation model works
+differently)
+
+The core idea: by declaring certain **facts** and providing **rules** for
+deduction from those facts, you can create flexible _deductive databases_.
+
+The language itself is minimal:
+  - **atoms** start with a lowercase letter, or are guarded by quotes ''
+  - **variables** start with an uppercase letter or an underscore
+  - **numbers** can be integers or floats 
+  - **compound terms** are an **atom** followed by other terms as arguments
+
+```prolog
+thisIsAnAtom
+'This is also an Atom'
+ThisIsAVariable
+_AlsoAVariable
+20
+23.4
+compoundterm(thisIsATerm, someOtherTerm).
+```
+
+(Also some special handling for lists `[]` and strings `""`, but they are really
+just fancy compound terms).
+
+---
+
+## Datalog rules
+
+Datalog programs are simple lists of compound terms in Horne clauses.
+
+```
+This :- IsDefinedHere
+```
+
+Compound terms involving only atoms are **facts**, known to be true.
+
+```prolog
+human(socrates). % short form
+human(socrates) :- true.
+```
+
+You can use variables to describe **rules** grounded in your facts.
+
+```prolog
+human(X)  :- twoFeet(X), noFeathers(X).
+mortal(X) :- human(X).
+```
+
+Once your database of facts and rules is loaded, you can query it in the
+interpreter.
+
+```prolog
+?- human(socrates).
+true.
+
+?- mortal(Y).
+Y = socrates
+```
+
+
 ---
 ## Learning about relationships
+
+Our rules allow us to express general relationships over a set of facts.
+
+```prolog
+father_child(paul, rudy).
+father_child(paul, norn).
+father_child(paul, aisha).
+
+mother_child(zenith, norn).
+mother_child(zenith, rudy).
+
+mother_child(lilia, aisha).
+
+parent_child(X, Y) :- father_child(X, Y).
+parent_child(X, Y) :- mother_child(X, Y).
+
+sibling(X, Y) :- parent_child(Z, X), parent_child(Z, Y), X != Y.
+```
+
+The database/program can deduce the possible values of `X` in 
+
+```prolog
+?- sibling(rudy, X).
+```
 
 
 ---
 ## Recursive relationships
 
+Importantly, we can use recursion in our rules.
+
+```prolog
+ancestor(X, Y) :- parent_child(X, Y).
+ancestor(X, Y) :- parent_child(X, Z), ancestor(Z, Y).
+```
+
+Why does this relationship look familiar?
+
+If I translate the records from my SQLite `bosses.db` into Datalog facts...
+
+```prolog
+directreport('Inah Omoronyia', 'Matthew Edwards'). 
+directreport('Mike Fraser', 'Inah Omoronyia'). 
+directreport('David Manley', 'Mike Fraser'). 
+...
+```
+
+Then the `manages` rule we defined before can be used to find _all_ my managers.
+
+```prolog
+?- manages(X, 'Matthew Edwards').
+```
+
+(Give this a go).
 
 ---
 ## Learning about... access control?
 
+```prolog
+% The access control rules
+canRead(U,F) :- user(U), file(F), owns(U,F), userReadBitSet(F).
+canRead(U,F) :- user(U), group(G), file(F), member(U,G), owns(G,F), groupReadBitSet(F).
+canRead(U,F) :- user(U), file(F), otherReadBitSet(F).
+
+% Some facts about our system
+user(matthew).
+user(wehttam).
+
+group(realusers).
+
+member(matthew, realusers).
+
+file('slides.md').
+file('README.md').
+file('dac.pl').
+
+owns(matthew, 'slides.md').
+owns(realusers, 'slides.md').
+owns(realusers, 'README.md').
+
+userReadBitSet('README.md').
+groupReadBitSet('README.md').
+otherReadBitSet('dac.pl')
+```
+
+---
+
+## The point
+
+You probably won't use Datalog in a real deployment setting.
+
+However, you very well might encounter a database that is something other than a
+relational database accessed via SQL.
+
+Datalog is a good toy example to enable thinking generally about:
+  - What information do I need to store?
+  - How can I store it effectively?
+  - How will I be able to query the database?
+
+Also worthwhile for you have experience with 'logic programming'.
+
 
 ---
 ## The TB1 exam
+
+```
+"Will X be on the exam?"
+```
+
+Everything in the **reading**, **lectures** and **labs**, unless marked
+otherwise, is potentially examinable.
+
+|  Week                 | No. |  General Topic   |  #Questions |
+|-----------------------|-----|------------------|-------------|
+| System administration | 1   | UNIX basics      |    3        |
+| POSIX fundamentals    | 2   | UNIX basics      |    3        |
+| Regular expressions   | 3   | UNIX basics      |    3        |
+| Git basics            | 4   | Version control  |    3        |  
+| Git (collaborative)   | 5   | Version control  |    3        | 
+| Testing               | 6   | Development      |    3        |
+| Debugging             | 7   | Development      |    3        |
+| SQL                   | 8   | Databases        |    3        |
+| More SQL              | 9   | Databases        |    3        |
+| Datalog               | 10  | Databases        |    3        |
+
+Plus `1` [special extra question]() from each lecturer = `32` questions (a nice round number).
+
+Final tool you need to know about: [the pencil](https://en.wikipedia.org/wiki/Pencil)
 
 ---
 ## The End
