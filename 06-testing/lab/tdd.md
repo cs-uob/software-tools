@@ -19,11 +19,19 @@ Unity is open-source, so we can clone the repository directly from GitHub.
 
 Once you have cloned the repository, it is time to build and install the
 software. We can do this using the `cmake` build tool, which should already
-exist on your system.
+exist on your system, but if not can be installed (on Vagrant) with:
+
+```bash
+sudo apt-get update
+sudo apt-get install cmake
+```
+
+Then build using the following:
 
 ```bash 
 cd Unity
-sudo cmake --install .
+cmake .
+sudo make install
 ```
 
 You will see CMake's output, telling you where it has installed certain files in
