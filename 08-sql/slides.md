@@ -176,7 +176,7 @@ Our 'Degree' table:
 | DegreeID | Name             | School | Duration |
 |----------|------------------|--------|----------|
 | 1001     | Computer Science | COMS   | 3 years  |
-| 1002     | Mathemathics     | MATH   | 4 years  |
+| 1002     | Mathematics      | MATH   | 4 years  |
 | 1003     | Engineering      | ENG    | 3 years  |
 
 

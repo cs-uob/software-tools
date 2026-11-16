@@ -345,7 +345,7 @@ owns(realusers, 'README.md').
 
 userReadBitSet('README.md').
 groupReadBitSet('README.md').
-otherReadBitSet('dac.pl')
+otherReadBitSet('dac.pl').
 ```
 
 ---

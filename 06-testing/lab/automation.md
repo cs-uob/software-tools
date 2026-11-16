@@ -117,7 +117,7 @@ Then, from the commandline inside your local repository run
 
 ```bash
 git remote add origin git@github.com:[USERNAME]/[REPONAME].git
-git push -u origin main
+git push -u origin master
 ```
 
 Where USERNAME is your GitHub account name and REPONAME is the name you came up
@@ -171,7 +171,8 @@ jobs:
 
 This is a 'workflow' that will be executed by GitHub under certain conditions.
 The first part, under `on:` says that these jobs will run whenever someone
-pushes to the `main` branch.
+pushes to the `main` branch (if your default branch is `master`, alter this
+here).
 
 Under `jobs:`, the `build` job describes what should happen, with named steps.
 First, it specifies that GitHub should use the latest version of Ubuntu as the
