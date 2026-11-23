@@ -308,6 +308,26 @@ once, even when one doesn't have a match. `CROSS JOIN` pairs **every** record in
 
 ---
 
+## Keep JOINing
+
+Commonly you will have to `JOIN` more than once to put together the information
+you need for your query.
+
+```sql
+SELECT InvoiceDate, sum(Total) as salesTotal, 
+       Customer.FirstName, Customer.LastName, 
+       Employee.FirstName, Employee.LastName 
+FROM Employee 
+  JOIN Customer ON Employee.EmployeeId = Customer.SupportRepId 
+  JOIN Invoice ON Customer.CustomerId = Invoice.CustomerId
+WHERE Customer.Country = 'France' 
+GROUP BY Customer.CustomerId, Employee.EmployeeId;
+
+```
+
+---
+
+
 ## Sub-queries
 
 The `JOIN` creates a temporary table for us to `SELECT` `FROM`, stitching
